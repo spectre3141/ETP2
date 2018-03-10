@@ -17088,7 +17088,7 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <part name="D5" library="Moodlight" deviceset="SS13L" device=""/>
 <part name="D1" library="Moodlight" deviceset="TS4148RY" device=""/>
 <part name="T1" library="Moodlight" deviceset="BUK98150-55A" device=""/>
-<part name="L2" library="Moodlight" deviceset="SDR0604" device="" value="680uH"/>
+<part name="L2" library="Moodlight" deviceset="POWER-CHOKE_WE-PD" device="" value="680uH"/>
 <part name="IC2" library="Moodlight" deviceset="SN74LVC2G02" device=""/>
 <part name="C7" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100nF"/>
 <part name="GND11" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
@@ -17114,7 +17114,7 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <part name="D8" library="Moodlight" deviceset="SS13L" device=""/>
 <part name="D2" library="Moodlight" deviceset="TS4148RY" device=""/>
 <part name="T2" library="Moodlight" deviceset="BUK98150-55A" device=""/>
-<part name="L1" library="Moodlight" deviceset="SDR0604" device="" value="680uH"/>
+<part name="L1" library="Moodlight" deviceset="POWER-CHOKE_WE-PD" device="" value="680uH"/>
 <part name="IC3" library="Moodlight" deviceset="SN74LVC2G02" device=""/>
 <part name="C11" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100nF"/>
 <part name="GND16" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
@@ -17139,7 +17139,7 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <part name="D9" library="Moodlight" deviceset="SS13L" device=""/>
 <part name="D3" library="Moodlight" deviceset="TS4148RY" device=""/>
 <part name="T3" library="Moodlight" deviceset="BUK98150-55A" device=""/>
-<part name="L3" library="Moodlight" deviceset="SDR0604" device="" value="680uH"/>
+<part name="L3" library="Moodlight" deviceset="POWER-CHOKE_WE-PD" device="" value="680uH"/>
 <part name="IC6" library="Moodlight" deviceset="SN74LVC2G02" device=""/>
 <part name="C17" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100nF"/>
 <part name="GND25" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
@@ -17164,7 +17164,7 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <part name="D10" library="Moodlight" deviceset="SS13L" device=""/>
 <part name="D4" library="Moodlight" deviceset="TS4148RY" device=""/>
 <part name="T4" library="Moodlight" deviceset="BUK98150-55A" device=""/>
-<part name="L4" library="Moodlight" deviceset="SDR0604" device="" value="680uH"/>
+<part name="L4" library="Moodlight" deviceset="POWER-CHOKE_WE-PD" device="" value="680uH"/>
 <part name="IC8" library="Moodlight" deviceset="SN74LVC2G02" device=""/>
 <part name="C23" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100nF"/>
 <part name="GND34" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
@@ -17225,8 +17225,8 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <part name="GND48" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="D6" library="Moodlight" deviceset="SS13L" device=""/>
 <part name="D7" library="Moodlight" deviceset="SS13L" device=""/>
-<part name="L5" library="Moodlight" deviceset="POWER-CHOKE_WE-PD" device="" value="220uH"/>
-<part name="L6" library="Moodlight" deviceset="POWER-CHOKE_WE-PD" device="" value="220uH"/>
+<part name="L5" library="Moodlight" deviceset="SDR0604" device="" value="220uH"/>
+<part name="L6" library="Moodlight" deviceset="SDR0604" device="" value="220uH"/>
 <part name="C29" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CPOL-EU" device="E3.5-8" package3d_urn="urn:adsk.eagle:package:23360/2" value="100uF"/>
 <part name="C30" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CPOL-EU" device="E3.5-8" package3d_urn="urn:adsk.eagle:package:23360/2" value="100uF"/>
 <part name="X1" library="Moodlight" deviceset="DC_JACK_ECON_DCE4A" device="" value="DC_JACK"/>
@@ -17415,7 +17415,7 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <instance part="GND44" gate="1" x="299.72" y="-66.04"/>
 <instance part="P+15" gate="1" x="309.88" y="5.08"/>
 <instance part="GND45" gate="1" x="149.86" y="172.72"/>
-<instance part="P+16" gate="1" x="149.86" y="198.12"/>
+<instance part="P+16" gate="1" x="165.1" y="198.12"/>
 <instance part="C25" gate="G$1" x="157.48" y="180.34"/>
 <instance part="C26" gate="G$1" x="165.1" y="180.34"/>
 <instance part="GND46" gate="1" x="157.48" y="172.72"/>
@@ -17476,16 +17476,16 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <instance part="GND63" gate="1" x="386.08" y="50.8"/>
 <instance part="P+21" gate="1" x="391.16" y="81.28"/>
 <instance part="C39" gate="G$1" x="391.16" y="63.5"/>
-<instance part="R18" gate="G$1" x="340.36" y="66.04" rot="R180"/>
+<instance part="R18" gate="G$1" x="337.82" y="66.04" rot="R180"/>
 <instance part="R19" gate="G$1" x="360.68" y="53.34"/>
 <instance part="X4" gate="-1" x="375.92" y="73.66"/>
 <instance part="X4" gate="-2" x="375.92" y="66.04"/>
 <instance part="C40" gate="G$1" x="363.22" y="48.26" rot="R270"/>
 <instance part="R20" gate="G$1" x="337.82" y="78.74" rot="R90"/>
 <instance part="P+22" gate="1" x="337.82" y="86.36"/>
-<instance part="C41" gate="G$1" x="317.5" y="63.5" rot="R180"/>
-<instance part="GND64" gate="1" x="317.5" y="53.34"/>
-<instance part="C42" gate="G$1" x="332.74" y="66.04" rot="R270"/>
+<instance part="C41" gate="G$1" x="314.96" y="63.5" rot="R180"/>
+<instance part="GND64" gate="1" x="314.96" y="53.34"/>
+<instance part="C42" gate="G$1" x="330.2" y="66.04" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -17816,7 +17816,7 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <segment>
 <pinref part="GND64" gate="1" pin="GND"/>
 <pinref part="C41" gate="G$1" pin="1"/>
-<wire x1="317.5" y1="55.88" x2="317.5" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="314.96" y1="55.88" x2="314.96" y2="60.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$3" class="0">
@@ -17959,18 +17959,17 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <junction x="193.04" y="195.58"/>
 </segment>
 <segment>
-<wire x1="139.7" y1="185.42" x2="149.86" y2="185.42" width="0.1524" layer="91"/>
-<wire x1="149.86" y1="185.42" x2="149.86" y2="195.58" width="0.1524" layer="91"/>
-<pinref part="P+16" gate="1" pin="+24V"/>
+<wire x1="139.7" y1="185.42" x2="157.48" y2="185.42" width="0.1524" layer="91"/>
 <pinref part="C25" gate="G$1" pin="+"/>
 <wire x1="157.48" y1="182.88" x2="157.48" y2="185.42" width="0.1524" layer="91"/>
-<wire x1="157.48" y1="185.42" x2="149.86" y2="185.42" width="0.1524" layer="91"/>
-<junction x="149.86" y="185.42"/>
 <pinref part="C26" gate="G$1" pin="1"/>
 <wire x1="165.1" y1="182.88" x2="165.1" y2="185.42" width="0.1524" layer="91"/>
 <wire x1="165.1" y1="185.42" x2="157.48" y2="185.42" width="0.1524" layer="91"/>
 <junction x="157.48" y="185.42"/>
 <pinref part="D11" gate="G$1" pin="C"/>
+<pinref part="P+16" gate="1" pin="+24V"/>
+<wire x1="165.1" y1="185.42" x2="165.1" y2="195.58" width="0.1524" layer="91"/>
+<junction x="165.1" y="185.42"/>
 </segment>
 </net>
 <net name="START" class="0">
@@ -18795,14 +18794,15 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <net name="N$38" class="0">
 <segment>
 <pinref part="R19" gate="G$1" pin="1"/>
-<pinref part="IC12" gate="G$1" pin="VIN-"/>
 <wire x1="355.6" y1="53.34" x2="345.44" y2="53.34" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="53.34" x2="345.44" y2="66.04" width="0.1524" layer="91"/>
 <pinref part="C40" gate="G$1" pin="2"/>
 <wire x1="358.14" y1="48.26" x2="345.44" y2="48.26" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="48.26" x2="345.44" y2="53.34" width="0.1524" layer="91"/>
-<junction x="345.44" y="53.34"/>
+<pinref part="IC12" gate="G$1" pin="VIN-"/>
 <pinref part="R18" gate="G$1" pin="1"/>
+<wire x1="342.9" y1="66.04" x2="345.44" y2="66.04" width="0.1524" layer="91"/>
+<wire x1="345.44" y1="53.34" x2="345.44" y2="66.04" width="0.1524" layer="91"/>
+<junction x="345.44" y="53.34"/>
 <junction x="345.44" y="66.04"/>
 </segment>
 </net>
@@ -18811,9 +18811,9 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <pinref part="IC12" gate="G$1" pin="VIN+"/>
 <wire x1="345.44" y1="68.58" x2="337.82" y2="68.58" width="0.1524" layer="91"/>
 <wire x1="337.82" y1="68.58" x2="337.82" y2="71.12" width="0.1524" layer="91"/>
-<wire x1="337.82" y1="71.12" x2="317.5" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="337.82" y1="71.12" x2="314.96" y2="71.12" width="0.1524" layer="91"/>
 <pinref part="C41" gate="G$1" pin="2"/>
-<wire x1="317.5" y1="71.12" x2="317.5" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="314.96" y1="71.12" x2="314.96" y2="68.58" width="0.1524" layer="91"/>
 <pinref part="IC12" gate="G$1" pin="BP"/>
 <wire x1="337.82" y1="71.12" x2="345.44" y2="71.12" width="0.1524" layer="91"/>
 <junction x="337.82" y="71.12"/>
@@ -18829,18 +18829,17 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <label x="317.5" y="73.66" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$41" class="0">
-<segment>
-<pinref part="R18" gate="G$1" pin="2"/>
-<pinref part="R18" gate="G$1" pin="2"/>
-<pinref part="C42" gate="G$1" pin="1"/>
-</segment>
-</net>
 <net name="AUDIO" class="0">
 <segment>
 <pinref part="C42" gate="G$1" pin="2"/>
-<wire x1="327.66" y1="66.04" x2="320.04" y2="66.04" width="0.1524" layer="91"/>
+<wire x1="325.12" y1="66.04" x2="320.04" y2="66.04" width="0.1524" layer="91"/>
 <label x="320.04" y="66.04" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$43" class="0">
+<segment>
+<pinref part="C42" gate="G$1" pin="1"/>
+<pinref part="R18" gate="G$1" pin="2"/>
 </segment>
 </net>
 </nets>
