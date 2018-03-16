@@ -2188,8 +2188,8 @@ design rules under a new name.</description>
 <element name="C21" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="10nF" x="93.98" y="36.83">
 <attribute name="SPICEPREFIX" value="C" x="93.98" y="36.83" size="1.778" layer="27" display="off"/>
 </element>
-<element name="C22" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="1uF" x="81.915" y="69.85" rot="R180">
-<attribute name="SPICEPREFIX" value="C" x="81.915" y="69.85" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="C22" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="1uF" x="78.105" y="71.12" rot="R180">
+<attribute name="SPICEPREFIX" value="C" x="78.105" y="71.12" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
 <element name="C23" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100nF" x="-17.78" y="86.36">
 <attribute name="SPICEPREFIX" value="C" x="-17.78" y="86.36" size="1.778" layer="27" display="off"/>
@@ -2283,7 +2283,7 @@ design rules under a new name.</description>
 <element name="L1" library="Moodlight" package="POWER-CHOKE_WE-PD" value="680uH" x="67.31" y="64.77" rot="R180"/>
 <element name="L2" library="Moodlight" package="POWER-CHOKE_WE-PD" value="680uH" x="19.05" y="64.77" rot="R180"/>
 <element name="L3" library="Moodlight" package="POWER-CHOKE_WE-PD" value="680uH" x="43.18" y="64.77" rot="R180"/>
-<element name="L4" library="Moodlight" package="POWER-CHOKE_WE-PD" value="680uH" x="91.44" y="62.23" rot="R180"/>
+<element name="L4" library="Moodlight" package="POWER-CHOKE_WE-PD" value="680uH" x="91.44" y="64.77" rot="R180"/>
 <element name="L5" library="Moodlight" package="SDR0604" value="220uH" x="20.32" y="8.255" rot="R90"/>
 <element name="L6" library="Moodlight" package="SDR0604" value="220uH" x="43.18" y="8.255" rot="R90"/>
 <element name="M1" library="Moodlight" package="RN42_BLUETOOTH" value="RN42_BLUETOOTH" x="71.12" y="10.16" rot="R180"/>
@@ -2337,7 +2337,7 @@ design rules under a new name.</description>
 </element>
 <element name="X1" library="Moodlight" package="DC_JACK_ECON_DCE4A" value="DC_JACK" x="10.16" y="8.89" rot="R90"/>
 <element name="X2" library="Moodlight" package="TERMINAL_BLOCK_MC000036" value="" x="20.32" y="80.01"/>
-<element name="X3" library="Moodlight" package="TERMINAL_BLOCK_MC000036" value="" x="62.23" y="80.01"/>
+<element name="X3" library="Moodlight" package="TERMINAL_BLOCK_MC000036" value="" x="77.47" y="80.01"/>
 <element name="R17" library="rcl" library_urn="urn:adsk.eagle:library:334" package="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="10k" x="-97.79" y="90.17"/>
 <element name="IC12" library="TS4871" package="SO08" value="TS4871" x="-105.41" y="93.98"/>
 <element name="IC11" library="TXS0102" package="SSOP08" value="TXS0102" x="59.69" y="22.86" rot="R90"/>
@@ -2933,7 +2933,7 @@ design rules under a new name.</description>
 <contactref element="L4" pad="1"/>
 <wire x1="84.328" y1="50.8" x2="87.706" y2="50.8" width="0.8128" layer="1"/>
 <wire x1="87.706" y1="50.8" x2="93.9038" y2="50.8" width="0.8128" layer="1"/>
-<wire x1="91.44" y1="57.28" x2="95.12" y2="57.28" width="0.8128" layer="1"/>
+<wire x1="91.44" y1="59.82" x2="95.12" y2="57.28" width="0.8128" layer="1"/>
 <wire x1="97.79" y1="54.61" x2="97.79" y2="52.07" width="0.8128" layer="1"/>
 <wire x1="97.79" y1="52.07" x2="96.52" y2="50.8" width="0.8128" layer="1"/>
 <wire x1="96.52" y1="50.8" x2="93.9038" y2="50.8" width="0.8128" layer="1"/>
@@ -3241,9 +3241,8 @@ design rules under a new name.</description>
 <contactref element="X3" pad="4"/>
 <contactref element="C22" pad="1"/>
 <contactref element="L4" pad="2"/>
-<wire x1="82.865" y1="69.85" x2="91.44" y2="69.85" width="0.8128" layer="1"/>
-<wire x1="91.44" y1="69.85" x2="91.44" y2="67.18" width="0.8128" layer="1"/>
-<wire x1="69.85" y1="80.01" x2="82.865" y2="69.85" width="0" layer="19" extent="1-1"/>
+<wire x1="79.055" y1="71.12" x2="91.44" y2="69.72" width="0" layer="19" extent="1-1"/>
+<wire x1="85.09" y1="80.01" x2="79.055" y2="71.12" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="X3_3">
 <contactref element="X3" pad="3"/>
@@ -3252,17 +3251,15 @@ design rules under a new name.</description>
 <contactref element="JP4" pad="1"/>
 <wire x1="80.645" y1="38.1" x2="80.645" y2="50.673" width="0.8128" layer="1"/>
 <wire x1="80.645" y1="50.673" x2="80.772" y2="50.8" width="0.8128" layer="1"/>
-<wire x1="80.772" y1="50.8" x2="80.965" y2="69.85" width="0" layer="19" extent="1-1"/>
-<wire x1="64.77" y1="80.01" x2="80.965" y2="69.85" width="0" layer="19" extent="1-1"/>
+<wire x1="80.772" y1="50.8" x2="77.155" y2="71.12" width="0" layer="19" extent="1-1"/>
+<wire x1="80.01" y1="80.01" x2="77.155" y2="71.12" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="X3_2">
 <contactref element="X3" pad="2"/>
 <contactref element="C10" pad="1"/>
 <contactref element="L1" pad="2"/>
-<wire x1="56.83" y1="72.39" x2="56.83" y2="77.15" width="0.8128" layer="1"/>
-<wire x1="56.83" y1="77.15" x2="59.69" y2="80.01" width="0.8128" layer="1"/>
-<wire x1="56.83" y1="72.39" x2="67.31" y2="72.39" width="0.8128" layer="1"/>
-<wire x1="67.31" y1="72.39" x2="67.31" y2="69.72" width="0.8128" layer="1"/>
+<wire x1="67.31" y1="69.72" x2="74.93" y2="80.01" width="0" layer="19" extent="1-1"/>
+<wire x1="56.83" y1="72.39" x2="67.31" y2="69.72" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="X3_1">
 <contactref element="X3" pad="1"/>
@@ -3278,8 +3275,7 @@ design rules under a new name.</description>
 <wire x1="56.642" y1="53.975" x2="56.642" y2="62.738" width="0.8128" layer="1"/>
 <wire x1="54.93" y1="64.45" x2="54.93" y2="72.39" width="0.8128" layer="1"/>
 <wire x1="56.642" y1="62.738" x2="54.93" y2="64.45" width="0.8128" layer="1"/>
-<wire x1="54.93" y1="72.39" x2="54.93" y2="79.69" width="0.8128" layer="1"/>
-<wire x1="54.93" y1="79.69" x2="54.61" y2="80.01" width="0.8128" layer="1"/>
+<wire x1="54.93" y1="72.39" x2="69.85" y2="80.01" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="X2_2">
 <contactref element="X2" pad="2"/>
