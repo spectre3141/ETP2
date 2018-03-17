@@ -17478,8 +17478,8 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <instance part="C39" gate="G$1" x="391.16" y="63.5"/>
 <instance part="R18" gate="G$1" x="337.82" y="66.04" rot="R180"/>
 <instance part="R19" gate="G$1" x="360.68" y="53.34"/>
-<instance part="X4" gate="-1" x="375.92" y="73.66"/>
-<instance part="X4" gate="-2" x="375.92" y="66.04"/>
+<instance part="X4" gate="-1" x="375.92" y="66.04"/>
+<instance part="X4" gate="-2" x="375.92" y="73.66"/>
 <instance part="C40" gate="G$1" x="363.22" y="48.26" rot="R270"/>
 <instance part="R20" gate="G$1" x="337.82" y="78.74" rot="R90"/>
 <instance part="P+22" gate="1" x="337.82" y="86.36"/>
@@ -18771,12 +18771,6 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <label x="86.36" y="86.36" size="1.778" layer="95" rot="R90"/>
 </segment>
 </net>
-<net name="N$39" class="0">
-<segment>
-<pinref part="IC12" gate="G$1" pin="VOUT2"/>
-<pinref part="X4" gate="-1" pin="KL"/>
-</segment>
-</net>
 <net name="N$40" class="0">
 <segment>
 <pinref part="R19" gate="G$1" pin="2"/>
@@ -18785,7 +18779,7 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <wire x1="373.38" y1="53.34" x2="373.38" y2="48.26" width="0.1524" layer="91"/>
 <wire x1="373.38" y1="48.26" x2="365.76" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="IC12" gate="G$1" pin="VOUT1"/>
-<pinref part="X4" gate="-2" pin="KL"/>
+<pinref part="X4" gate="-1" pin="KL"/>
 <wire x1="373.38" y1="53.34" x2="373.38" y2="66.04" width="0.1524" layer="91"/>
 <junction x="373.38" y="53.34"/>
 <junction x="373.38" y="66.04"/>
@@ -18840,6 +18834,12 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <segment>
 <pinref part="C42" gate="G$1" pin="1"/>
 <pinref part="R18" gate="G$1" pin="2"/>
+</segment>
+</net>
+<net name="N$39" class="0">
+<segment>
+<pinref part="IC12" gate="G$1" pin="VOUT2"/>
+<pinref part="X4" gate="-2" pin="KL"/>
 </segment>
 </net>
 </nets>
