@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -15731,24 +15731,6 @@ NS Package M08A</description>
 <rectangle x1="-0.88" y1="2" x2="-0.39" y2="3.1" layer="51"/>
 <rectangle x1="-2.15" y1="2" x2="-1.66" y2="3.1" layer="51"/>
 </package>
-<package name="DC_JACK_ECON_DCE4A">
-<description>DC_Jack_DCE4A</description>
-<pad name="3" x="0" y="0.5" drill="1" diameter="1.778"/>
-<pad name="1" x="0" y="3.8" drill="1" diameter="1.778"/>
-<pad name="2" x="0.4" y="-3.5" drill="1.3" diameter="2.1"/>
-<hole x="-7.1" y="0" drill="1.8"/>
-<wire x1="-8.6" y1="-4.5" x2="-8.6" y2="1" width="0.127" layer="21"/>
-<wire x1="-8.6" y1="1" x2="-8.6" y2="3" width="0.127" layer="21"/>
-<wire x1="-8.6" y1="3" x2="-8.6" y2="6.5" width="0.127" layer="21"/>
-<wire x1="-8.6" y1="6.5" x2="2.9" y2="6.5" width="0.127" layer="21"/>
-<wire x1="2.9" y1="6.5" x2="2.9" y2="-4.5" width="0.127" layer="21"/>
-<wire x1="2.9" y1="-4.5" x2="-8.6" y2="-4.5" width="0.127" layer="21"/>
-<wire x1="-8.6" y1="1" x2="-1.9" y2="1" width="0.127" layer="21" style="shortdash"/>
-<wire x1="-1.9" y1="1" x2="-1.9" y2="3" width="0.127" layer="21" style="shortdash"/>
-<wire x1="-1.9" y1="3" x2="-8.6" y2="3" width="0.127" layer="21" style="shortdash"/>
-<text x="-8.7" y="6.7" size="1.27" layer="25">&gt;NAME</text>
-<text x="-8.7" y="-6.1" size="1.27" layer="28">&gt;VALUE</text>
-</package>
 <package name="TERMINAL_BLOCK_MC000036">
 <description>Terminal Block MC000036</description>
 <wire x1="-10.668" y1="-5.15111875" x2="10.668" y2="-5.15111875" width="0.2032" layer="21"/>
@@ -15807,6 +15789,24 @@ NS Package M08A</description>
 <text x="-2.921" y="3.048" size="1.27" layer="51">2</text>
 <text x="2.032" y="3.048" size="1.27" layer="51">3</text>
 <text x="6.985" y="3.048" size="1.27" layer="51">4</text>
+</package>
+<package name="DC_JACK_ECON_DCE4A">
+<description>DC_Jack_DCE4A</description>
+<pad name="3" x="0" y="0.5" drill="1" diameter="1.778"/>
+<pad name="1" x="0" y="3.8" drill="1" diameter="1.778"/>
+<pad name="2" x="0.4" y="-3.5" drill="1.3" diameter="2.1"/>
+<hole x="-7.1" y="0" drill="1.8"/>
+<wire x1="-8.6" y1="-4.5" x2="-8.6" y2="1" width="0.127" layer="21"/>
+<wire x1="-8.6" y1="1" x2="-8.6" y2="3" width="0.127" layer="21"/>
+<wire x1="-8.6" y1="3" x2="-8.6" y2="6.5" width="0.127" layer="21"/>
+<wire x1="-8.6" y1="6.5" x2="2.9" y2="6.5" width="0.127" layer="21"/>
+<wire x1="2.9" y1="6.5" x2="2.9" y2="-4.5" width="0.127" layer="21"/>
+<wire x1="2.9" y1="-4.5" x2="-8.6" y2="-4.5" width="0.127" layer="21"/>
+<wire x1="-8.6" y1="1" x2="-1.9" y2="1" width="0.127" layer="21" style="shortdash"/>
+<wire x1="-1.9" y1="1" x2="-1.9" y2="3" width="0.127" layer="21" style="shortdash"/>
+<wire x1="-1.9" y1="3" x2="-8.6" y2="3" width="0.127" layer="21" style="shortdash"/>
+<text x="-8.7" y="6.7" size="1.27" layer="25">&gt;NAME</text>
+<text x="-8.7" y="-6.1" size="1.27" layer="28">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
@@ -15982,6 +15982,25 @@ NS Package M08A</description>
 <text x="-10.414" y="8.636" size="1.778" layer="95">&gt;NAME</text>
 <text x="-10.414" y="4.318" size="1.778" layer="95">&gt;VALUE</text>
 </symbol>
+<symbol name="TERMINAL_BLOCK_MC000036">
+<description>Terminal Block MC000036</description>
+<circle x="1.27" y="0" radius="1.27" width="0.254" layer="94"/>
+<circle x="1.27" y="0" radius="1.27" width="0.254" layer="94"/>
+<circle x="1.27" y="0" radius="1.27" width="0.254" layer="94"/>
+<text x="3.048" y="-0.889" size="1.778" layer="95">&gt;NAME</text>
+<text x="-2.54" y="1.397" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="1" x="-2.54" y="0" visible="off" length="short" direction="pas"/>
+<pin name="2" x="-2.54" y="-5.08" visible="off" length="short" direction="pas"/>
+<pin name="3" x="-2.54" y="-10.16" visible="off" length="short" direction="pas"/>
+<pin name="4" x="-2.54" y="-15.24" visible="off" length="short" direction="pas"/>
+<circle x="1.27" y="-5.08" radius="1.27" width="0.254" layer="94"/>
+<circle x="1.27" y="-10.16" radius="1.27" width="0.254" layer="94"/>
+<circle x="1.27" y="-15.24" radius="1.27" width="0.254" layer="94"/>
+<text x="-1.27" y="-1.778" size="1.27" layer="97">1</text>
+<text x="-1.27" y="-6.858" size="1.27" layer="97">2</text>
+<text x="-1.27" y="-11.938" size="1.27" layer="97">3</text>
+<text x="-1.27" y="-17.018" size="1.27" layer="97">4</text>
+</symbol>
 <symbol name="DC_JACK">
 <wire x1="-5.715" y1="1.27" x2="-5.715" y2="3.81" width="0.1524" layer="94" curve="-180"/>
 <wire x1="-5.715" y1="3.81" x2="-1.27" y2="3.81" width="0.1524" layer="94"/>
@@ -16006,25 +16025,6 @@ NS Package M08A</description>
 <vertex x="-0.508" y="-1.27"/>
 <vertex x="0.508" y="-1.27"/>
 </polygon>
-</symbol>
-<symbol name="TERMINAL_BLOCK_MC000036">
-<description>Terminal Block MC000036</description>
-<circle x="1.27" y="0" radius="1.27" width="0.254" layer="94"/>
-<circle x="1.27" y="0" radius="1.27" width="0.254" layer="94"/>
-<circle x="1.27" y="0" radius="1.27" width="0.254" layer="94"/>
-<text x="3.048" y="-0.889" size="1.778" layer="95">&gt;NAME</text>
-<text x="-2.54" y="1.397" size="1.778" layer="96">&gt;VALUE</text>
-<pin name="1" x="-2.54" y="0" visible="off" length="short" direction="pas"/>
-<pin name="2" x="-2.54" y="-5.08" visible="off" length="short" direction="pas"/>
-<pin name="3" x="-2.54" y="-10.16" visible="off" length="short" direction="pas"/>
-<pin name="4" x="-2.54" y="-15.24" visible="off" length="short" direction="pas"/>
-<circle x="1.27" y="-5.08" radius="1.27" width="0.254" layer="94"/>
-<circle x="1.27" y="-10.16" radius="1.27" width="0.254" layer="94"/>
-<circle x="1.27" y="-15.24" radius="1.27" width="0.254" layer="94"/>
-<text x="-1.27" y="-1.778" size="1.27" layer="97">1</text>
-<text x="-1.27" y="-6.858" size="1.27" layer="97">2</text>
-<text x="-1.27" y="-11.938" size="1.27" layer="97">3</text>
-<text x="-1.27" y="-17.018" size="1.27" layer="97">4</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -16235,24 +16235,6 @@ High Efficiency 500 mA Step-Down Voltage Regulator</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="DC_JACK_ECON_DCE4A">
-<description>DC_JACK_ECON_DCE4A</description>
-<gates>
-<gate name="G$1" symbol="DC_JACK" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="DC_JACK_ECON_DCE4A">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-<connect gate="G$1" pin="3" pad="3"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="TERMINAL_BLOCK_MC000036" prefix="X">
 <description>Terminal Block MC000036</description>
 <gates>
@@ -16265,6 +16247,24 @@ High Efficiency 500 mA Step-Down Voltage Regulator</description>
 <connect gate="1" pin="2" pad="2"/>
 <connect gate="1" pin="3" pad="3"/>
 <connect gate="1" pin="4" pad="4"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="DC_JACK_ECON_DCE4A">
+<description>DC_JACK_ECON_DCE4A</description>
+<gates>
+<gate name="G$1" symbol="DC_JACK" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="DC_JACK_ECON_DCE4A">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+<connect gate="G$1" pin="3" pad="3"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -17229,7 +17229,6 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <part name="L6" library="Moodlight" deviceset="SDR0604" device="" value="220uH"/>
 <part name="C29" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CPOL-EU" device="E3.5-8" package3d_urn="urn:adsk.eagle:package:23360/2" value="100uF"/>
 <part name="C30" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CPOL-EU" device="E3.5-8" package3d_urn="urn:adsk.eagle:package:23360/2" value="100uF"/>
-<part name="X1" library="Moodlight" deviceset="DC_JACK_ECON_DCE4A" device="" value="DC_JACK"/>
 <part name="D11" library="Moodlight" deviceset="SS13L" device=""/>
 <part name="C31" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="10nF"/>
 <part name="C32" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="10nF"/>
@@ -17266,6 +17265,7 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <part name="C41" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100nF"/>
 <part name="GND64" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="C42" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2" value="100nF"/>
+<part name="X1" library="Moodlight" deviceset="DC_JACK_ECON_DCE4A" device="" value=""/>
 </parts>
 <sheets>
 <sheet>
@@ -17446,7 +17446,6 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <instance part="L6" gate="G$1" x="254" y="193.04" rot="R90"/>
 <instance part="C29" gate="G$1" x="264.16" y="187.96"/>
 <instance part="C30" gate="G$1" x="264.16" y="152.4"/>
-<instance part="X1" gate="G$1" x="127" y="182.88"/>
 <instance part="D11" gate="G$1" x="137.16" y="185.42"/>
 <instance part="C31" gate="G$1" x="246.38" y="162.56" rot="R90"/>
 <instance part="C32" gate="G$1" x="246.38" y="198.12" rot="R90"/>
@@ -17486,6 +17485,7 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <instance part="C41" gate="G$1" x="314.96" y="63.5" rot="R180"/>
 <instance part="GND64" gate="1" x="314.96" y="53.34"/>
 <instance part="C42" gate="G$1" x="330.2" y="66.04" rot="R270"/>
+<instance part="X1" gate="G$1" x="127" y="182.88"/>
 </instances>
 <busses>
 </busses>
@@ -17692,10 +17692,10 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 <wire x1="149.86" y1="182.88" x2="149.86" y2="180.34" width="0.1524" layer="91"/>
 <junction x="149.86" y="180.34"/>
 <pinref part="GND45" gate="1" pin="GND"/>
-<pinref part="X1" gate="G$1" pin="2"/>
 <wire x1="149.86" y1="180.34" x2="132.08" y2="180.34" width="0.1524" layer="91"/>
-<pinref part="X1" gate="G$1" pin="3"/>
 <wire x1="149.86" y1="182.88" x2="132.08" y2="182.88" width="0.1524" layer="91"/>
+<pinref part="X1" gate="G$1" pin="3"/>
+<pinref part="X1" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <pinref part="GND46" gate="1" pin="GND"/>
@@ -18550,9 +18550,9 @@ Source: http://eshop.phoenixcontact.com .. 1729128.pdf</description>
 </net>
 <net name="N$29" class="0">
 <segment>
-<pinref part="X1" gate="G$1" pin="1"/>
 <pinref part="D11" gate="G$1" pin="A"/>
 <wire x1="132.08" y1="185.42" x2="134.62" y2="185.42" width="0.1524" layer="91"/>
+<pinref part="X1" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$30" class="0">
