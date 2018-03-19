@@ -3454,9 +3454,10 @@ Your Eurocircuits Team
 </signal>
 <signal name="N$29">
 <contactref element="D11" pad="A"/>
-<wire x1="3.81" y1="13.462" x2="3.81" y2="11.44" width="0.8128" layer="1"/>
-<wire x1="3.81" y1="11.44" x2="7.63" y2="8.89" width="0.8128" layer="1"/>
 <contactref element="X1" pad="1"/>
+<wire x1="7.63" y1="8.89" x2="6.35" y2="8.89" width="0.8128" layer="1"/>
+<wire x1="3.81" y1="11.43" x2="3.81" y2="13.462" width="0.8128" layer="1"/>
+<wire x1="6.35" y1="8.89" x2="3.81" y2="11.43" width="0.8128" layer="1"/>
 </signal>
 <signal name="N$30">
 <contactref element="IC10" pad="1"/>
