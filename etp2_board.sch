@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -17757,8 +17757,8 @@ High Efficiency 500 mA Step-Down Voltage Regulator</description>
 <instance part="C29" gate="G$1" x="264.16" y="187.96"/>
 <instance part="C30" gate="G$1" x="264.16" y="152.4"/>
 <instance part="D11" gate="G$1" x="137.16" y="187.96"/>
-<instance part="C31" gate="G$1" x="246.38" y="162.56" rot="R90"/>
-<instance part="C32" gate="G$1" x="246.38" y="198.12" rot="R90"/>
+<instance part="C31" gate="G$1" x="243.84" y="162.56" rot="R90"/>
+<instance part="C32" gate="G$1" x="243.84" y="198.12" rot="R90"/>
 <instance part="GND50" gate="1" x="243.84" y="142.24"/>
 <instance part="GND51" gate="1" x="264.16" y="142.24"/>
 <instance part="GND52" gate="1" x="243.84" y="177.8"/>
@@ -18755,14 +18755,10 @@ High Efficiency 500 mA Step-Down Voltage Regulator</description>
 <wire x1="264.16" y1="157.48" x2="264.16" y2="154.94" width="0.1524" layer="91"/>
 <wire x1="264.16" y1="157.48" x2="274.32" y2="157.48" width="0.1524" layer="91"/>
 <junction x="264.16" y="157.48"/>
-<wire x1="264.16" y1="157.48" x2="264.16" y2="162.56" width="0.1524" layer="91"/>
 <pinref part="IC10" gate="DC$1" pin="FB"/>
-<wire x1="264.16" y1="162.56" x2="264.16" y2="172.72" width="0.1524" layer="91"/>
+<wire x1="264.16" y1="157.48" x2="264.16" y2="172.72" width="0.1524" layer="91"/>
 <wire x1="264.16" y1="172.72" x2="226.06" y2="172.72" width="0.1524" layer="91"/>
 <pinref part="P+17" gate="1" pin="+5V"/>
-<pinref part="C31" gate="G$1" pin="2"/>
-<wire x1="264.16" y1="162.56" x2="251.46" y2="162.56" width="0.1524" layer="91"/>
-<junction x="264.16" y="162.56"/>
 </segment>
 <segment>
 <wire x1="403.86" y1="119.38" x2="408.94" y2="119.38" width="0.1524" layer="91"/>
@@ -18867,7 +18863,6 @@ High Efficiency 500 mA Step-Down Voltage Regulator</description>
 <segment>
 <pinref part="IC10" gate="DC$1" pin="CB"/>
 <pinref part="C31" gate="G$1" pin="1"/>
-<wire x1="241.3" y1="162.56" x2="243.84" y2="162.56" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$31" class="0">
@@ -18879,6 +18874,9 @@ High Efficiency 500 mA Step-Down Voltage Regulator</description>
 <wire x1="243.84" y1="157.48" x2="248.92" y2="157.48" width="0.1524" layer="91"/>
 <wire x1="243.84" y1="157.48" x2="243.84" y2="152.4" width="0.1524" layer="91"/>
 <junction x="243.84" y="157.48"/>
+<pinref part="C31" gate="G$1" pin="2"/>
+<wire x1="248.92" y1="162.56" x2="248.92" y2="157.48" width="0.1524" layer="91"/>
+<junction x="248.92" y="157.48"/>
 </segment>
 </net>
 <net name="N$33" class="0">
@@ -18890,13 +18888,15 @@ High Efficiency 500 mA Step-Down Voltage Regulator</description>
 <wire x1="243.84" y1="193.04" x2="248.92" y2="193.04" width="0.1524" layer="91"/>
 <wire x1="243.84" y1="190.5" x2="243.84" y2="193.04" width="0.1524" layer="91"/>
 <junction x="243.84" y="193.04"/>
+<pinref part="C32" gate="G$1" pin="2"/>
+<wire x1="248.92" y1="198.12" x2="248.92" y2="193.04" width="0.1524" layer="91"/>
+<junction x="248.92" y="193.04"/>
 </segment>
 </net>
 <net name="N$35" class="0">
 <segment>
 <pinref part="C32" gate="G$1" pin="1"/>
 <pinref part="IC9" gate="DC$1" pin="CB"/>
-<wire x1="243.84" y1="198.12" x2="241.3" y2="198.12" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="+3V3" class="0">
@@ -18905,16 +18905,12 @@ High Efficiency 500 mA Step-Down Voltage Regulator</description>
 <wire x1="264.16" y1="190.5" x2="264.16" y2="193.04" width="0.1524" layer="91"/>
 <pinref part="L6" gate="G$1" pin="2"/>
 <wire x1="264.16" y1="193.04" x2="259.08" y2="193.04" width="0.1524" layer="91"/>
-<wire x1="264.16" y1="193.04" x2="264.16" y2="198.12" width="0.1524" layer="91"/>
 <junction x="264.16" y="193.04"/>
-<pinref part="C32" gate="G$1" pin="2"/>
-<wire x1="264.16" y1="198.12" x2="251.46" y2="198.12" width="0.1524" layer="91"/>
 <wire x1="264.16" y1="193.04" x2="274.32" y2="193.04" width="0.1524" layer="91"/>
 <pinref part="+3V1" gate="G$1" pin="+3V3"/>
 <pinref part="IC9" gate="DC$1" pin="FB"/>
-<wire x1="264.16" y1="198.12" x2="264.16" y2="208.28" width="0.1524" layer="91"/>
+<wire x1="264.16" y1="193.04" x2="264.16" y2="208.28" width="0.1524" layer="91"/>
 <wire x1="264.16" y1="208.28" x2="226.06" y2="208.28" width="0.1524" layer="91"/>
-<junction x="264.16" y="198.12"/>
 </segment>
 <segment>
 <pinref part="+3V2" gate="G$1" pin="+3V3"/>
