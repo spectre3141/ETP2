@@ -107,156 +107,97 @@ Disassembly of section .text:
   d8:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 000000dc <initPWM>:
-#define DAC_FREQ (0x1000 - 0x01)					// counter TOP value for PWM frequency of ~2kHz
-
-void initPWM(void)
-{
-	/* Output Configuration */
-	DDRD |= (1<<DDRD0) | (1<<DDRD1) | (1<<DDRD2);	// START (T3.A) & DAC_3 (T4.A) & DAC_2 (T4.B)
   dc:	8a b1       	in	r24, 0x0a	; 10
   de:	87 60       	ori	r24, 0x07	; 7
   e0:	8a b9       	out	0x0a, r24	; 10
-	DDRB |= (1<<DDRB1) | (1<<DDRB2);				// DAC_0 (T1.A) & DAC_1 (T1.B)
   e2:	84 b1       	in	r24, 0x04	; 4
   e4:	86 60       	ori	r24, 0x06	; 6
   e6:	84 b9       	out	0x04, r24	; 4
-	PORTD |= (1<<2);								// to fix a bug on the chip
   e8:	5a 9a       	sbi	0x0b, 2	; 11
-	/* START (T3.A) */
-	// reset registers
-	TCCR3A = 0;
   ea:	a0 e9       	ldi	r26, 0x90	; 144
   ec:	b0 e0       	ldi	r27, 0x00	; 0
   ee:	1c 92       	st	X, r1
-	TCCR3B = 0;
   f0:	e1 e9       	ldi	r30, 0x91	; 145
   f2:	f0 e0       	ldi	r31, 0x00	; 0
   f4:	10 82       	st	Z, r1
-	TCCR3C = 0;
   f6:	10 92 92 00 	sts	0x0092, r1	; 0x800092 <__TEXT_REGION_LENGTH__+0x7e0092>
-	// configure control registers
-	TCCR3A |= (1<<COM3A1);							// clear on Compare Match, set at BOTTOM
   fa:	8c 91       	ld	r24, X
   fc:	80 68       	ori	r24, 0x80	; 128
   fe:	8c 93       	st	X, r24
-	TCCR3A |= (1<<WGM31);							// select Fast PWM Mode with ICR3 as TOP value
  100:	8c 91       	ld	r24, X
  102:	82 60       	ori	r24, 0x02	; 2
  104:	8c 93       	st	X, r24
-	TCCR3B |= (1<<WGM33) | (1<<WGM32);				// select Fast PWM Mode with ICR3 as TOP value
  106:	80 81       	ld	r24, Z
  108:	88 61       	ori	r24, 0x18	; 24
  10a:	80 83       	st	Z, r24
-	TCCR3B |= (1<<CS30);							// select Prescaler = 1
  10c:	80 81       	ld	r24, Z
  10e:	81 60       	ori	r24, 0x01	; 1
  110:	80 83       	st	Z, r24
-	// set TOP and Output Compare values
-	ICR3 = (uint16_t) (160-1);						// set TOP to 160 for a frequency of 50kHz
  112:	8f e9       	ldi	r24, 0x9F	; 159
  114:	90 e0       	ldi	r25, 0x00	; 0
  116:	90 93 97 00 	sts	0x0097, r25	; 0x800097 <__TEXT_REGION_LENGTH__+0x7e0097>
  11a:	80 93 96 00 	sts	0x0096, r24	; 0x800096 <__TEXT_REGION_LENGTH__+0x7e0096>
-	OCR3A = (uint16_t) (1);							// set Outut Compare to 1 for a one clock long pulse
  11e:	81 e0       	ldi	r24, 0x01	; 1
  120:	90 e0       	ldi	r25, 0x00	; 0
  122:	90 93 99 00 	sts	0x0099, r25	; 0x800099 <__TEXT_REGION_LENGTH__+0x7e0099>
  126:	80 93 98 00 	sts	0x0098, r24	; 0x800098 <__TEXT_REGION_LENGTH__+0x7e0098>
-	
-	/* DAC_0/1 (T1.A/B) */
-	// reset registers
-	TCCR1A = 0;
  12a:	a0 e8       	ldi	r26, 0x80	; 128
  12c:	b0 e0       	ldi	r27, 0x00	; 0
  12e:	1c 92       	st	X, r1
-	TCCR1B = 0;
  130:	e1 e8       	ldi	r30, 0x81	; 129
  132:	f0 e0       	ldi	r31, 0x00	; 0
  134:	10 82       	st	Z, r1
-	TCCR1C = 0;
  136:	10 92 82 00 	sts	0x0082, r1	; 0x800082 <__TEXT_REGION_LENGTH__+0x7e0082>
-	// configure control registers
-	TCCR1A |= (1<<COM1A1) | (1<<COM1B1);			// set at Bottom, clear on Compare Match
  13a:	8c 91       	ld	r24, X
  13c:	80 6a       	ori	r24, 0xA0	; 160
  13e:	8c 93       	st	X, r24
-	TCCR1A |= (1<<WGM11);							// select Fast PWM Mode with ICR3 as TOP value
  140:	8c 91       	ld	r24, X
  142:	82 60       	ori	r24, 0x02	; 2
  144:	8c 93       	st	X, r24
-	TCCR1B |= (1<<WGM13) | (1<<WGM12);				// select Fast PWM Mode with ICR3 as TOP value
  146:	80 81       	ld	r24, Z
  148:	88 61       	ori	r24, 0x18	; 24
  14a:	80 83       	st	Z, r24
-	TCCR1B |= (1<<CS10);							// select Prescaler = 1
  14c:	80 81       	ld	r24, Z
  14e:	81 60       	ori	r24, 0x01	; 1
  150:	80 83       	st	Z, r24
-	// set TOP value
-	ICR1 = (uint16_t) DAC_FREQ;
  152:	4f ef       	ldi	r20, 0xFF	; 255
  154:	5f e0       	ldi	r21, 0x0F	; 15
  156:	50 93 87 00 	sts	0x0087, r21	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
  15a:	40 93 86 00 	sts	0x0086, r20	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
-	// set Output Compare values
-	OCR1A = (uint16_t) INIT_VALUE;
  15e:	84 e4       	ldi	r24, 0x44	; 68
  160:	90 e0       	ldi	r25, 0x00	; 0
  162:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>
  166:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7e0088>
-	OCR1B = (uint16_t) INIT_VALUE;
  16a:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7e008b>
  16e:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7e008a>
-	
-	/* DAC_2/3 (T4.A/B) */
-	// reset registers
-	TCCR4A = 0;
  172:	a0 ea       	ldi	r26, 0xA0	; 160
  174:	b0 e0       	ldi	r27, 0x00	; 0
  176:	1c 92       	st	X, r1
-	TCCR4B = 0;
  178:	e1 ea       	ldi	r30, 0xA1	; 161
  17a:	f0 e0       	ldi	r31, 0x00	; 0
  17c:	10 82       	st	Z, r1
-	TCCR4C = 0;
  17e:	10 92 a2 00 	sts	0x00A2, r1	; 0x8000a2 <__TEXT_REGION_LENGTH__+0x7e00a2>
-	// configure control registers
-	TCCR4A |= (1<<COM4A1) | (1<<COM4B1);			// set at Bottom, clear on Compare Match
  182:	2c 91       	ld	r18, X
  184:	20 6a       	ori	r18, 0xA0	; 160
  186:	2c 93       	st	X, r18
-	TCCR4A |= (1<<WGM41);							// select Fast PWM Mode with ICR3 as TOP value
  188:	2c 91       	ld	r18, X
  18a:	22 60       	ori	r18, 0x02	; 2
  18c:	2c 93       	st	X, r18
-	TCCR4B |= (1<<WGM43) | (1<<WGM42);				// select Fast PWM Mode with ICR3 as TOP value
  18e:	20 81       	ld	r18, Z
  190:	28 61       	ori	r18, 0x18	; 24
  192:	20 83       	st	Z, r18
-	TCCR4B |= (1<<CS10);							// select Prescaler = 1
  194:	20 81       	ld	r18, Z
  196:	21 60       	ori	r18, 0x01	; 1
  198:	20 83       	st	Z, r18
-	// set TOP value
-	ICR4 = (uint16_t) DAC_FREQ;
  19a:	50 93 a7 00 	sts	0x00A7, r21	; 0x8000a7 <__TEXT_REGION_LENGTH__+0x7e00a7>
  19e:	40 93 a6 00 	sts	0x00A6, r20	; 0x8000a6 <__TEXT_REGION_LENGTH__+0x7e00a6>
-	// set Output Compare values
-	OCR4A = (uint16_t) INIT_VALUE;
  1a2:	90 93 a9 00 	sts	0x00A9, r25	; 0x8000a9 <__TEXT_REGION_LENGTH__+0x7e00a9>
  1a6:	80 93 a8 00 	sts	0x00A8, r24	; 0x8000a8 <__TEXT_REGION_LENGTH__+0x7e00a8>
-	OCR4B = (uint16_t) INIT_VALUE;
  1aa:	90 93 ab 00 	sts	0x00AB, r25	; 0x8000ab <__TEXT_REGION_LENGTH__+0x7e00ab>
  1ae:	80 93 aa 00 	sts	0x00AA, r24	; 0x8000aa <__TEXT_REGION_LENGTH__+0x7e00aa>
  1b2:	08 95       	ret
 
 000001b4 <setValue>:
-* set duty cycle of the PWM
-* input: uint8_t as percentage from 0 to 255
-*/
-void setValue(pwm_channel select, uint8_t value)
-{
-	switch(select)
  1b4:	82 30       	cpi	r24, 0x02	; 2
  1b6:	91 f0       	breq	.+36     	; 0x1dc <setValue+0x28>
  1b8:	18 f4       	brcc	.+6      	; 0x1c0 <setValue+0xc>
@@ -268,39 +209,27 @@ void setValue(pwm_channel select, uint8_t value)
  1c4:	84 30       	cpi	r24, 0x04	; 4
  1c6:	e1 f0       	breq	.+56     	; 0x200 <setValue+0x4c>
  1c8:	08 95       	ret
-	{
-		case CH1:
-			OCR1A = (((uint16_t) value) << 4);
  1ca:	80 e1       	ldi	r24, 0x10	; 16
  1cc:	68 9f       	mul	r22, r24
  1ce:	b0 01       	movw	r22, r0
  1d0:	11 24       	eor	r1, r1
  1d2:	70 93 89 00 	sts	0x0089, r23	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>
  1d6:	60 93 88 00 	sts	0x0088, r22	; 0x800088 <__TEXT_REGION_LENGTH__+0x7e0088>
-			break;
  1da:	08 95       	ret
-		case CH2:
-			OCR1B = (((uint16_t) value) << 4);
  1dc:	80 e1       	ldi	r24, 0x10	; 16
  1de:	68 9f       	mul	r22, r24
  1e0:	b0 01       	movw	r22, r0
  1e2:	11 24       	eor	r1, r1
  1e4:	70 93 8b 00 	sts	0x008B, r23	; 0x80008b <__TEXT_REGION_LENGTH__+0x7e008b>
  1e8:	60 93 8a 00 	sts	0x008A, r22	; 0x80008a <__TEXT_REGION_LENGTH__+0x7e008a>
-			break;
  1ec:	08 95       	ret
-		case CH3:
-			OCR4B = (((uint16_t) value) << 4);
  1ee:	80 e1       	ldi	r24, 0x10	; 16
  1f0:	68 9f       	mul	r22, r24
  1f2:	b0 01       	movw	r22, r0
  1f4:	11 24       	eor	r1, r1
  1f6:	70 93 ab 00 	sts	0x00AB, r23	; 0x8000ab <__TEXT_REGION_LENGTH__+0x7e00ab>
  1fa:	60 93 aa 00 	sts	0x00AA, r22	; 0x8000aa <__TEXT_REGION_LENGTH__+0x7e00aa>
-			break;
  1fe:	08 95       	ret
-		case CH4:
-			OCR4A = (((uint16_t) value) << 4);
  200:	80 e1       	ldi	r24, 0x10	; 16
  202:	68 9f       	mul	r22, r24
  204:	b0 01       	movw	r22, r0
@@ -310,99 +239,45 @@ void setValue(pwm_channel select, uint8_t value)
  210:	08 95       	ret
 
 00000212 <main>:
-int main(void)
-{
-	int counter = 0;
-	int dir = 1;
-	
-	initPWM();
  212:	0e 94 6e 00 	call	0xdc	; 0xdc <initPWM>
-#define F_CPU 8000000UL
-
-int main(void)
-{
-	int counter = 0;
-	int dir = 1;
  216:	01 e0       	ldi	r16, 0x01	; 1
  218:	10 e0       	ldi	r17, 0x00	; 0
-
-#define F_CPU 8000000UL
-
-int main(void)
-{
-	int counter = 0;
  21a:	c0 e0       	ldi	r28, 0x00	; 0
  21c:	d0 e0       	ldi	r29, 0x00	; 0
-			setValue(CH4, counter);
-		}
-		counter = counter + dir;
-		if (counter >= 0xFF)
-		{
-			dir = -1;
  21e:	ee 24       	eor	r14, r14
  220:	ea 94       	dec	r14
  222:	ff 24       	eor	r15, r15
  224:	fa 94       	dec	r15
-		}
-		else if (counter <= 0x00)
-		{
-			dir = 1;
  226:	cc 24       	eor	r12, r12
  228:	c3 94       	inc	r12
  22a:	d1 2c       	mov	r13, r1
-	
-	initPWM();
-	
-    while (1) 
-    {
-		if ((counter <= 0xFF) && (counter >= 0x00))
  22c:	cf 3f       	cpi	r28, 0xFF	; 255
  22e:	d1 05       	cpc	r29, r1
  230:	09 f0       	breq	.+2      	; 0x234 <main+0x22>
  232:	80 f4       	brcc	.+32     	; 0x254 <main+0x42>
-		{
-			setValue(CH1, counter);
  234:	6c 2f       	mov	r22, r28
  236:	81 e0       	ldi	r24, 0x01	; 1
  238:	0e 94 da 00 	call	0x1b4	; 0x1b4 <setValue>
-			setValue(CH2, counter);
  23c:	6c 2f       	mov	r22, r28
  23e:	82 e0       	ldi	r24, 0x02	; 2
  240:	0e 94 da 00 	call	0x1b4	; 0x1b4 <setValue>
-			setValue(CH3, counter);
  244:	6c 2f       	mov	r22, r28
  246:	83 e0       	ldi	r24, 0x03	; 3
  248:	0e 94 da 00 	call	0x1b4	; 0x1b4 <setValue>
-			setValue(CH4, counter);
  24c:	6c 2f       	mov	r22, r28
  24e:	84 e0       	ldi	r24, 0x04	; 4
  250:	0e 94 da 00 	call	0x1b4	; 0x1b4 <setValue>
-		}
-		counter = counter + dir;
  254:	c0 0f       	add	r28, r16
  256:	d1 1f       	adc	r29, r17
-		if (counter >= 0xFF)
  258:	cf 3f       	cpi	r28, 0xFF	; 255
  25a:	d1 05       	cpc	r29, r1
  25c:	34 f4       	brge	.+12     	; 0x26a <main+0x58>
-		{
-			dir = -1;
-		}
-		else if (counter <= 0x00)
  25e:	1c 16       	cp	r1, r28
  260:	1d 06       	cpc	r1, r29
  262:	2c f0       	brlt	.+10     	; 0x26e <main+0x5c>
-		{
-			dir = 1;
  264:	0c 2d       	mov	r16, r12
  266:	1d 2d       	mov	r17, r13
  268:	02 c0       	rjmp	.+4      	; 0x26e <main+0x5c>
-			setValue(CH4, counter);
-		}
-		counter = counter + dir;
-		if (counter >= 0xFF)
-		{
-			dir = -1;
  26a:	0e 2d       	mov	r16, r14
  26c:	1f 2d       	mov	r17, r15
 	#else
@@ -420,12 +295,6 @@ int main(void)
  27a:	d8 cf       	rjmp	.-80     	; 0x22c <main+0x1a>
 
 0000027c <__vector_18>:
-		_delay_ms(100);
-    }
-}
-
-ISR(USART0_RX_vect)
-{
  27c:	1f 92       	push	r1
  27e:	0f 92       	push	r0
  280:	0f b6       	in	r0, 0x3f	; 63
@@ -443,9 +312,7 @@ ISR(USART0_RX_vect)
  298:	bf 93       	push	r27
  29a:	ef 93       	push	r30
  29c:	ff 93       	push	r31
-	RX_IRQ();
  29e:	0e 94 62 01 	call	0x2c4	; 0x2c4 <RX_IRQ>
-}
  2a2:	ff 91       	pop	r31
  2a4:	ef 91       	pop	r30
  2a6:	bf 91       	pop	r27
@@ -465,29 +332,16 @@ ISR(USART0_RX_vect)
  2c2:	18 95       	reti
 
 000002c4 <RX_IRQ>:
-	sei();
-}
-
-void RX_IRQ(void)
-{
-		character = UDR1;
  2c4:	80 91 ce 00 	lds	r24, 0x00CE	; 0x8000ce <__TEXT_REGION_LENGTH__+0x7e00ce>
  2c8:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <character>
-		if (counter == 0)
  2cc:	e0 91 01 01 	lds	r30, 0x0101	; 0x800101 <counter>
  2d0:	e1 11       	cpse	r30, r1
  2d2:	03 c0       	rjmp	.+6      	; 0x2da <RX_IRQ+0x16>
-		{
-			length = character;
  2d4:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
  2d8:	19 c0       	rjmp	.+50     	; 0x30c <RX_IRQ+0x48>
-		}
-		else if (counter < length)
  2da:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <_edata>
  2de:	e9 17       	cp	r30, r25
  2e0:	28 f4       	brcc	.+10     	; 0x2ec <RX_IRQ+0x28>
-		{
-			buffer[counter-1] = character;
  2e2:	f0 e0       	ldi	r31, 0x00	; 0
  2e4:	ef 5e       	subi	r30, 0xEF	; 239
  2e6:	fe 4f       	sbci	r31, 0xFE	; 254
@@ -495,12 +349,6 @@ void RX_IRQ(void)
  2ea:	10 c0       	rjmp	.+32     	; 0x30c <RX_IRQ+0x48>
  2ec:	80 e0       	ldi	r24, 0x00	; 0
  2ee:	90 e0       	ldi	r25, 0x00	; 0
-		else
-		{
-			uint8_t i;
-			for (i = 0; i < 16; i++)
-			{
-				receiveData[i] = buffer[i];
  2f0:	fc 01       	movw	r30, r24
  2f2:	ee 5e       	subi	r30, 0xEE	; 238
  2f4:	fe 4f       	sbci	r31, 0xFE	; 254
@@ -510,22 +358,10 @@ void RX_IRQ(void)
  2fc:	fe 4f       	sbci	r31, 0xFE	; 254
  2fe:	20 83       	st	Z, r18
  300:	01 96       	adiw	r24, 0x01	; 1
-			buffer[counter-1] = character;
-		}
-		else
-		{
-			uint8_t i;
-			for (i = 0; i < 16; i++)
  302:	80 31       	cpi	r24, 0x10	; 16
  304:	91 05       	cpc	r25, r1
  306:	a1 f7       	brne	.-24     	; 0x2f0 <RX_IRQ+0x2c>
-			{
-				receiveData[i] = buffer[i];
-			}
-			counter = 0;
  308:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <counter>
-		}
-		counter++;
  30c:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <counter>
  310:	8f 5f       	subi	r24, 0xFF	; 255
  312:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <counter>

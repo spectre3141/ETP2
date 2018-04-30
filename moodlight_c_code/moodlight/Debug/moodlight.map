@@ -14,6 +14,26 @@ Discarded input sections
 
  .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
  .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
+ .text          0x00000000        0x0 alarm.o
+ .data          0x00000000        0x0 alarm.o
+ .bss           0x00000000        0x0 alarm.o
+ .text.alarm_initPWM
+                0x00000000       0x24 alarm.o
+ .text.resetAlarm
+                0x00000000        0x2 alarm.o
+ .text.getAlarmTime
+                0x00000000        0x6 alarm.o
+ .text.setAlarmTime
+                0x00000000        0x2 alarm.o
+ .debug_info    0x00000000       0xe7 alarm.o
+ .debug_abbrev  0x00000000       0x92 alarm.o
+ .debug_aranges
+                0x00000000       0x38 alarm.o
+ .debug_ranges  0x00000000       0x28 alarm.o
+ .debug_line    0x00000000      0x102 alarm.o
+ .debug_str     0x00000000      0x1c2 alarm.o
+ .comment       0x00000000       0x31 alarm.o
+ .debug_frame   0x00000000       0x54 alarm.o
  .text          0x00000000        0x0 LED.o
  .data          0x00000000        0x0 LED.o
  .bss           0x00000000        0x0 LED.o
@@ -82,6 +102,7 @@ Linker script and memory map
 
 Address of section .data set to 0x800100
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
+LOAD alarm.o
 LOAD LED.o
 LOAD main.o
 LOAD UART.o

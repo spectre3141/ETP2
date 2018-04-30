@@ -8,6 +8,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "Headerfiles/LED.h"
+#include "Headerfiles/alarm.h"
 #include <util/delay.h>
 
 #define F_CPU 8000000UL
@@ -18,6 +19,7 @@ int main(void)
 	int dir = 1;
 	
 	LED_initPWM();
+	alarm_initPWM();
 	
     while (1) 
     {

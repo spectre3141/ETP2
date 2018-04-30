@@ -120,6 +120,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="alarm.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Headerfiles\alarm.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Headerfiles\LED.h">
       <SubType>compile</SubType>
     </Compile>
