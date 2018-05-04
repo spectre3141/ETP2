@@ -15,8 +15,8 @@
 
 static volatile uint8_t buffer[BUFFER_SIZE];
 static volatile uint8_t receiveData[BUFFER_SIZE];
-uint8_t counter = 0;
-uint8_t character;
+static volatile uint8_t counter = 0;
+volatile uint8_t character;
 
 void UART_init()
 {
@@ -86,10 +86,7 @@ void UART_sendBuffer(uint8_t * pointer, uint8_t length)
 * module to pass the data to.
 */
 void UART_deliverData(void)
-{
-	LED_setValue(receiveData[1], (receiveData[2]-55));
-	
-	/*
+{	
 	switch(receiveData[0])
 	{
 		case CHAR_0:
@@ -108,7 +105,7 @@ void UART_deliverData(void)
 		default:
 			// do nothing
 			break;			
-	}*/
+	}
 }
 
 uint8_t * UART_getData()

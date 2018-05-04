@@ -3,31 +3,31 @@ moodlight.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  000003ec  2**0
+  0 .data         00000000  00800100  00800100  0000040c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000378  00000000  00000000  00000074  2**1
+  1 .text         00000398  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000022  00800100  00800100  000003ec  2**0
+  2 .bss          00000022  00800100  00800100  0000040c  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000003ec  2**0
+  3 .comment      00000030  00000000  00000000  0000040c  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000041c  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000043c  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000e8  00000000  00000000  0000045c  2**0
+  5 .debug_aranges 000000e8  00000000  00000000  0000047c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000ed2  00000000  00000000  00000544  2**0
+  6 .debug_info   00000ea7  00000000  00000000  00000564  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000c12  00000000  00000000  00001416  2**0
+  7 .debug_abbrev 00000bf1  00000000  00000000  0000140b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000007e2  00000000  00000000  00002028  2**0
+  8 .debug_line   000007fa  00000000  00000000  00001ffc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000001bc  00000000  00000000  0000280c  2**2
+  9 .debug_frame  000001bc  00000000  00000000  000027f8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000005c8  00000000  00000000  000029c8  2**0
+ 10 .debug_str    00000610  00000000  00000000  000029b4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000003c1  00000000  00000000  00002f90  2**0
+ 11 .debug_loc    000003c1  00000000  00000000  00002fc4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000a8  00000000  00000000  00003351  2**0
+ 12 .debug_ranges 000000a8  00000000  00000000  00003385  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -101,7 +101,7 @@ Disassembly of section .text:
   cc:	b2 07       	cpc	r27, r18
   ce:	e1 f7       	brne	.-8      	; 0xc8 <.do_clear_bss_loop>
   d0:	0e 94 1c 01 	call	0x238	; 0x238 <main>
-  d4:	0c 94 ba 01 	jmp	0x374	; 0x374 <_exit>
+  d4:	0c 94 ca 01 	jmp	0x394	; 0x394 <_exit>
 
 000000d8 <__bad_interrupt>:
   d8:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -145,156 +145,97 @@ void alarm_initPWM(void)
  100:	08 95       	ret
 
 00000102 <LED_initPWM>:
-#define DAC_FREQ (0x1000 - 0x01)					// counter TOP value for PWM frequency of ~2kHz
-
-void LED_initPWM(void)
-{
-	/* Output Configuration */
-	DDRD |= (1<<DDRD0) | (1<<DDRD1) | (1<<DDRD2);	// START (T3.A) & DAC_3 (T4.A) & DAC_2 (T4.B)
  102:	8a b1       	in	r24, 0x0a	; 10
  104:	87 60       	ori	r24, 0x07	; 7
  106:	8a b9       	out	0x0a, r24	; 10
-	DDRB |= (1<<DDRB1) | (1<<DDRB2);				// DAC_0 (T1.A) & DAC_1 (T1.B)
  108:	84 b1       	in	r24, 0x04	; 4
  10a:	86 60       	ori	r24, 0x06	; 6
  10c:	84 b9       	out	0x04, r24	; 4
-	PORTD |= (1<<2);								// to fix a bug on the chip
  10e:	5a 9a       	sbi	0x0b, 2	; 11
-	/* START (T3.A) */
-	// reset registers
-	TCCR3A = 0;
  110:	a0 e9       	ldi	r26, 0x90	; 144
  112:	b0 e0       	ldi	r27, 0x00	; 0
  114:	1c 92       	st	X, r1
-	TCCR3B = 0;
  116:	e1 e9       	ldi	r30, 0x91	; 145
  118:	f0 e0       	ldi	r31, 0x00	; 0
  11a:	10 82       	st	Z, r1
-	TCCR3C = 0;
  11c:	10 92 92 00 	sts	0x0092, r1	; 0x800092 <__TEXT_REGION_LENGTH__+0x7e0092>
-	// configure control registers
-	TCCR3A |= (1<<COM3A1);							// clear on Compare Match, set at BOTTOM
  120:	8c 91       	ld	r24, X
  122:	80 68       	ori	r24, 0x80	; 128
  124:	8c 93       	st	X, r24
-	TCCR3A |= (1<<WGM31);							// select Fast PWM Mode with ICR3 as TOP value
  126:	8c 91       	ld	r24, X
  128:	82 60       	ori	r24, 0x02	; 2
  12a:	8c 93       	st	X, r24
-	TCCR3B |= (1<<WGM33) | (1<<WGM32);				// select Fast PWM Mode with ICR3 as TOP value
  12c:	80 81       	ld	r24, Z
  12e:	88 61       	ori	r24, 0x18	; 24
  130:	80 83       	st	Z, r24
-	TCCR3B |= (1<<CS30);							// select Prescaler = 1
  132:	80 81       	ld	r24, Z
  134:	81 60       	ori	r24, 0x01	; 1
  136:	80 83       	st	Z, r24
-	// set TOP and Output Compare values
-	ICR3 = (uint16_t) (160-1);						// set TOP to 160 for a frequency of 50kHz
  138:	8f e9       	ldi	r24, 0x9F	; 159
  13a:	90 e0       	ldi	r25, 0x00	; 0
  13c:	90 93 97 00 	sts	0x0097, r25	; 0x800097 <__TEXT_REGION_LENGTH__+0x7e0097>
  140:	80 93 96 00 	sts	0x0096, r24	; 0x800096 <__TEXT_REGION_LENGTH__+0x7e0096>
-	OCR3A = (uint16_t) (1);							// set Outut Compare to 1 for a one clock long pulse
  144:	81 e0       	ldi	r24, 0x01	; 1
  146:	90 e0       	ldi	r25, 0x00	; 0
  148:	90 93 99 00 	sts	0x0099, r25	; 0x800099 <__TEXT_REGION_LENGTH__+0x7e0099>
  14c:	80 93 98 00 	sts	0x0098, r24	; 0x800098 <__TEXT_REGION_LENGTH__+0x7e0098>
-	
-	/* DAC_0/1 (T1.A/B) */
-	// reset registers
-	TCCR1A = 0;
  150:	a0 e8       	ldi	r26, 0x80	; 128
  152:	b0 e0       	ldi	r27, 0x00	; 0
  154:	1c 92       	st	X, r1
-	TCCR1B = 0;
  156:	e1 e8       	ldi	r30, 0x81	; 129
  158:	f0 e0       	ldi	r31, 0x00	; 0
  15a:	10 82       	st	Z, r1
-	TCCR1C = 0;
  15c:	10 92 82 00 	sts	0x0082, r1	; 0x800082 <__TEXT_REGION_LENGTH__+0x7e0082>
-	// configure control registers
-	TCCR1A |= (1<<COM1A1) | (1<<COM1B1);			// set at Bottom, clear on Compare Match
  160:	8c 91       	ld	r24, X
  162:	80 6a       	ori	r24, 0xA0	; 160
  164:	8c 93       	st	X, r24
-	TCCR1A |= (1<<WGM11);							// select Fast PWM Mode with ICR3 as TOP value
  166:	8c 91       	ld	r24, X
  168:	82 60       	ori	r24, 0x02	; 2
  16a:	8c 93       	st	X, r24
-	TCCR1B |= (1<<WGM13) | (1<<WGM12);				// select Fast PWM Mode with ICR3 as TOP value
  16c:	80 81       	ld	r24, Z
  16e:	88 61       	ori	r24, 0x18	; 24
  170:	80 83       	st	Z, r24
-	TCCR1B |= (1<<CS10);							// select Prescaler = 1
  172:	80 81       	ld	r24, Z
  174:	81 60       	ori	r24, 0x01	; 1
  176:	80 83       	st	Z, r24
-	// set TOP value
-	ICR1 = (uint16_t) DAC_FREQ;
  178:	4f ef       	ldi	r20, 0xFF	; 255
  17a:	5f e0       	ldi	r21, 0x0F	; 15
  17c:	50 93 87 00 	sts	0x0087, r21	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
  180:	40 93 86 00 	sts	0x0086, r20	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
-	// set Output Compare values
-	OCR1A = (uint16_t) INIT_VALUE;
  184:	84 e4       	ldi	r24, 0x44	; 68
  186:	90 e0       	ldi	r25, 0x00	; 0
  188:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>
  18c:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7e0088>
-	OCR1B = (uint16_t) INIT_VALUE;
  190:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7e008b>
  194:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7e008a>
-	
-	/* DAC_2/3 (T4.A/B) */
-	// reset registers
-	TCCR4A = 0;
  198:	a0 ea       	ldi	r26, 0xA0	; 160
  19a:	b0 e0       	ldi	r27, 0x00	; 0
  19c:	1c 92       	st	X, r1
-	TCCR4B = 0;
  19e:	e1 ea       	ldi	r30, 0xA1	; 161
  1a0:	f0 e0       	ldi	r31, 0x00	; 0
  1a2:	10 82       	st	Z, r1
-	TCCR4C = 0;
  1a4:	10 92 a2 00 	sts	0x00A2, r1	; 0x8000a2 <__TEXT_REGION_LENGTH__+0x7e00a2>
-	// configure control registers
-	TCCR4A |= (1<<COM4A1) | (1<<COM4B1);			// set at Bottom, clear on Compare Match
  1a8:	2c 91       	ld	r18, X
  1aa:	20 6a       	ori	r18, 0xA0	; 160
  1ac:	2c 93       	st	X, r18
-	TCCR4A |= (1<<WGM41);							// select Fast PWM Mode with ICR3 as TOP value
  1ae:	2c 91       	ld	r18, X
  1b0:	22 60       	ori	r18, 0x02	; 2
  1b2:	2c 93       	st	X, r18
-	TCCR4B |= (1<<WGM43) | (1<<WGM42);				// select Fast PWM Mode with ICR3 as TOP value
  1b4:	20 81       	ld	r18, Z
  1b6:	28 61       	ori	r18, 0x18	; 24
  1b8:	20 83       	st	Z, r18
-	TCCR4B |= (1<<CS10);							// select Prescaler = 1
  1ba:	20 81       	ld	r18, Z
  1bc:	21 60       	ori	r18, 0x01	; 1
  1be:	20 83       	st	Z, r18
-	// set TOP value
-	ICR4 = (uint16_t) DAC_FREQ;
  1c0:	50 93 a7 00 	sts	0x00A7, r21	; 0x8000a7 <__TEXT_REGION_LENGTH__+0x7e00a7>
  1c4:	40 93 a6 00 	sts	0x00A6, r20	; 0x8000a6 <__TEXT_REGION_LENGTH__+0x7e00a6>
-	// set Output Compare values
-	OCR4A = (uint16_t) INIT_VALUE;
  1c8:	90 93 a9 00 	sts	0x00A9, r25	; 0x8000a9 <__TEXT_REGION_LENGTH__+0x7e00a9>
  1cc:	80 93 a8 00 	sts	0x00A8, r24	; 0x8000a8 <__TEXT_REGION_LENGTH__+0x7e00a8>
-	OCR4B = (uint16_t) INIT_VALUE;
  1d0:	90 93 ab 00 	sts	0x00AB, r25	; 0x8000ab <__TEXT_REGION_LENGTH__+0x7e00ab>
  1d4:	80 93 aa 00 	sts	0x00AA, r24	; 0x8000aa <__TEXT_REGION_LENGTH__+0x7e00aa>
  1d8:	08 95       	ret
 
 000001da <LED_setValue>:
-* set duty cycle of the PWM
-* input: uint8_t as percentage from 0 to 255
-*/
-void LED_setValue(pwm_channel select, uint8_t value)
-{
-	switch(select)
  1da:	82 30       	cpi	r24, 0x02	; 2
  1dc:	91 f0       	breq	.+36     	; 0x202 <LED_setValue+0x28>
  1de:	18 f4       	brcc	.+6      	; 0x1e6 <LED_setValue+0xc>
@@ -306,39 +247,27 @@ void LED_setValue(pwm_channel select, uint8_t value)
  1ea:	84 30       	cpi	r24, 0x04	; 4
  1ec:	e1 f0       	breq	.+56     	; 0x226 <LED_setValue+0x4c>
  1ee:	08 95       	ret
-	{
-		case CH1:
-			OCR1A = (((uint16_t) value) * 20);
  1f0:	84 e1       	ldi	r24, 0x14	; 20
  1f2:	68 9f       	mul	r22, r24
  1f4:	b0 01       	movw	r22, r0
  1f6:	11 24       	eor	r1, r1
  1f8:	70 93 89 00 	sts	0x0089, r23	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>
  1fc:	60 93 88 00 	sts	0x0088, r22	; 0x800088 <__TEXT_REGION_LENGTH__+0x7e0088>
-			break;
  200:	08 95       	ret
-		case CH2:
-			OCR1B = (((uint16_t) value) * 20);
  202:	84 e1       	ldi	r24, 0x14	; 20
  204:	68 9f       	mul	r22, r24
  206:	b0 01       	movw	r22, r0
  208:	11 24       	eor	r1, r1
  20a:	70 93 8b 00 	sts	0x008B, r23	; 0x80008b <__TEXT_REGION_LENGTH__+0x7e008b>
  20e:	60 93 8a 00 	sts	0x008A, r22	; 0x80008a <__TEXT_REGION_LENGTH__+0x7e008a>
-			break;
  212:	08 95       	ret
-		case CH3:
-			OCR4B = (((uint16_t) value) * 20);
  214:	84 e1       	ldi	r24, 0x14	; 20
  216:	68 9f       	mul	r22, r24
  218:	b0 01       	movw	r22, r0
  21a:	11 24       	eor	r1, r1
  21c:	70 93 ab 00 	sts	0x00AB, r23	; 0x8000ab <__TEXT_REGION_LENGTH__+0x7e00ab>
  220:	60 93 aa 00 	sts	0x00AA, r22	; 0x8000aa <__TEXT_REGION_LENGTH__+0x7e00aa>
-			break;
  224:	08 95       	ret
-		case CH4:
-			OCR4A = (((uint16_t) value) * 20);
  226:	84 e1       	ldi	r24, 0x14	; 20
  228:	68 9f       	mul	r22, r24
  22a:	b0 01       	movw	r22, r0
@@ -348,10 +277,10 @@ void LED_setValue(pwm_channel select, uint8_t value)
  236:	08 95       	ret
 
 00000238 <main>:
+int main(void)
 {
 	int counter = 0;
 	int dir = 1;
-	uint8_t buffer[8];
 	
 	LED_initPWM();
  238:	0e 94 81 00 	call	0x102	; 0x102 <LED_initPWM>
@@ -387,7 +316,7 @@ int main(void)
 			LED_setValue(CH4, counter);*/
 		}
 		counter = counter + dir;
-		if (counter >= 0xFF)
+		if (counter >= 200)
 		{
 			dir = -1;
  252:	ee 24       	eor	r14, r14
@@ -397,8 +326,8 @@ int main(void)
  25a:	02 c0       	rjmp	.+4      	; 0x260 <main+0x28>
  25c:	0e 2d       	mov	r16, r14
  25e:	1f 2d       	mov	r17, r15
-	
-	buffer[0] = 0x30;
+	alarm_initPWM();
+	UART_init();
 	
     while (1) 
     {
@@ -425,8 +354,8 @@ int main(void)
 		counter = counter + dir;
  27a:	c0 0f       	add	r28, r16
  27c:	d1 1f       	adc	r29, r17
-		if (counter >= 0xFF)
- 27e:	cf 3f       	cpi	r28, 0xFF	; 255
+		if (counter >= 200)
+ 27e:	c8 3c       	cpi	r28, 0xC8	; 200
  280:	d1 05       	cpc	r29, r1
  282:	64 f7       	brge	.-40     	; 0x25c <main+0x24>
 		{
@@ -467,7 +396,7 @@ ISR(USART0_RX_vect)
  2ae:	ef 93       	push	r30
  2b0:	ff 93       	push	r31
 	RX_IRQ();
- 2b2:	0e 94 96 01 	call	0x32c	; 0x32c <RX_IRQ>
+ 2b2:	0e 94 a1 01 	call	0x342	; 0x342 <RX_IRQ>
 }
  2b6:	ff 91       	pop	r31
  2b8:	ef 91       	pop	r30
@@ -532,77 +461,93 @@ ISR(USART0_RX_vect)
 * module to pass the data to.
 */
 void UART_deliverData(void)
-{
-	LED_setValue(receiveData[1], (receiveData[2]-55));
- 31c:	e1 e0       	ldi	r30, 0x01	; 1
- 31e:	f1 e0       	ldi	r31, 0x01	; 1
- 320:	62 81       	ldd	r22, Z+2	; 0x02
- 322:	81 81       	ldd	r24, Z+1	; 0x01
- 324:	67 53       	subi	r22, 0x37	; 55
- 326:	0e 94 ed 00 	call	0x1da	; 0x1da <LED_setValue>
- 32a:	08 95       	ret
+{	
+	switch(receiveData[0])
+ 31c:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <receiveData>
+ 320:	80 33       	cpi	r24, 0x30	; 48
+ 322:	71 f4       	brne	.+28     	; 0x340 <UART_deliverData+0x24>
+	{
+		case CHAR_0:
+			// send to LED.c
+			if ((receiveData[1] >= 1) && (receiveData[1] <= 4))
+ 324:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <receiveData+0x1>
+ 328:	88 23       	and	r24, r24
+ 32a:	51 f0       	breq	.+20     	; 0x340 <UART_deliverData+0x24>
+ 32c:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <receiveData+0x1>
+ 330:	85 30       	cpi	r24, 0x05	; 5
+ 332:	30 f4       	brcc	.+12     	; 0x340 <UART_deliverData+0x24>
+			{
+				LED_setValue(receiveData[1], receiveData[2]);
+ 334:	e1 e0       	ldi	r30, 0x01	; 1
+ 336:	f1 e0       	ldi	r31, 0x01	; 1
+ 338:	62 81       	ldd	r22, Z+2	; 0x02
+ 33a:	81 81       	ldd	r24, Z+1	; 0x01
+ 33c:	0e 94 ed 00 	call	0x1da	; 0x1da <LED_setValue>
+ 340:	08 95       	ret
 
-0000032c <RX_IRQ>:
+00000342 <RX_IRQ>:
 	sei();
 }
 
 void RX_IRQ(void)
 {
 		character = UDR1;
- 32c:	80 91 ce 00 	lds	r24, 0x00CE	; 0x8000ce <__TEXT_REGION_LENGTH__+0x7e00ce>
- 330:	80 93 21 01 	sts	0x0121, r24	; 0x800121 <character>
+ 342:	80 91 ce 00 	lds	r24, 0x00CE	; 0x8000ce <__TEXT_REGION_LENGTH__+0x7e00ce>
+ 346:	80 93 21 01 	sts	0x0121, r24	; 0x800121 <character>
 		if (character != FRAME_DELIMITER)
- 334:	8d 30       	cpi	r24, 0x0D	; 13
- 336:	59 f0       	breq	.+22     	; 0x34e <RX_IRQ+0x22>
+ 34a:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <character>
+ 34e:	8d 30       	cpi	r24, 0x0D	; 13
+ 350:	71 f0       	breq	.+28     	; 0x36e <RX_IRQ+0x2c>
 		{
 			buffer[counter] = character;
- 338:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <_edata>
- 33c:	e9 2f       	mov	r30, r25
- 33e:	f0 e0       	ldi	r31, 0x00	; 0
- 340:	ef 5e       	subi	r30, 0xEF	; 239
- 342:	fe 4f       	sbci	r31, 0xFE	; 254
- 344:	80 83       	st	Z, r24
+ 352:	e0 91 00 01 	lds	r30, 0x0100	; 0x800100 <_edata>
+ 356:	f0 e0       	ldi	r31, 0x00	; 0
+ 358:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <character>
+ 35c:	ef 5e       	subi	r30, 0xEF	; 239
+ 35e:	fe 4f       	sbci	r31, 0xFE	; 254
+ 360:	80 83       	st	Z, r24
 			counter++;
- 346:	9f 5f       	subi	r25, 0xFF	; 255
- 348:	90 93 00 01 	sts	0x0100, r25	; 0x800100 <_edata>
- 34c:	08 95       	ret
- 34e:	80 e0       	ldi	r24, 0x00	; 0
- 350:	90 e0       	ldi	r25, 0x00	; 0
+ 362:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+ 366:	8f 5f       	subi	r24, 0xFF	; 255
+ 368:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+ 36c:	08 95       	ret
+ 36e:	80 e0       	ldi	r24, 0x00	; 0
+ 370:	90 e0       	ldi	r25, 0x00	; 0
 		else
 		{
 			int i;
 			for (i = 0; i < BUFFER_SIZE; i++)
 			{
 				receiveData[i] = buffer[i];
- 352:	fc 01       	movw	r30, r24
- 354:	ef 5e       	subi	r30, 0xEF	; 239
- 356:	fe 4f       	sbci	r31, 0xFE	; 254
- 358:	20 81       	ld	r18, Z
- 35a:	fc 01       	movw	r30, r24
- 35c:	ef 5f       	subi	r30, 0xFF	; 255
- 35e:	fe 4f       	sbci	r31, 0xFE	; 254
- 360:	20 83       	st	Z, r18
+ 372:	fc 01       	movw	r30, r24
+ 374:	ef 5e       	subi	r30, 0xEF	; 239
+ 376:	fe 4f       	sbci	r31, 0xFE	; 254
+ 378:	20 81       	ld	r18, Z
+ 37a:	fc 01       	movw	r30, r24
+ 37c:	ef 5f       	subi	r30, 0xFF	; 255
+ 37e:	fe 4f       	sbci	r31, 0xFE	; 254
+ 380:	20 83       	st	Z, r18
 			counter++;
 		}
 		else
 		{
 			int i;
 			for (i = 0; i < BUFFER_SIZE; i++)
- 362:	01 96       	adiw	r24, 0x01	; 1
- 364:	80 31       	cpi	r24, 0x10	; 16
- 366:	91 05       	cpc	r25, r1
- 368:	a1 f7       	brne	.-24     	; 0x352 <RX_IRQ+0x26>
+ 382:	01 96       	adiw	r24, 0x01	; 1
+ 384:	80 31       	cpi	r24, 0x10	; 16
+ 386:	91 05       	cpc	r25, r1
+ 388:	a1 f7       	brne	.-24     	; 0x372 <RX_IRQ+0x30>
 			{
 				receiveData[i] = buffer[i];
 			}
 			counter = 0;
- 36a:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+ 38a:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
 			UART_deliverData();
- 36e:	0e 94 8e 01 	call	0x31c	; 0x31c <UART_deliverData>
- 372:	08 95       	ret
+ 38e:	0e 94 8e 01 	call	0x31c	; 0x31c <UART_deliverData>
+ 392:	08 95       	ret
 
-00000374 <_exit>:
- 374:	f8 94       	cli
+00000394 <_exit>:
+ 394:	f8 94       	cli
 
-00000376 <__stop_program>:
- 376:	ff cf       	rjmp	.-2      	; 0x376 <__stop_program>
+00000396 <__stop_program>:
+ 396:	ff cf       	rjmp	.-2      	; 0x396 <__stop_program>

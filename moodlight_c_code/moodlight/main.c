@@ -18,13 +18,10 @@ int main(void)
 {
 	int counter = 0;
 	int dir = 1;
-	uint8_t buffer[8];
 	
 	LED_initPWM();
 	alarm_initPWM();
 	UART_init();
-	
-	buffer[0] = 0x30;
 	
     while (1) 
     {
@@ -40,7 +37,7 @@ int main(void)
 			LED_setValue(CH4, counter);*/
 		}
 		counter = counter + dir;
-		if (counter >= 0xFF)
+		if (counter >= 200)
 		{
 			dir = -1;
 		}
