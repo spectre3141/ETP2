@@ -8,6 +8,9 @@
 #include <avr/io.h>
 #include "Headerfiles/alarm.h"
 
+#define INIT_CH1 ((uint8_t)(0x3F))
+#define INIT_CH2 ((uint8_t)(0xFF-INIT_CH1))
+
 void alarm_initPWM(void)
 {
 	//Configure pins as output
@@ -19,11 +22,10 @@ void alarm_initPWM(void)
 	
 	TCCR0A |= (1<<COM0A1) | (1<<COM0B1);
 	TCCR0A |= (1<<WGM00);						//Phase correct PWM
-	TCCR0B |= (1<<WGM02);
 	TCCR0B |= (1<<CS00) | (1<<CS01);			//Prescaler = 64;
-	OCR0A = 0x80;
-	OCR0B = 0x80;
 	
+	OCR0A = INIT_CH1;
+	OCR0B = INIT_CH2;
 	//Timer 2 config
 	
 }

@@ -85,8 +85,11 @@ void UART_sendBuffer(uint8_t * pointer, uint8_t length)
 * reads the read data's first character, and decides which
 * module to pass the data to.
 */
-void UART_deliverData()
+void UART_deliverData(void)
 {
+	LED_setValue(receiveData[1], (receiveData[2]-55));
+	
+	/*
 	switch(receiveData[0])
 	{
 		case CHAR_0:
@@ -105,7 +108,7 @@ void UART_deliverData()
 		default:
 			// do nothing
 			break;			
-	}
+	}*/
 }
 
 uint8_t * UART_getData()

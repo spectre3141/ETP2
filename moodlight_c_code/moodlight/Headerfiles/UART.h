@@ -18,12 +18,13 @@
 #define UART_BAUD (F_CPU/(16*BAUDRATE)-1)
 
 // other defines
-#define FRAME_DELIMITER 0xA
+#define FRAME_DELIMITER 0xD
 #define BUFFER_SIZE 16
 
 // function prototypes
 void UART_init(void);
 void RX_IRQ(void);
+void UART_sendByte(uint8_t byte);
 void UART_sendBuffer(uint8_t * data, uint8_t length);
 uint8_t * UART_getData(void);
 
