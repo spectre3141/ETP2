@@ -27,7 +27,7 @@ void UART_init()
 	DDRB |= (1<<DDRB3);
 	// set baudrate
 	UBRR1H = (uint8_t) (UART_BAUD>>8);
-	UBRR1L = (uint8_t) (UART_BAUD & 0xFF);
+	UBRR1L = (uint8_t) (UART_BAUD);
 	// reset control register A
 	UCSR1A = 0x0;
 	// enable transmitter and receiver
@@ -65,7 +65,7 @@ void RX_IRQ(void)
 
 void UART_sendByte(uint8_t data)
 {
-	while (!(UCSR0A & (1<<UDRE1)));
+	while (!(UCSR1A & (1<<UDRE1)));
 	UDR1 = data;
 }
 
