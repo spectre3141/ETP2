@@ -12,10 +12,9 @@
 
 void alarm_initPWM(void);
 void resetAlarm(void);
-uint16_t getAlarmTime(void);
-void setAlarmTime(uint16_t time);
-void startAlarmSound(void);
-void stopAlarmSound(void);
+uint32_t getAlarmTime(void);
+void setAlarmTime(uint32_t time);
+void TIMER2_IRQ(void);
 
 #endif
 

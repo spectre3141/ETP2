@@ -21,7 +21,7 @@ int main(void)
 	uint8_t buffer[3];
 	
 	LED_initPWM();
-	alarm_initPWM();
+	alarm_init();
 	UART_init();
 	
 	buffer[0] = 0x30;
@@ -59,6 +59,10 @@ int main(void)
 ISR(USART1_RX_vect)
 {
 	RX_IRQ();
+}
+TIMER2_ISR(TIMER2_COMPA_vect)
+{
+	TIMER2_IRQ();
 }
 
 
