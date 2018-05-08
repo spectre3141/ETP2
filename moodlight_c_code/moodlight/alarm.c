@@ -9,13 +9,13 @@
 #include <avr/interrupt.h>
 #include "Headerfiles/alarm.h"
 
-#define INIT_CH1 ((uint8_t)(0x3F))
+#define INIT_CH1 ((uint8_t)(0x3F))				//f = clk/(Prescaler * 510)
 #define INIT_CH2 ((uint8_t)(0xFF-INIT_CH1))
 
 uint32_t seconds = 0;
 uint8_t	onoff = 0;
 uint32_t timeset = 0;
-uint8_t alarm_off_time = 0;
+uint8_t alarmDuration = 0;
 void alarm_init(void)
 {
 	//Configure pins as output
@@ -45,7 +45,7 @@ void alarm_init(void)
 			
 	TCCR2A |= (1<<WGM21);						// Clear Timer on Compare Match
 	TCCR2B |= (1<<CS22) | (1<<CS21) | (1<<CS20);//Prescaler = 1024
-	ASSR|= (1 << AS2);							//Enable external clock
+	ASSR|= (1 << AS2);							//Enable external clock	(32.768 kHz)
 	OCR2A = 31;									//Interrupt every 1 second
 	TIMSK2 |= (1 << OCIE2A);					//Enable interrupt for overflow
 
@@ -57,7 +57,7 @@ uint32_t getAlarmTime(void)
 	return timeset;
 }
 
-/*sets the alarm time*/
+/*sets the alarm time, saves the alarm time*/
 void setAlarmTime(uint32_t time)
 {
 	seconds = time;
@@ -67,8 +67,12 @@ void setAlarmTime(uint32_t time)
 /*starts the alarm sound*/
 void startAlarmSound(void)
 {
-		PORTD ^= (1<<PIND4);
-		alarm_off_time--;
+		PORTD ^= (1<<PIND4);		//toggle standby pin
+		alarmDuration--;			//decrement alarm duration
+		if(alarmDuration == 0)		//stop alarm after a certain duration
+		{
+			stopAlarmSound();
+		}
 }
 /*stops the alarm sound*/
 void stopAlarmSound(void)
@@ -86,10 +90,10 @@ void TIMER2_IRQ(void)
 	
 	if(seconds == 0)				
 	{
-		alarm_off_time = 60;		//duration off the alarm in seconds
+		alarmDuration = 60;		//duration off the alarm in seconds
 		startAlarmSound();
 	}
-	if(alarm_off_time >= 0)			//alarm is on for the set amount of time
+	if(alarmDuration > 0)			//alarm is on for the set amount of time
 	{
 		startAlarmSound();
 	}
