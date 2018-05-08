@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">MoodlightReferenceApp</string>
+
+    <string name="action_rgbw">rgb+w</string>
+    <string name="action_service">service</string>
+
+    <string name="label_led_colour">colour</string>
+    <string name="label_led_luminosity">luminosity</string>
+    <string name="label_red">red</string>
+    <string name="label_green">green</string>
+    <string name="label_blue">blue</string>
+    <string name="label_white">white</string>
+    <string name="label_idle">idle</string>
+
+    <string name="label_disconnect_button">disconnect</string>
+    <string name="label_connect_button">connect</string>
+    <string name="label_synch">synchronize</string>
+    <string name="label_TX_button">send this:</string>
+    <string name="label_TX_data">enter data to send</string>
+    <string name="label_RX_label">received:</string>
+    <string name="label_RX_data">no data received</string>
+
+
+    <string name="connection_paired">Moodlight is paired</string>
+    <string name="connection_not_paired">No paired Moodlight found</string>
+    <string name="connection_not_connected">Moodlight is not connected</string>
+
+    <string name="connection_unknown">connection status unknown</string>
+    <string name="connection_disconnect">disconnect</string>
+    <string name="connection_disconnected">disconnected</string>
+    <string name="connection_connect">connect</string>
+    <string name="connection_connected">connected</string>
+    <string name="connection_transition">connection transition</string>
+    <string name="connection_error">connection error</string>
+
+    <string name="connection_TX_data">send data:</string>
+    <string name="connection_RX_data">received data:</string>
+
+</resources>

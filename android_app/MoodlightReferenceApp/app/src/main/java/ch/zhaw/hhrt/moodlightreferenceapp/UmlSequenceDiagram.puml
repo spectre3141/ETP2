@@ -1,0 +1,90 @@
+@startuml
+
+title
+<u>Simplified sequence diagram of the Moodlight app</u>
+author: Hanspeter Hochreutener, hhrt@zhaw.ch
+version: 0.8, date: 21.10.2016
+end title
+
+actor User
+participant MainActivity
+participant RgbwFragment
+participant ServiceFragment
+participant Connection
+control Moodlight
+
+activate Moodlight
+
+== initialize app ==
+
+User -> MainActivity : start app
+MainActivity -> MainActivity : onCreate()
+MainActivity -> RgbwFragment : add fragment
+MainActivity -> Connection : findDevice()
+Connection -> Connection : paired?
+Connection -> MainActivity : found?
+MainActivity --> User : if not found
+MainActivity -> MainActivity : onCreateOptionsMenu()
+MainActivity -> MainActivity : onStart()
+activate MainActivity
+MainActivity -> Connection : connect()
+Connection -> Moodlight : connect() \n background task
+Moodlight -> Connection : connected?
+Connection -> MainActivity : connectionStatusChanged()
+MainActivity --> User : if not connected
+Connection --> Moodlight : listenForData()
+MainActivity --> MainActivity : synchData() \n summarized
+
+== switch to rgbw menu ==
+
+RgbwFragment -> RgbwFragment : onCreate()
+RgbwFragment -> RgbwFragment : onCreateView()
+RgbwFragment -> RgbwFragment : onViewCreated() \n -> changeSeekBarListeners()
+activate RgbwFragment
+
+== move rgbw slider ==
+
+RgbwFragment -> MainActivity : sendData() \n colour+value
+MainActivity -> Connection : sendData()
+Connection -> Moodlight : colour+value
+Moodlight -> Connection : colour+value
+Connection -> MainActivity : receivedData()
+MainActivity -> RgbwFragment : receivedData()
+RgbwFragment -> RgbwFragment : setSeekBarPositionFromData();
+
+== switch to service menu ==
+
+User -> MainActivity : menu service
+MainActivity -> ServiceFragment : onOptionsItemSelected() \n replace fragment
+deactivate RgbwFragment
+ServiceFragment -> ServiceFragment : onCreate()
+ServiceFragment -> ServiceFragment : onCreateView()
+ServiceFragment -> ServiceFragment : onViewCreated() \n -> changeButtonListeners()
+activate ServiceFragment
+
+== pause app ==
+
+User -> MainActivity : start other app
+MainActivity -> MainActivity : onStop()
+MainActivity -> Connection : disconnect()
+Connection -> Moodlight : disconnect()
+Moodlight -> Connection : disconnected?
+Connection -> MainActivity : connectionStatusChanged()
+deactivate ServiceFragment
+deactivate MainActivity
+
+== restart app ==
+
+User -> MainActivity : restart app
+MainActivity -> MainActivity : onStart()
+activate MainActivity
+activate ServiceFragment
+MainActivity -> Connection : connect()
+Connection -> Moodlight : connect() \n background task
+Moodlight -> Connection : connected?
+Connection -> MainActivity : connectionStatusChanged()
+MainActivity --> User : if not connected
+Connection --> Moodlight : listenForData()
+MainActivity --> MainActivity : synchData() \n summarized
+
+@enduml

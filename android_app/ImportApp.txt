@@ -1,0 +1,30 @@
+To import this app into "Android Studio" proceed as follows:
+
+Unzip the file "MoodlightReferenceApp.zip" into the Android workspace.
+On my computer the workspace is "C:\Users\hhrt\AndroidStudioProjects".
+
+Start "Android Studio" and click the menu item "File => Open..."
+Enter the path to the folder "MoodlightReferenceApp" in the workspace.
+On my computer this is "C:\Users\hhrt\AndroidStudioProjects\MoodlightReferenceApp".
+
+
+Before you can load an app onto the phone and debug it, you have to enable USB debugging and
+install the driver: http://developer.android.com/training/basics/firstapp/running-app.html
+
+
+With the phone scan for Bluetooth devices. The Moodlight's name is "RNBT-????". Pair this device.
+
+The name of Bluetooth device in the file "settings.xml" must be changed to
+the one listed in the Bluetooth list of the phone.
+
+Now you can load the app onto your phone and use it.
+
+
+The "MoodlightReferenceApp"-App is documented with JavaDoc and a UML sequence diagram.
+Klick on the file "index.html" in the subfolder "doc" to read the documentation in the browser.
+Read the documentaion first to get a swift overview.
+
+To compile your own documentation use the menu "Tools => Generate JavaDoc...".
+To install the PlantUML plugin use the menu "Tools => Android => SDK Manager => Plugins
+    => Browse Repositories ... => PlantUML integration => Install
+For UML sequence syntax and examples see http://plantuml.com/sequence-diagram 

@@ -1,0 +1,7 @@
+Android tutorials and  guidelines:
+Good starting point: https://www.raywenderlich.com/category/android
+A more detailled overview: http://techblogon.com/android-development-tutorial-for-beginners/
+Javadoc reference: http://docs.oracle.com/javase/7/docs/technotes/tools/solaris/javadoc.html
+Coding guide lines: https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md
+Model View Presenter architecture: https://github.com/ribot/android-guidelines/blob/master/architecture_guidelines/android_architecture.md
+Syntax for UML sequence diagram: http://plantuml.com/sequence-diagram 

@@ -1,0 +1,3 @@
+The official Android IDE is Android Studio (based on IntelliJ IDEA): 
+Free download: https://developer.android.com/studio/index.html  (Size > 1.8GB, includes thE Android SDK)
+

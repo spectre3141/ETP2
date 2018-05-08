@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Name of Bluetooth device as listed in the Bluetooth list of the Smartphone  -->
+    <!-- string name="device_name">Serial Adapter</string -->
+    <!-- string name="device_name">CLT-MOB-T-5202</string --> <!-- Notebook hhrt -->
+    <!-- string name="device_name">RNBT-4131</string --> <!-- Moodlight: Prototyp in Kiste -->
+    <string name="device_name">RNBT-923A</string > <!-- Moodlight: Neuer Print 1 -->
+
+    <!-- ASCII code of delimiter character at the end of a data string -->
+    <integer name="connection_TXRX_delimiter">13</integer>
+    <!-- integer name="TXRX_delimiter">10</integer -->
+
+    <!-- Standard SerialPortService ID for Bluetooth  -->
+    <string name="connection_UUID">00001101-0000-1000-8000-00805F9B34FB</string>
+
+    <!-- Wait .. ms between subsequent sending or receiving of data
+    to prevent eating up CPU time, losing frames and draining the battery -->
+    <integer name="connection_wait_TXRX">200</integer>
+
+    <!-- Wait .. ms for time-out of device and adapter after closing the Bluetooth connection -->
+    <integer name="connection_wait_close">2000</integer>
+
+    <!-- Maximum tries to connect to Bluetooth device -->
+    <integer name="connection_retry">3</integer>
+
+</resources>
