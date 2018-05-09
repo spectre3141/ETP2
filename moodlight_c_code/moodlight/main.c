@@ -21,8 +21,8 @@ int main(void)
 	int dir = 1;
 	uint8_t buffer[3];
 	
-	LED_initPWM();
 	alarm_init();
+	LED_initPWM();
 	UART_init();
 	setAlarmTime(30);
 	buffer[0] = 0x30;

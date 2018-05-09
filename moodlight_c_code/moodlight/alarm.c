@@ -9,13 +9,14 @@
 #include <avr/interrupt.h>
 #include "Headerfiles/alarm.h"
 
-#define INIT_CH1 ((uint8_t)(0x3F))				//f = clk/(Prescaler * 510)
+#define INIT_CH1 ((uint8_t)(0x3F))				//f = ioclk/(Prescaler * 510)
 #define INIT_CH2 ((uint8_t)(0xFF-INIT_CH1))
 
 uint32_t seconds = 0;
 uint8_t	onoff = 0;
 uint32_t timeset = 0;
 uint8_t alarmDuration = 0;
+
 void alarm_init(void)
 {
 	//Configure pins as output
@@ -35,10 +36,11 @@ void alarm_init(void)
 	OCR0A = INIT_CH1;
 	OCR0B = INIT_CH2;
 	
-	//Timer 2 config
+	//Timer 2 config, Real time counter (RTC)
 	cli();										// disable interrupts
-		
+	
 	TCCR2A = 0;									//clear timer register
+	
 	TCCR2B = 0;
 	ASSR = 0;
 	TIMSK2 = 0;
@@ -77,7 +79,7 @@ void startAlarmSound(void)
 /*stops the alarm sound*/
 void stopAlarmSound(void)
 {
-	PORTD |= (1<<PIND4);
+	PORTD |= (1<<PIND4);			//Amplifier Standby
 }
 /* Turns the alarm sound off*/
 void resetAlarm(void)
@@ -90,7 +92,7 @@ void TIMER2_IRQ(void)
 	
 	if(seconds == 0)				
 	{
-		alarmDuration = 60;		//duration off the alarm in seconds
+		alarmDuration = 60;			//duration off the alarm in seconds
 		startAlarmSound();
 	}
 	if(alarmDuration > 0)			//alarm is on for the set amount of time
