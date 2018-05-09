@@ -5,11 +5,12 @@
  * Author : jonas
  */ 
 
+#include <util/delay.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
+
 #include "Headerfiles/LED.h"
 #include "Headerfiles/alarm.h"
-#include <util/delay.h>
 #include "Headerfiles/UART.h"
 
 #define F_CPU 8000000UL
@@ -20,10 +21,10 @@ int main(void)
 	int dir = 1;
 	uint8_t buffer[3];
 	
-	LED_initPWM();
 	alarm_init();
+	LED_initPWM();
 	UART_init();
-	
+	setAlarmTime(30);
 	buffer[0] = 0x30;
 	buffer[1] = CH1;
 	
