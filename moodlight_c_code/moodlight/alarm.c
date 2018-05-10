@@ -15,7 +15,12 @@
 uint32_t seconds = 0;
 uint8_t	onoff = 0;
 uint32_t timeset = 0;
-uint8_t alarmDuration = 0;
+uint8_t alarmDuration = 10;
+
+#define OUTPUT_PIN 4
+#define OUTPUT_DDR DDRD
+#define OUTPUT_PORT PORTD
+
 
 void alarm_init(void)
 {
@@ -37,7 +42,7 @@ void alarm_init(void)
 	OCR0B = INIT_CH2;
 	
 	//Timer 2 config, Real time counter (RTC)
-	cli();										// disable interrupts
+											
 	
 	TCCR2A = 0;									//clear timer register
 	
@@ -47,8 +52,9 @@ void alarm_init(void)
 			
 	TCCR2A |= (1<<WGM21);						// Clear Timer on Compare Match
 	TCCR2B |= (1<<CS22) | (1<<CS21) | (1<<CS20);//Prescaler = 1024
-	ASSR|= (1 << AS2);							//Enable external clock	(32.768 kHz)
-	OCR2A = 31;									//Interrupt every 1 second
+	//ASSR|= (1 << AS2);							//Enable external clock	(32.768 kHz)
+	OCR2A = 102;
+	//OCR2A = 31;									//Interrupt every 1 second
 	TIMSK2 |= (1 << OCIE2A);					//Enable interrupt for overflow
 
 	sei();										// enable interrupts
@@ -69,12 +75,12 @@ void setAlarmTime(uint32_t time)
 /*starts the alarm sound*/
 void startAlarmSound(void)
 {
-		PORTD ^= (1<<PIND4);		//toggle standby pin
+		OUTPUT_PORT ^= 1 << OUTPUT_PIN; 
 		alarmDuration--;			//decrement alarm duration
-		if(alarmDuration == 0)		//stop alarm after a certain duration
+		/*if(alarmDuration == 0)		//stop alarm after a certain duration
 		{
 			stopAlarmSound();
-		}
+		}*/
 }
 /*stops the alarm sound*/
 void stopAlarmSound(void)
@@ -88,15 +94,17 @@ void resetAlarm(void)
 }
 void TIMER2_IRQ(void)
 {
-	seconds--;						//decrement seconds by 1
+	seconds = 0;						//decrement seconds by 1
 	
-	if(seconds == 0)				
+	OUTPUT_PORT ^= 1 << OUTPUT_PIN;
+	/*if(seconds == 0)				
 	{
-		alarmDuration = 60;			//duration off the alarm in seconds
-		startAlarmSound();
-	}
-	if(alarmDuration > 0)			//alarm is on for the set amount of time
+		/*alarmDuration = 60;			//duration off the alarm in seconds
+		startAlarmSound();*/
+		//OUTPUT_PORT ^= 1 << OUTPUT_PIN;
+	//}
+	/*if(alarmDuration > 0)			//alarm is on for the set amount of time
 	{
 		startAlarmSound();
-	}
+	}*/
 }

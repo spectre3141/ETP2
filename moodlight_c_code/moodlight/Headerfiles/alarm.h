@@ -10,7 +10,7 @@
 
 /* function bodies*/
 
-void alarm_initPWM(void);
+void alarm_init(void);
 void resetAlarm(void);
 uint32_t getAlarmTime(void);
 void setAlarmTime(uint32_t time);

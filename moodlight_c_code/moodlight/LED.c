@@ -17,7 +17,7 @@ void LED_initPWM(void)
 	DDRB |= (1<<DDRB1) | (1<<DDRB2);				// DAC_0 (T1.A) & DAC_1 (T1.B)
 	PORTD |= (1<<2);								// to fix a bug on the chip
 	/* START (T3.A) */
-	// reset registers
+	// reset registers	
 	TCCR3A = 0;
 	TCCR3B = 0;
 	TCCR3C = 0;
