@@ -8,5 +8,29 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorByValue">#000000</color>
+
+    <color name="colorA0">#900000</color>
+    <color name="colorA1">#909000</color>
+    <color name="colorA2">#009000</color>
+    <color name="colorA3">#009090</color>
+    <color name="colorA4">#000090</color>
+    <color name="colorA5">#900090</color>
+    <color name="colorB0">#F00000</color>
+    <color name="colorB1">#F0F000</color>
+    <color name="colorB2">#00F000</color>
+    <color name="colorB3">#00F0F0</color>
+    <color name="colorB4">#0000F0</color>
+    <color name="colorB5">#F000F0</color>
+    <color name="colorC0">#FFA0A0</color>
+    <color name="colorC1">#FFFFA0</color>
+    <color name="colorC2">#A0FFA0</color>
+    <color name="colorC3">#A0FFFF</color>
+    <color name="colorC4">#A0A0FF</color>
+    <color name="colorC5">#FFA0FF</color>
+    <color name="colorD0">#FFD5D5</color>
+    <color name="colorD1">#FFFFD5</color>
+    <color name="colorD2">#D5FFD5</color>
+    <color name="colorD3">#D5FFFF</color>
+    <color name="colorD4">#D5D5FF</color>
+    <color name="colorD5">#FFD5FF</color>
 </resources>

@@ -28,13 +28,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+/*
         bt = new BluetoothSPP(this);
 
         // bluetooth is not available
         if (!bt.isBluetoothAvailable())
         {
-            finish();
+            //finish();
+        }
+
+        if (bt.isBluetoothEnabled()){
+            bt.startService(BluetoothState.DEVICE_OTHER);
+        } else {
+            // TODO: connection failed
         }
 
         bt.setOnDataReceivedListener(new OnDataReceivedListener() {
@@ -43,6 +49,23 @@ public class MainActivity extends AppCompatActivity {
                 // TODO: insert Listener actions
             }
         });
+
+        bt.setBluetoothConnectionListener(new BluetoothConnectionListener() {
+            @Override
+            public void onDeviceConnected(String name, String address) {
+                // TODO
+            }
+
+            @Override
+            public void onDeviceDisconnected() {
+                // TODO
+            }
+
+            @Override
+            public void onDeviceConnectionFailed() {
+                // TODO
+            }
+        });*/
 
         /* Configuration of GUI-Elements */
         ledButton = (Button) findViewById(R.id.ledButton);
