@@ -1,10 +1,13 @@
 package com.zhaw.schoejo2.etp_moodlight;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import app.akexorcist.bluetotohspp.library.BluetoothSPP;
 import app.akexorcist.bluetotohspp.library.BluetoothState;
 import app.akexorcist.bluetotohspp.library.DeviceList;
@@ -28,13 +31,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
+
         bt = new BluetoothSPP(this);
 
         // bluetooth is not available
         if (!bt.isBluetoothAvailable())
         {
-            //finish();
+            Toast.makeText(getApplicationContext()
+                    , "Bluetooth is not available"
+                    , Toast.LENGTH_SHORT).show();
+            finish();
         }
 
         if (bt.isBluetoothEnabled()){
@@ -65,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
             public void onDeviceConnectionFailed() {
                 // TODO
             }
-        });*/
+        });
 
-        /* Configuration of GUI-Elements */
+        // GUI initialization
         ledButton = (Button) findViewById(R.id.ledButton);
         ledButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +96,20 @@ public class MainActivity extends AppCompatActivity {
     public void onStart()
     {
         super.onStart();
-
+        if (!bt.isBluetoothEnabled()) {
+            Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(intent, BluetoothState.REQUEST_ENABLE_BT);
+        } else {
+            if(!bt.isServiceAvailable()) {
+                bt.setupService();
+                bt.startService(BluetoothState.DEVICE_ANDROID);
+            }
+        }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        bt.stopService();
+    }
 }
