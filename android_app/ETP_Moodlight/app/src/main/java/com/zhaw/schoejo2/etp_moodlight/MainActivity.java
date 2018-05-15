@@ -1,11 +1,13 @@
 package com.zhaw.schoejo2.etp_moodlight;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import app.akexorcist.bluetotohspp.library.BluetoothSPP;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     // GUI-Element Instances
     Button ledButton;
     Button alarmButton;
+    Button bluetoothButton;
+    TextView bluetoothText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +38,12 @@ public class MainActivity extends AppCompatActivity {
 
         bt = new BluetoothSPP(this);
 
-        // bluetooth is not available
         if (!bt.isBluetoothAvailable())
         {
             Toast.makeText(getApplicationContext()
                     , "Bluetooth is not available"
                     , Toast.LENGTH_SHORT).show();
             finish();
-        }
-
-        if (bt.isBluetoothEnabled()){
-            bt.startService(BluetoothState.DEVICE_OTHER);
-        } else {
-            // TODO: connection failed
         }
 
         bt.setOnDataReceivedListener(new OnDataReceivedListener() {
@@ -59,22 +56,26 @@ public class MainActivity extends AppCompatActivity {
         bt.setBluetoothConnectionListener(new BluetoothConnectionListener() {
             @Override
             public void onDeviceConnected(String name, String address) {
-                // TODO
+                bluetoothText.setText(bt.getConnectedDeviceName());
             }
 
             @Override
             public void onDeviceDisconnected() {
-                // TODO
+                bluetoothText.setText("Device disconnected");
             }
 
             @Override
             public void onDeviceConnectionFailed() {
-                // TODO
+                bluetoothText.setText("Connection failed");
             }
         });
 
         // GUI initialization
         ledButton = (Button) findViewById(R.id.ledButton);
+        alarmButton = (Button) findViewById(R.id.alarmButton);
+        bluetoothButton = (Button) findViewById(R.id.bluetoothButton);
+        bluetoothText = (TextView) findViewById(R.id.bluetoothText);
+
         ledButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,11 +83,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        alarmButton = (Button) findViewById(R.id.alarmButton);
         alarmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, alarmActivity.getClass()));
+            }
+        });
+
+        bluetoothButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bt.setDeviceTarget(BluetoothState.DEVICE_OTHER);                    //no Android device -> DEVICE_OTHER
+                if(bt.getServiceState() == BluetoothState.STATE_CONNECTED) {        //check if bluetooth is already connected to something
+                    bt.disconnect();
+                }
+                Intent intent = new Intent(getApplicationContext(), DeviceList.class);  //open DeviceList-Page from BT_Lib
+                startActivityForResult(intent, BluetoothState.REQUEST_CONNECT_DEVICE);
             }
         });
 
@@ -112,4 +124,23 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         bt.stopService();
     }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == BluetoothState.REQUEST_CONNECT_DEVICE) {
+            if(resultCode == Activity.RESULT_OK) {
+                bt.connect(data);
+            }
+        } else if(requestCode == BluetoothState.REQUEST_ENABLE_BT) {
+            if(resultCode == Activity.RESULT_OK) {
+                bt.setupService();
+                bt.startService(BluetoothState.DEVICE_ANDROID);
+            }  else {
+                Toast.makeText(getApplicationContext(), "Bluetooth was not enabled.", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
+
 }
+
+

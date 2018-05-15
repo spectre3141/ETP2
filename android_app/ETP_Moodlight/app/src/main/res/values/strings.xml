@@ -2,7 +2,7 @@
     <string name="app_name">Moodlight</string>
     <string name="Button_Led">Colorsettings</string>
     <string name="Button_Alarm">Alarmsettings</string>
-    <string name="Button_Menu">Menu</string>
+    <string name="Button_Bluetooth">Connect</string>
     <string name="Text_Red">Red</string>
     <string name="Text_Green">Green</string>
     <string name="Text_Blue">Blue</string>

@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AlarmActivity extends AppCompatActivity implements TimerListener {
+public class AlarmActivity extends AppCompatActivity implements AlarmRequestTimerListener {
 
     // constants
     final private int ALARM_UPDATE_TIME = 10000; // > 10s

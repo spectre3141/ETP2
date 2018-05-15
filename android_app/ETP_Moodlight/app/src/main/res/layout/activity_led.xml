@@ -6,174 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".LedActivity">
 
-    <Button
-        android:id="@+id/colorD1Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_d1"
-        app:layout_constraintBottom_toBottomOf="@+id/colorD0Button"
-        app:layout_constraintStart_toEndOf="@+id/colorD0Button"
-        app:layout_constraintTop_toTopOf="@+id/colorD0Button" />
-
-    <Button
-        android:id="@+id/colorD3Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_d3"
-        app:layout_constraintBottom_toBottomOf="@+id/colorD2Button"
-        app:layout_constraintStart_toEndOf="@+id/colorD2Button"
-        app:layout_constraintTop_toTopOf="@+id/colorD2Button" />
-
-    <Button
-        android:id="@+id/colorD4Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_d4"
-        app:layout_constraintBottom_toBottomOf="@+id/colorD3Button"
-        app:layout_constraintStart_toEndOf="@+id/colorD3Button"
-        app:layout_constraintTop_toTopOf="@+id/colorD3Button" />
-
-    <Button
-        android:id="@+id/colorD5Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_d5"
-        app:layout_constraintBottom_toBottomOf="@+id/colorD4Button"
-        app:layout_constraintStart_toEndOf="@+id/colorD4Button"
-        app:layout_constraintTop_toTopOf="@+id/colorD4Button" />
-
-    <Button
-        android:id="@+id/colorD2Button"
-        android:layout_width="32sp"
-        android:layout_height="33dp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_d2"
-        app:layout_constraintBottom_toBottomOf="@+id/colorD1Button"
-        app:layout_constraintStart_toEndOf="@+id/colorD1Button"
-        app:layout_constraintTop_toTopOf="@+id/colorD1Button" />
-
-    <Button
-        android:id="@+id/colorD0Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/colored_button_d0"
-        app:layout_constraintStart_toStartOf="@+id/colorC0Button"
-        app:layout_constraintTop_toBottomOf="@+id/colorC0Button" />
-
-    <Button
-        android:id="@+id/colorC0Button"
-        android:layout_width="32dp"
-        android:layout_height="32sp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/colored_button_c0"
-        app:layout_constraintStart_toStartOf="@+id/colorB0Button"
-        app:layout_constraintTop_toBottomOf="@+id/colorB0Button" />
-
-    <Button
-        android:id="@+id/colorC3Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_c3"
-        app:layout_constraintBottom_toBottomOf="@+id/colorC2Button"
-        app:layout_constraintStart_toEndOf="@+id/colorC2Button"
-        app:layout_constraintTop_toTopOf="@+id/colorC2Button" />
-
-    <Button
-        android:id="@+id/colorC4Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_c4"
-        app:layout_constraintBottom_toBottomOf="@+id/colorC3Button"
-        app:layout_constraintStart_toEndOf="@+id/colorC3Button"
-        app:layout_constraintTop_toTopOf="@+id/colorC3Button" />
-
-    <Button
-        android:id="@+id/colorC1Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_c1"
-        app:layout_constraintBottom_toBottomOf="@+id/colorC0Button"
-        app:layout_constraintStart_toEndOf="@+id/colorC0Button"
-        app:layout_constraintTop_toTopOf="@+id/colorC0Button" />
-
-    <Button
-        android:id="@+id/colorC2Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_c2"
-        app:layout_constraintBottom_toBottomOf="@+id/colorC1Button"
-        app:layout_constraintStart_toEndOf="@+id/colorC1Button"
-        app:layout_constraintTop_toTopOf="@+id/colorC1Button" />
-
-    <Button
-        android:id="@+id/colorC5Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_c5"
-        app:layout_constraintBottom_toBottomOf="@+id/colorC4Button"
-        app:layout_constraintStart_toEndOf="@+id/colorC4Button"
-        app:layout_constraintTop_toTopOf="@+id/colorC4Button" />
-
-    <Button
-        android:id="@+id/colorA4Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_a4"
-        app:layout_constraintBottom_toBottomOf="@+id/colorA3Button"
-        app:layout_constraintStart_toEndOf="@+id/colorA3Button"
-        app:layout_constraintTop_toTopOf="@+id/colorA3Button" />
-
-    <Button
-        android:id="@+id/colorA5Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_a5"
-        app:layout_constraintBottom_toBottomOf="@+id/colorA4Button"
-        app:layout_constraintStart_toEndOf="@+id/colorA4Button"
-        app:layout_constraintTop_toTopOf="@+id/colorA4Button" />
-
-    <Button
-        android:id="@+id/colorA2Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_a2"
-        app:layout_constraintBottom_toBottomOf="@+id/colorA1Button"
-        app:layout_constraintStart_toEndOf="@+id/colorA1Button"
-        app:layout_constraintTop_toTopOf="@+id/colorA1Button" />
-
-    <Button
-        android:id="@+id/colorA3Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_a3"
-        app:layout_constraintBottom_toBottomOf="@+id/colorA2Button"
-        app:layout_constraintStart_toEndOf="@+id/colorA2Button"
-        app:layout_constraintTop_toTopOf="@+id/colorA2Button" />
-
-    <Button
-        android:id="@+id/colorA0Button"
-        android:layout_width="32sp"
-        android:layout_height="32sp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/colored_button_a0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/colorValueText" />
-
     <TextView
         android:id="@+id/redText"
         android:layout_width="60dp"
@@ -282,14 +114,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:digits="0123456789ABCDEF"
-        android:ems="4"
-        android:inputType="textCapCharacters"
+        android:digits="0123456789ABCDEFabcdef"
+        android:ems="8"
+        android:hint="hex input (6 digits)"
+        android:inputType="text"
         android:textAlignment="textStart"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/colorValueText"
         app:layout_constraintStart_toEndOf="@+id/colorValueText"
         app:layout_constraintTop_toTopOf="@+id/colorValueText" />
+
+    <Button
+        android:id="@+id/colorA0Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/colored_button_a0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/colorValueText" />
 
     <Button
         android:id="@+id/colorA1Button"
@@ -302,14 +145,44 @@
         app:layout_constraintTop_toTopOf="@+id/colorA0Button" />
 
     <Button
-        android:id="@+id/colorB1Button"
+        android:id="@+id/colorA2Button"
         android:layout_width="32sp"
         android:layout_height="32sp"
         android:layout_marginStart="24dp"
-        android:background="@drawable/colored_button_b1"
-        app:layout_constraintBottom_toBottomOf="@+id/colorB0Button"
-        app:layout_constraintStart_toEndOf="@+id/colorB0Button"
-        app:layout_constraintTop_toTopOf="@+id/colorB0Button" />
+        android:background="@drawable/colored_button_a2"
+        app:layout_constraintBottom_toBottomOf="@+id/colorA1Button"
+        app:layout_constraintStart_toEndOf="@+id/colorA1Button"
+        app:layout_constraintTop_toTopOf="@+id/colorA1Button" />
+
+    <Button
+        android:id="@+id/colorA3Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/colored_button_a3"
+        app:layout_constraintBottom_toBottomOf="@+id/colorA2Button"
+        app:layout_constraintStart_toEndOf="@+id/colorA2Button"
+        app:layout_constraintTop_toTopOf="@+id/colorA2Button" />
+
+    <Button
+        android:id="@+id/colorA4Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/colored_button_a4"
+        app:layout_constraintBottom_toBottomOf="@+id/colorA3Button"
+        app:layout_constraintStart_toEndOf="@+id/colorA3Button"
+        app:layout_constraintTop_toTopOf="@+id/colorA3Button" />
+
+    <Button
+        android:id="@+id/colorA5Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/colored_button_a5"
+        app:layout_constraintBottom_toBottomOf="@+id/colorA4Button"
+        app:layout_constraintStart_toEndOf="@+id/colorA4Button"
+        app:layout_constraintTop_toTopOf="@+id/colorA4Button" />
 
     <Button
         android:id="@+id/colorB0Button"
@@ -319,6 +192,16 @@
         android:background="@drawable/colored_button_b0"
         app:layout_constraintStart_toStartOf="@+id/colorA0Button"
         app:layout_constraintTop_toBottomOf="@+id/colorA0Button" />
+
+    <Button
+        android:id="@+id/colorB1Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/colored_button_b1"
+        app:layout_constraintBottom_toBottomOf="@+id/colorB0Button"
+        app:layout_constraintStart_toEndOf="@+id/colorB0Button"
+        app:layout_constraintTop_toTopOf="@+id/colorB0Button" />
 
     <Button
         android:id="@+id/colorB2Button"
@@ -359,5 +242,135 @@
         app:layout_constraintBottom_toBottomOf="@+id/colorB4Button"
         app:layout_constraintStart_toEndOf="@+id/colorB4Button"
         app:layout_constraintTop_toTopOf="@+id/colorB4Button" />
+
+    <Button
+        android:id="@+id/colorC0Button"
+        android:layout_width="32dp"
+        android:layout_height="32sp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/colored_button_c0"
+        app:layout_constraintStart_toStartOf="@+id/colorB0Button"
+        app:layout_constraintTop_toBottomOf="@+id/colorB0Button" />
+
+    <Button
+        android:id="@+id/colorC1Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/colored_button_c1"
+        app:layout_constraintBottom_toBottomOf="@+id/colorC0Button"
+        app:layout_constraintStart_toEndOf="@+id/colorC0Button"
+        app:layout_constraintTop_toTopOf="@+id/colorC0Button" />
+
+    <Button
+        android:id="@+id/colorC2Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/colored_button_c2"
+        app:layout_constraintBottom_toBottomOf="@+id/colorC1Button"
+        app:layout_constraintStart_toEndOf="@+id/colorC1Button"
+        app:layout_constraintTop_toTopOf="@+id/colorC1Button" />
+
+    <Button
+        android:id="@+id/colorC3Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/colored_button_c3"
+        app:layout_constraintBottom_toBottomOf="@+id/colorC2Button"
+        app:layout_constraintStart_toEndOf="@+id/colorC2Button"
+        app:layout_constraintTop_toTopOf="@+id/colorC2Button" />
+
+    <Button
+        android:id="@+id/colorC4Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/colored_button_c4"
+        app:layout_constraintBottom_toBottomOf="@+id/colorC3Button"
+        app:layout_constraintStart_toEndOf="@+id/colorC3Button"
+        app:layout_constraintTop_toTopOf="@+id/colorC3Button" />
+
+    <Button
+        android:id="@+id/colorC5Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/colored_button_c5"
+        app:layout_constraintBottom_toBottomOf="@+id/colorC4Button"
+        app:layout_constraintStart_toEndOf="@+id/colorC4Button"
+        app:layout_constraintTop_toTopOf="@+id/colorC4Button" />
+
+    <Button
+        android:id="@+id/colorD0Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/colored_button_d0"
+        app:layout_constraintStart_toStartOf="@+id/colorC0Button"
+        app:layout_constraintTop_toBottomOf="@+id/colorC0Button" />
+
+    <Button
+        android:id="@+id/colorD1Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/colored_button_d1"
+        app:layout_constraintBottom_toBottomOf="@+id/colorD0Button"
+        app:layout_constraintStart_toEndOf="@+id/colorD0Button"
+        app:layout_constraintTop_toTopOf="@+id/colorD0Button" />
+
+    <Button
+        android:id="@+id/colorD2Button"
+        android:layout_width="32sp"
+        android:layout_height="33dp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/colored_button_d2"
+        app:layout_constraintBottom_toBottomOf="@+id/colorD1Button"
+        app:layout_constraintStart_toEndOf="@+id/colorD1Button"
+        app:layout_constraintTop_toTopOf="@+id/colorD1Button" />
+
+    <Button
+        android:id="@+id/colorD3Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/colored_button_d3"
+        app:layout_constraintBottom_toBottomOf="@+id/colorD2Button"
+        app:layout_constraintStart_toEndOf="@+id/colorD2Button"
+        app:layout_constraintTop_toTopOf="@+id/colorD2Button" />
+
+    <Button
+        android:id="@+id/colorD4Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/colored_button_d4"
+        app:layout_constraintBottom_toBottomOf="@+id/colorD3Button"
+        app:layout_constraintStart_toEndOf="@+id/colorD3Button"
+        app:layout_constraintTop_toTopOf="@+id/colorD3Button" />
+
+    <Button
+        android:id="@+id/colorD5Button"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/colored_button_d5"
+        app:layout_constraintBottom_toBottomOf="@+id/colorD4Button"
+        app:layout_constraintStart_toEndOf="@+id/colorD4Button"
+        app:layout_constraintTop_toTopOf="@+id/colorD4Button" />
+
+    <Button
+        android:id="@+id/ledCommitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/Text_Commit"
+        app:layout_constraintBottom_toBottomOf="@+id/colorValueEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/colorValueEdit"
+        app:layout_constraintTop_toTopOf="@+id/colorValueEdit" />
 
 </android.support.constraint.ConstraintLayout>
