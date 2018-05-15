@@ -18,6 +18,15 @@ import app.akexorcist.bluetotohspp.library.BluetoothSPP.OnDataReceivedListener;
 
 public class MainActivity extends AppCompatActivity {
 
+    // constants
+    final static String BT_DELIMITER = String.valueOf(0xD);
+    final static String BT_ALARM = "1";
+    final static String BT_LED = "0";
+    final static String LED_ALL = "x";
+    final static String LED_RED = "r";
+    final static String LED_GREEN = "g";
+    final static String LED_BLUE = "b";
+
     // Bluetooth connected variables
     public static BluetoothSPP bt;
 
@@ -76,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         bluetoothButton = (Button) findViewById(R.id.bluetoothButton);
         bluetoothText = (TextView) findViewById(R.id.bluetoothText);
 
+        bluetoothText.setText("not connected");
         ledButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

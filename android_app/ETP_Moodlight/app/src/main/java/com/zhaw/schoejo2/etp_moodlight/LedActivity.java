@@ -1,5 +1,6 @@
 package com.zhaw.schoejo2.etp_moodlight;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -66,17 +67,37 @@ public class LedActivity extends AppCompatActivity {
         blueSeekbar = (SeekBar) findViewById(R.id.blueSeekbar);
         whiteSeekbar = (SeekBar) findViewById(R.id.whiteSeekbar);
 
+        colorA0Button = (Button) findViewById(R.id.colorA0Button);
+        colorA1Button = (Button) findViewById(R.id.colorA1Button);
+        colorA2Button = (Button) findViewById(R.id.colorA2Button);
+        colorA3Button = (Button) findViewById(R.id.colorA3Button);
+        colorA4Button = (Button) findViewById(R.id.colorA4Button);
+        colorA5Button = (Button) findViewById(R.id.colorA5Button);
+        colorB0Button = (Button) findViewById(R.id.colorB0Button);
+        colorB1Button = (Button) findViewById(R.id.colorB1Button);
+        colorB2Button = (Button) findViewById(R.id.colorB2Button);
+        colorB3Button = (Button) findViewById(R.id.colorB3Button);
+        colorB4Button = (Button) findViewById(R.id.colorB4Button);
+        colorB5Button = (Button) findViewById(R.id.colorB5Button);
+        colorC0Button = (Button) findViewById(R.id.colorC0Button);
+        colorC1Button = (Button) findViewById(R.id.colorC1Button);
+        colorC2Button = (Button) findViewById(R.id.colorC2Button);
+        colorC3Button = (Button) findViewById(R.id.colorC3Button);
+        colorC4Button = (Button) findViewById(R.id.colorC4Button);
+        colorC5Button = (Button) findViewById(R.id.colorC5Button);
+        colorD0Button = (Button) findViewById(R.id.colorD0Button);
+        colorD1Button = (Button) findViewById(R.id.colorD1Button);
+        colorD2Button = (Button) findViewById(R.id.colorD2Button);
+        colorD3Button = (Button) findViewById(R.id.colorD3Button);
+        colorD4Button = (Button) findViewById(R.id.colorD4Button);
+        colorD5Button = (Button) findViewById(R.id.colorD5Button);
+
         ledCommitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String buffer = colorByValueEdit.getText().toString();
-                if (buffer.length() == 6){
-                    redValue = Integer.decode(HEX_FORMAT + buffer.substring(0, 2));
-                    greenValue = Integer.decode(HEX_FORMAT + buffer.substring(2, 4));
-                    blueValue = Integer.decode(HEX_FORMAT + buffer.substring(4, 6));
-                    redSeekbar.setProgress(redValue);
-                    greenSeekbar.setProgress(greenValue);
-                    blueSeekbar.setProgress(blueValue);
+                if (stringToColor(buffer)){
+                    setSeekbars();
                 } else {
                     Toast.makeText(getApplicationContext(), "invalid input", Toast.LENGTH_SHORT).show();
                 }
@@ -97,7 +118,7 @@ public class LedActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // do nothing
+                sendColors();
             }
         });
 
@@ -115,7 +136,7 @@ public class LedActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // do nothing
+                sendColors();
             }
         });
 
@@ -133,7 +154,7 @@ public class LedActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // do nothing
+                sendColors();
             }
         });
 
@@ -150,12 +171,40 @@ public class LedActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // do nothing
+                sendColors();
             }
         });
 
+        colorA0Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorA0)));
+        colorA1Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorA1)));
+        colorA2Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorA2)));
+        colorA3Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorA3)));
+        colorA4Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorA4)));
+        colorA5Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorA5)));
+        colorB0Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorB0)));
+        colorB1Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorB1)));
+        colorB2Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorB2)));
+        colorB3Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorB3)));
+        colorB4Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorB4)));
+        colorB5Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorB5)));
+        colorC0Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorC0)));
+        colorC1Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorC1)));
+        colorC2Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorC2)));
+        colorC3Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorC3)));
+        colorC4Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorC4)));
+        colorC5Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorC5)));
+        colorD0Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorD0)));
+        colorD1Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorD1)));
+        colorD2Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorD2)));
+        colorD3Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorD3)));
+        colorD4Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorD4)));
+        colorD5Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorD5)));
+    }
 
-
+    private void splitColor(int value){
+        redValue = ((value >> 16) & 0xFF);
+        greenValue = ((value >> 8) & 0xFF);
+        blueValue = (value & 0xFF);
     }
 
     /**
@@ -164,21 +213,89 @@ public class LedActivity extends AppCompatActivity {
      * @return
      */
     private String calcColor(){
-        int buffer = blueValue;
-        buffer += (greenValue << 8);
-        buffer += (redValue << 16);
-        return Integer.toHexString(buffer);
+        String buffer;
+        if (redValue == 0){
+            buffer = "00";
+        } else if (redValue < 0x10){
+            buffer = "0" + Integer.toHexString(redValue);
+        } else {
+            buffer = Integer.toHexString(redValue);
+        }
+        if (greenValue == 0){
+            buffer += "00";
+        } else if (greenValue < 0x10){
+            buffer += "0" + Integer.toHexString(greenValue);
+        } else {
+            buffer += Integer.toHexString(greenValue);
+        }
+        if (blueValue == 0){
+            buffer += "00";
+        } else if (blueValue < 0x10){
+            buffer += "0" + Integer.toHexString(blueValue);
+        } else {
+            buffer += Integer.toHexString(blueValue);
+        }
+        return buffer;
+    }
+
+    /**
+     * Converts String of length 6 into 3 integers and stores
+     * the values in the variables redValue, greenValue, blueValue
+     * returns false if the String length is invalid
+     *
+     * @param color
+     * @return
+     */
+    private boolean stringToColor(String color){
+        if (color.length() == 6){
+            redValue = Integer.decode(HEX_FORMAT + color.substring(0, 2));
+            greenValue = Integer.decode(HEX_FORMAT + color.substring(2, 4));
+            blueValue = Integer.decode(HEX_FORMAT + color.substring(4, 6));
+            return true;
+        } else
+            return false;
+    }
+
+    private void setSeekbars(){
+        redSeekbar.setProgress(redValue);
+        greenSeekbar.setProgress(greenValue);
+        blueSeekbar.setProgress(blueValue);
     }
 
     /**
      * sends the white, red, green and blue channel
      */
     private void sendColors(){
-        String buffer = Integer.toHexString(whiteValue);
+        // control bytes (0: data for LED, x: all channels
+        String buffer = MainActivity.BT_LED + MainActivity.LED_ALL;
+        // add channel values
+        buffer += Integer.toHexString(whiteValue);
         buffer += Integer.toHexString(redValue);
         buffer += Integer.toHexString(greenValue);
         buffer += Integer.toHexString(blueValue);
-//        MainActivity.bt.send(buffer, false);
+        // add frame delimiter
+        buffer += MainActivity.BT_DELIMITER;
+        MainActivity.bt.send(buffer, false);
+    }
+
+    /**
+     * dedicated listener class to lower effort on colorButton listeners
+     */
+    private class ColorButtonListener implements View.OnClickListener {
+
+        private int color;
+
+        public ColorButtonListener(int color){
+            this.color = color;
+        }
+
+        @Override
+        public void onClick(View v) {
+            splitColor(color);
+            colorByValueEdit.setText(calcColor());
+            setSeekbars();
+            sendColors();
+        }
     }
 
 }
