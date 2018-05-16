@@ -15,10 +15,10 @@
 
 #define F_CPU 8000000UL
 
-ISR(TIMER2_COMPA_vect)
+/*ISR(TIMER2_COMPA_vect)
 {
 	TIMER2_IRQ();
-}
+}*/
 int main(void)
 {
 	int counter = 0;
@@ -28,39 +28,22 @@ int main(void)
 	alarm_init();
 	LED_initPWM();
 	UART_init();
-	setAlarmTime(10);
-	buffer[0] = 0x30;
-	buffer[1] = CH1;
+	/*setAlarmTime(2000);
+	setAlarmDuration(1500);*/
 	
     while (1) 
     {
-		if ((counter <= 200) && (counter >= 0x00))
-		{
-			buffer[2] = counter;
-			UART_sendBuffer(buffer, sizeof(buffer));
-			/*
+		/*
 			UART_sendByte((uint8_t) (0x30));
 			UART_sendByte((uint8_t) (0x1));
 			UART_sendByte((uint8_t) (counter));
+			*/
 			
-			/*LED_setValue(CH1, counter);
-			LED_setValue(CH2, counter);
-			LED_setValue(CH3, counter);
-			LED_setValue(CH4, counter);*/
-		}
-		counter = counter + dir;
-		if (counter >= 200)
-		{
-			dir = -1;
-		}
-		else if (counter <= 0x00)
-		{
-			dir = 1;
-		}
-		_delay_ms(100);
+		
+
+		
     }
 }
-
 ISR(USART1_RX_vect)
 {
 	RX_IRQ();

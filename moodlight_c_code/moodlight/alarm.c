@@ -15,12 +15,7 @@
 uint32_t seconds = 0;
 uint8_t	onoff = 0;
 uint32_t timeset = 0;
-uint8_t alarmDuration = 10;
-
-#define OUTPUT_PIN 4
-#define OUTPUT_DDR DDRD
-#define OUTPUT_PORT PORTD
-
+uint16_t alarmDuration = 0;
 
 void alarm_init(void)
 {
@@ -34,77 +29,85 @@ void alarm_init(void)
 	TCCR0A = 0;
 	TCCR0B = 0;
 	
-	TCCR0A |= (1<<COM0A1) | (1<<COM0B1);		//Clear OC0x on compare match when up-counting. Set OC0x on compare match when down-counting
-	TCCR0A |= (1<<WGM00);						//Phase correct PWM
-	TCCR0B |= (1<<CS00) | (1<<CS01);			//Prescaler = 64;
+	TCCR0A |= (1<<COM0A1) | (1<<COM0B1);			//Clear OC0x on compare match when up-counting. Set OC0x on compare match when down-counting
+	TCCR0A |= (1<<WGM00);							//Phase correct PWM
+	TCCR0B |= (1<<CS00) | (1<<CS01);				//Prescaler = 64;
 	
 	OCR0A = INIT_CH1;
 	OCR0B = INIT_CH2;
 	
 	//Timer 2 config, Real time counter (RTC)
-											
-	
-	TCCR2A = 0;									//clear timer register
-	
+	TCCR2A = 0;										//clear timer register
 	TCCR2B = 0;
 	ASSR = 0;
 	TIMSK2 = 0;
 			
-	TCCR2A |= (1<<WGM21);						// Clear Timer on Compare Match
-	TCCR2B |= (1<<CS22) | (1<<CS21) | (1<<CS20);//Prescaler = 1024
+	TCCR2A |= (1<<WGM21);							// Clear Timer on Compare Match
+	TCCR2B |= (1<<CS22) | (1<<CS21) | (1<<CS20);	//Prescaler = 1024
 	//ASSR|= (1 << AS2);							//Enable external clock	(32.768 kHz)
 	OCR2A = 102;
 	//OCR2A = 31;									//Interrupt every 1 second
-	TIMSK2 |= (1 << OCIE2A);					//Enable interrupt for overflow
+	TIMSK2 |= (1 << OCIE2A);						//Enable interrupt for overflow
 
-	sei();										// enable interrupts
+	sei();											// enable interrupts
 }
 /* returns the set alarm time*/
 uint32_t getAlarmTime(void)
 {
 	return timeset;
 }
-
+/* Sets how long the alarm is played*/
+void setAlarmDuration(uint16_t alarmTime)
+{
+	alarmDuration = alarmTime;
+}
 /*sets the alarm time, saves the alarm time*/
 void setAlarmTime(uint32_t time)
 {
 	seconds = time;
 	timeset = seconds;
 }
-
-/*starts the alarm sound*/
-void startAlarmSound(void)
-{
-		OUTPUT_PORT ^= 1 << OUTPUT_PIN; 
-		alarmDuration--;			//decrement alarm duration
-		/*if(alarmDuration == 0)		//stop alarm after a certain duration
-		{
-			stopAlarmSound();
-		}*/
-}
 /*stops the alarm sound*/
 void stopAlarmSound(void)
 {
 	PORTD |= (1<<PIND4);			//Amplifier Standby
 }
+/*starts the alarm sound*/
+void startAlarmSound(void)
+{
+	if (alarmDuration != 0)
+	{
+		PORTD ^= (1<<PIND4);			//Toggle Amplifier Standby Pin
+		alarmDuration--;
+	}
+	else
+	{
+		alarmDuration = 0;
+		stopAlarmSound();
+	}
+}
+
 /* Turns the alarm sound off*/
 void resetAlarm(void)
 {
+	timeset = 0;
+	seconds = 0;
 	stopAlarmSound();
 }
 void TIMER2_IRQ(void)
 {
-	seconds = 0;						//decrement seconds by 1
-	
-	OUTPUT_PORT ^= 1 << OUTPUT_PIN;
-	/*if(seconds == 0)				
+	PORTD ^= (1<<PIND4);
+	/*if(timeset != 0)				//Alarm is set?
 	{
-		/*alarmDuration = 60;			//duration off the alarm in seconds
-		startAlarmSound();*/
-		//OUTPUT_PORT ^= 1 << OUTPUT_PIN;
-	//}
-	/*if(alarmDuration > 0)			//alarm is on for the set amount of time
-	{
-		startAlarmSound();
+		if(seconds != 0)			//Time left?
+		{
+			seconds--;
+		}
+		else
+		{
+			startAlarmSound();
+			seconds = 0;	
+		}
+		
 	}*/
 }
