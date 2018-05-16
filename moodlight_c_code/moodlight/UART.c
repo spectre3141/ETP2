@@ -10,8 +10,11 @@
 #include "Headerfiles/UART.h"
 #include "Headerfiles/LED.h"
 
-#define CHAR_0 0x30
-#define CHAR_1 0x31
+#define MAX_MESSAGE_LEN 6		// defines the maximum length of the frames (without frame delimiter)
+#define CODE_LED 0x30
+#define CODE_ALARM 0x31
+#define CODE_RECEIVE 0x3E		// 0x3E = ">": data received contains values to be set in the moodlight
+#define CODE_REQUEST 0x3C		// 0x3C = "<": request for the moodlight to send the according data
 
 static volatile uint8_t buffer[BUFFER_SIZE];
 static volatile uint8_t receiveData[BUFFER_SIZE];
@@ -46,7 +49,7 @@ void UART_init()
 void RX_IRQ(void)
 {
 		character = UDR1;
-		if (character != FRAME_DELIMITER)
+		if ((character != FRAME_DELIMITER) || (counter < MAX_MESSAGE_LEN))
 		{
 			buffer[counter] = character;
 			counter++;
@@ -89,17 +92,32 @@ void UART_deliverData(void)
 {	
 	switch(receiveData[0])
 	{
-		case CHAR_0:
+		case CODE_LED:
 			// send to LED.c
-			if ((receiveData[1] >= 1) && (receiveData[1] <= 4))
+			if (receiveData[1] == CODE_RECEIVE)
 			{
-				LED_setValue(receiveData[1], receiveData[2]);
+				int i;
+				for (i = 0; i < 4; i++)
+				{
+					LED_setValue(receiveData[i + 1], receiveData[i + 2]);
+				}
+			}
+			else if (receiveData[1] == CODE_REQUEST)
+			{
+				// possibility to insert a function to send the current values of the PWM's
 			}
 			break;
 			
-		case CHAR_1:
+		case CODE_ALARM:
 			// send to Alarm.c
-			
+			if (receiveData[1] == CODE_RECEIVE)
+			{
+				// set Alarm time
+			}
+			else if (receiveData[1] == CODE_REQUEST)
+			{
+				// send current alarm time
+			}
 			break;
 			
 		default:
