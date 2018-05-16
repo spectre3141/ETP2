@@ -267,7 +267,7 @@ public class LedActivity extends AppCompatActivity {
      */
     private void sendColors(){
         // control bytes (0: data for LED, x: all channels
-        String buffer = MainActivity.BT_LED + MainActivity.LED_ALL;
+        String buffer = MainActivity.BT_LED + MainActivity.BT_SEND;
         // add channel values
         buffer += Integer.toHexString(whiteValue);
         buffer += Integer.toHexString(redValue);

@@ -20,12 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
     // constants
     final static String BT_DELIMITER = String.valueOf(0xD);
-    final static String BT_ALARM = "1";
     final static String BT_LED = "0";
-    final static String LED_ALL = "x";
-    final static String LED_RED = "r";
-    final static String LED_GREEN = "g";
-    final static String LED_BLUE = "b";
+    final static String BT_ALARM = "1";
+    final static String BT_SEND = ">";
+    final static String BT_REQUEST = "<";
 
     // Bluetooth connected variables
     public static BluetoothSPP bt;
