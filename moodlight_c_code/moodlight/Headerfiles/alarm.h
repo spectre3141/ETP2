@@ -13,6 +13,8 @@
 /* initializes timers, and interrupts used for the alarm feature of the moodlight*/
 void alarm_init(void);
 
+void alarm_setVol(uint8_t value);
+
 /*resets alarm sound and time*/
 void resetAlarm(void);
 

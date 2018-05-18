@@ -44,13 +44,23 @@ void alarm_init(void)
 			
 	TCCR2A |= (1<<WGM21);							// Clear Timer on Compare Match
 	TCCR2B |= (1<<CS22) | (1<<CS21) | (1<<CS20);	//Prescaler = 1024
-	//ASSR|= (1 << AS2);							//Enable external clock	(32.768 kHz)
-	OCR2A = 102;
-	//OCR2A = 31;									//Interrupt every 1 second
+	ASSR|= (1 << AS2);								//Enable external clock	(32.768 kHz)
+	//OCR2A = 102;
+	OCR2A = 31;										//Interrupt every 1 second
 	TIMSK2 |= (1 << OCIE2A);						//Enable interrupt for overflow
 
 	sei();											// enable interrupts
 }
+
+void alarm_setVol(uint8_t value)
+{
+	if ((value <= 0x7F) && (value >= 0))
+	{
+		OCR0A = value;
+		OCR0B = 0xFF - value;
+	}
+}
+
 /* returns the set alarm time*/
 uint32_t getAlarmTime(void)
 {

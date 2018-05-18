@@ -15,14 +15,16 @@
 
 #define F_CPU 8000000UL
 
-/*ISR(TIMER2_COMPA_vect)
+ISR(TIMER2_COMPA_vect)
 {
 	TIMER2_IRQ();
-}*/
+}
 int main(void)
 {
 	
-	// alarm_init();
+	uint8_t counter = 0;
+	
+	alarm_init();
 	LED_initPWM();
 	UART_init();
 	/*setAlarmTime(2000);
@@ -30,7 +32,13 @@ int main(void)
 
     while (1) 
     {
-		// do nothing
+		counter++;
+		alarm_setVol(counter);
+		if (counter >= 0x7F)
+		{
+			counter = 0;
+		}
+		_delay_ms(100);
 	}
 }
 ISR(USART1_RX_vect)
