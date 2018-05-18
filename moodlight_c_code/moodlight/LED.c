@@ -73,17 +73,17 @@ void LED_setValue(pwm_channel select, uint8_t value)
 {
 	switch(select)
 	{
-		case CH1:
-			OCR1A = (((uint16_t) value) * 20);
+		case CH_RED:
+			OCR1A = (((uint16_t) value) * 16);
 			break;
-		case CH2:
-			OCR1B = (((uint16_t) value) * 20);
+		case CH_GREEN:
+			OCR1B = (((uint16_t) value) * 16);
 			break;
-		case CH3:
-			OCR4B = (((uint16_t) value) * 20);
+		case CH_BLUE:
+			OCR4B = (((uint16_t) value) * 16);
 			break;
-		case CH4:
-			OCR4A = (((uint16_t) value) * 20);
+		case CH_WHITE:
+			OCR4A = (((uint16_t) value) * 16);
 			break;
 		default:
 			break;
@@ -96,16 +96,16 @@ uint8_t LED_readValue(pwm_channel select)
 	
 	switch(select)
 	{
-		case CH1:
+		case CH_RED:
 			value = OCR1A;
 			break;
-		case CH2:
+		case CH_GREEN:
 			value = OCR1B;
 			break;
-		case CH3:
+		case CH_BLUE:
 			value = OCR4B;
 			break;
-		case CH4:
+		case CH_WHITE:
 			value = OCR4A;
 			break;
 		default:

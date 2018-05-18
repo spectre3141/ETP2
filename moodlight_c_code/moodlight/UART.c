@@ -20,6 +20,7 @@ static volatile uint8_t buffer[BUFFER_SIZE];
 static volatile uint8_t receiveData[BUFFER_SIZE];
 static volatile uint8_t counter = 0;
 volatile uint8_t character;
+uint8_t receiving = 0;
 
 void UART_init()
 {
@@ -49,10 +50,22 @@ void UART_init()
 void RX_IRQ(void)
 {
 		character = UDR1;
+		if (((character == CODE_LED) || (character == CODE_ALARM)) && (receiving == 0))
+		{
+			counter = 0;
+			receiving = 1;
+		}
 		if ((character != FRAME_DELIMITER) || (counter < MAX_MESSAGE_LEN))
 		{
 			buffer[counter] = character;
-			counter++;
+			if (counter < (BUFFER_SIZE-1))
+			{
+				counter++;			
+			}
+			else
+			{
+				counter = 0;
+			}
 		}
 		else
 		{
@@ -62,6 +75,7 @@ void RX_IRQ(void)
 				receiveData[i] = buffer[i];
 			}
 			counter = 0;
+			receiving = 0;
 			UART_deliverData();
 		}
 }
@@ -96,11 +110,10 @@ void UART_deliverData(void)
 			// send to LED.c
 			if (receiveData[1] == CODE_RECEIVE)
 			{
-				int i;
-				for (i = 0; i < 4; i++)
-				{
-					LED_setValue(receiveData[i + 1], receiveData[i + 2]);
-				}
+				LED_setValue(CH_RED, receiveData[2]);
+				LED_setValue(CH_GREEN, receiveData[3]);
+				LED_setValue(CH_BLUE, receiveData[4]);
+				LED_setValue(CH_WHITE, receiveData[5]);
 			}
 			else if (receiveData[1] == CODE_REQUEST)
 			{
@@ -124,11 +137,6 @@ void UART_deliverData(void)
 			// do nothing
 			break;			
 	}
-}
-
-uint8_t * UART_getData()
-{
-	return receiveData;
 }
 
 /* (un-)comment structure) */

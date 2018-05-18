@@ -26,6 +26,5 @@ void UART_init(void);
 void RX_IRQ(void);
 void UART_sendByte(uint8_t byte);
 void UART_sendBuffer(uint8_t * data, uint8_t length);
-uint8_t * UART_getData(void);
 
 #endif /* UART_H_ */

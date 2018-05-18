@@ -9,15 +9,15 @@
 #ifndef LED_H_
 #define LED_H_
 
-#define INIT_VALUE 0x44
+#define INIT_VALUE 0x00;
 
 // constants
 typedef enum
 {
-	CH1 = 1, 
-	CH2 = 2, 
-	CH3 = 3, 
-	CH4 = 4
+	CH_RED = 1, 
+	CH_GREEN = 2, 
+	CH_BLUE = 3, 
+	CH_WHITE = 4
 } pwm_channel;
 
 // function bodies
