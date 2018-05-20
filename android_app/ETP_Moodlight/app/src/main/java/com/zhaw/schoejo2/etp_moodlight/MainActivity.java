@@ -19,11 +19,11 @@ import app.akexorcist.bluetotohspp.library.BluetoothSPP.OnDataReceivedListener;
 public class MainActivity extends AppCompatActivity {
 
     // constants
-    final static String BT_DELIMITER = String.valueOf(0xD);
-    final static String BT_LED = "0";
-    final static String BT_ALARM = "1";
-    final static String BT_SEND = ">";
-    final static String BT_REQUEST = "<";
+    final static byte BT_DELIMITER = 0x0D;
+    final static byte BT_LED = 0x30;
+    final static byte BT_ALARM = 0x31;
+    final static byte BT_SEND = 0x3E;
+    final static byte BT_REQUEST = 0x3C;
 
     // Bluetooth connected variables
     public static BluetoothSPP bt;
@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     Button alarmButton;
     Button bluetoothButton;
     TextView bluetoothText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

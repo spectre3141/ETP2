@@ -89,19 +89,26 @@ public class AlarmActivity extends AppCompatActivity implements AlarmRequestTime
     }
 
     private void sendAlarmTimeRequest() {
-        String buffer = MainActivity.BT_ALARM + MainActivity.BT_REQUEST + MainActivity.BT_DELIMITER;
+        byte[] buffer = new byte[7];
+        buffer[0] = MainActivity.BT_ALARM;
+        buffer[1] = MainActivity.BT_REQUEST;
+        buffer[2] = 0x00;
+        buffer[3] = 0x00;
+        buffer[4] = 0x00;
+        buffer[5] = 0x00;
+        buffer[6] = MainActivity.BT_DELIMITER;
         MainActivity.bt.send(buffer, false);
     }
 
     private void sendAlarmTime(int value){
         byte[] buffer = new byte[7];
-        buffer[0] = MainActivity.BT_ALARM.getBytes()[0];
-        buffer[1] = MainActivity.BT_SEND.getBytes()[0];
+        buffer[0] = MainActivity.BT_ALARM;
+        buffer[1] = MainActivity.BT_SEND;
         buffer[2] = (byte) ((value >> 24) & 0xFF);
         buffer[3] = (byte) ((value >> 16) & 0xFF);
         buffer[4] = (byte) ((value >> 8) & 0xFF);
         buffer[5] = (byte) ((value >> 0) & 0xFF);
-        buffer[6] = MainActivity.BT_DELIMITER.getBytes()[0];
+        buffer[6] = MainActivity.BT_DELIMITER;
         MainActivity.bt.send(buffer, false);
     }
 

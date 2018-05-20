@@ -199,6 +199,9 @@ public class LedActivity extends AppCompatActivity {
         colorD3Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorD3)));
         colorD4Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorD4)));
         colorD5Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorD5)));
+
+        sendColors();
+
     }
 
     private void splitColor(int value){
@@ -260,6 +263,7 @@ public class LedActivity extends AppCompatActivity {
         redSeekbar.setProgress(redValue);
         greenSeekbar.setProgress(greenValue);
         blueSeekbar.setProgress(blueValue);
+        whiteSeekbar.setProgress(whiteValue);
     }
 
     /**
@@ -267,14 +271,16 @@ public class LedActivity extends AppCompatActivity {
      */
     private void sendColors(){
         // control bytes (0: data for LED, x: all channels
-        String buffer = MainActivity.BT_LED + MainActivity.BT_SEND;
+        byte[] buffer = new byte[7];
+        buffer[0] = MainActivity.BT_LED;
+        buffer[1] = MainActivity.BT_SEND;
         // add channel values
-        buffer += Integer.toHexString(whiteValue);
-        buffer += Integer.toHexString(redValue);
-        buffer += Integer.toHexString(greenValue);
-        buffer += Integer.toHexString(blueValue);
+        buffer[2] = (byte) redValue;
+        buffer[3] = (byte) greenValue;
+        buffer[4] = (byte) blueValue;
+        buffer[5] = (byte) whiteValue;
         // add frame delimiter
-        buffer += MainActivity.BT_DELIMITER;
+        buffer[6] = MainActivity.BT_DELIMITER;
         MainActivity.bt.send(buffer, false);
     }
 
