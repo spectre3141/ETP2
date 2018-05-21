@@ -19,6 +19,7 @@ import app.akexorcist.bluetotohspp.library.BluetoothSPP.OnDataReceivedListener;
 public class MainActivity extends AppCompatActivity {
 
     // constants
+    final static int BT_NORMAL_MESSAGE_LEN = 6;
     final static byte BT_DELIMITER = 0x0D;
     final static byte BT_LED = 0x30;
     final static byte BT_ALARM = 0x31;
@@ -55,7 +56,14 @@ public class MainActivity extends AppCompatActivity {
         bt.setOnDataReceivedListener(new OnDataReceivedListener() {
             @Override
             public void onDataReceived(byte[] data, String message) {
-                // TODO: insert Listener actions
+                if ((data[0] == BT_ALARM) && (data.length >= BT_NORMAL_MESSAGE_LEN)){
+                    int alarmTime = 0;
+                    alarmTime += (data[2] << 24);
+                    alarmTime += (data[3] << 16);
+                    alarmTime += (data[4] << 8);
+                    alarmTime += (data[5] << 0);
+                    alarmActivity.setTimeText(alarmTime);
+                }
             }
         });
 

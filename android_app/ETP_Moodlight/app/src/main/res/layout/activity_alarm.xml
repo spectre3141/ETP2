@@ -6,42 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".AlarmActivity">
 
-    <EditText
-        android:id="@+id/alarmTimeEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:inputType="time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alarmInfoText" />
-
     <TextView
-        android:id="@+id/alarmInfoText"
-        android:layout_width="wrap_content"
+        android:id="@+id/timeText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="64dp"
-        android:text="TextView"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="80sp"
+        android:textAllCaps="false"
+        android:textSize="32sp"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:text="@string/Text_Time"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/alarmCommitButton"
+        android:id="@+id/timeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/Text_Commit"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50sp"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:text="@string/Button_TimePicker"
+        app:layout_constraintTop_toBottomOf="@id/timeText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alarmTimeEdit" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
