@@ -27,18 +27,18 @@ int main(void)
 	alarm_init();
 	LED_initPWM();
 	UART_init();
-	/*setAlarmTime(2000);
-	setAlarmDuration(1500);*/
+	setAlarmTime(30);
+	setAlarmDuration(60);
 
     while (1) 
     {
-		counter++;
+		/*counter++;
 		alarm_setVol(counter);
 		if (counter >= 0x7F)
 		{
 			counter = 0;
 		}
-		_delay_ms(100);
+		_delay_ms(100);*/
 	}
 }
 ISR(USART1_RX_vect)

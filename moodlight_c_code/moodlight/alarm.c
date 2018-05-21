@@ -13,7 +13,7 @@
 #define INIT_CH2 ((uint8_t)(0xFF-INIT_CH1))
 
 uint32_t seconds = 0;
-uint8_t	onoff = 0;
+uint8_t	herz = 0;
 uint32_t timeset = 0;
 uint16_t alarmDuration = 0;
 
@@ -42,11 +42,13 @@ void alarm_init(void)
 	ASSR = 0;
 	TIMSK2 = 0;
 			
+			
+			
 	TCCR2A |= (1<<WGM21);							// Clear Timer on Compare Match
 	TCCR2B |= (1<<CS22) | (1<<CS21) | (1<<CS20);	//Prescaler = 1024
-	ASSR|= (1 << AS2);								//Enable external clock	(32.768 kHz)
-	//OCR2A = 102;
-	OCR2A = 31;										//Interrupt every 1 second
+	//ASSR |= (1 << AS2);								//Enable external clock	(32.768 kHz)
+	OCR2A = 102;
+	//OCR2A = 31;										//Interrupt every 1 second
 	TIMSK2 |= (1 << OCIE2A);						//Enable interrupt for overflow
 
 	sei();											// enable interrupts
@@ -106,7 +108,24 @@ void resetAlarm(void)
 }
 void TIMER2_IRQ(void)
 {
-	PORTD ^= (1<<PIND4);
+	if(herz != 76)
+	{
+		herz++;
+	}
+	else
+	{
+		herz = 0;
+		if(seconds == 0)
+		{
+			startAlarmSound();
+			seconds = 0;
+		}
+		else
+		{
+			seconds--;
+		}
+	}
+	//PORTD ^= (1<<PIND4);
 	/*if(timeset != 0)				//Alarm is set?
 	{
 		if(seconds != 0)			//Time left?
