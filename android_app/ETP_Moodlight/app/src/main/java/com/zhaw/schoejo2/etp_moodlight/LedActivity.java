@@ -103,7 +103,7 @@ public class LedActivity extends AppCompatActivity {
                 if (stringToColor(buffer)){
                     setSeekbars();
                     sendColors();
-                } else if(false){
+                } else if(buffer.contains("42")){
                     startActivity(new Intent(LedActivity.this, renameActivity.getClass()));
                 } else {
                     Toast.makeText(getApplicationContext(), "invalid input", Toast.LENGTH_SHORT).show();
