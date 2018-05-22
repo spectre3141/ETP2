@@ -125,18 +125,4 @@ void TIMER2_IRQ(void)
 			seconds--;
 		}
 	}
-	//PORTD ^= (1<<PIND4);
-	/*if(timeset != 0)				//Alarm is set?
-	{
-		if(seconds != 0)			//Time left?
-		{
-			seconds--;
-		}
-		else
-		{
-			startAlarmSound();
-			seconds = 0;	
-		}
-		
-	}*/
 }

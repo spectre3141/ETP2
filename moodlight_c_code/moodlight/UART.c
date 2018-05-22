@@ -22,6 +22,7 @@ static volatile uint8_t counter = 0;
 volatile uint8_t character;
 uint8_t receiving = 0;
 
+
 void UART_init()
 {
 	// disable interrupts
@@ -125,7 +126,14 @@ void UART_deliverData(void)
 			// send to Alarm.c
 			if (receiveData[1] == CODE_RECEIVE)
 			{
-				// set Alarm time
+				uint32_t alarmtime = receiveData[2];
+				uint8_t i = 0;
+				for(i=0;i<3;i++)
+				{
+					alarmtime << 8;
+					alarmtime += receiveData[3+i];
+				}
+				setAlarmTime(alarmtime);
 			}
 			else if (receiveData[1] == CODE_REQUEST)
 			{
