@@ -106,7 +106,7 @@ public class LedActivity extends AppCompatActivity {
                 } else if(buffer.contains("42")){
                     startActivity(new Intent(LedActivity.this, renameActivity.getClass()));
                 } else {
-                    //Toast.makeText(getApplicationContext(), "invalid input", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "invalid input", Toast.LENGTH_SHORT).show();
                 }
             }
         });
