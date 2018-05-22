@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.7.1">
+<eagle version="9.0.1">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -18937,22 +18937,14 @@ High Efficiency 500 mA Step-Down Voltage Regulator</description>
 <junction x="375.92" y="137.16"/>
 </segment>
 </net>
-<net name="N$32" class="0">
+<net name="RX" class="0">
 <segment>
 <pinref part="M1" gate="G$1" pin="UART_RX"/>
 <wire x1="363.22" y1="116.84" x2="370.84" y2="116.84" width="0.1524" layer="91"/>
 <wire x1="378.46" y1="114.3" x2="370.84" y2="114.3" width="0.1524" layer="91"/>
 <wire x1="370.84" y1="114.3" x2="370.84" y2="116.84" width="0.1524" layer="91"/>
 <pinref part="IC11" gate="G$1" pin="A2"/>
-</segment>
-</net>
-<net name="N$34" class="0">
-<segment>
-<pinref part="M1" gate="G$1" pin="UART_TX"/>
-<wire x1="363.22" y1="119.38" x2="370.84" y2="119.38" width="0.1524" layer="91"/>
-<wire x1="378.46" y1="121.92" x2="370.84" y2="121.92" width="0.1524" layer="91"/>
-<wire x1="370.84" y1="121.92" x2="370.84" y2="119.38" width="0.1524" layer="91"/>
-<pinref part="IC11" gate="G$1" pin="B2"/>
+<label x="365.76" y="116.84" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$36" class="0">
@@ -18966,11 +18958,12 @@ High Efficiency 500 mA Step-Down Voltage Regulator</description>
 </net>
 <net name="N$37" class="0">
 <segment>
-<wire x1="403.86" y1="114.3" x2="411.48" y2="114.3" width="0.1524" layer="91"/>
-<wire x1="411.48" y1="114.3" x2="411.48" y2="116.84" width="0.1524" layer="91"/>
 <pinref part="JP6" gate="A" pin="3"/>
 <wire x1="411.48" y1="116.84" x2="419.1" y2="116.84" width="0.1524" layer="91"/>
-<pinref part="IC11" gate="G$1" pin="A1"/>
+<pinref part="IC11" gate="G$1" pin="B2"/>
+<wire x1="378.46" y1="121.92" x2="378.46" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="104.14" x2="411.48" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="411.48" y1="104.14" x2="411.48" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="X3_4" class="0">
@@ -19186,6 +19179,17 @@ High Efficiency 500 mA Step-Down Voltage Regulator</description>
 <pinref part="X4" gate="G$1" pin="1"/>
 <wire x1="373.38" y1="73.66" x2="375.92" y2="73.66" width="0.1524" layer="91"/>
 <wire x1="375.92" y1="73.66" x2="375.92" y2="78.74" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="TX" class="0">
+<segment>
+<pinref part="M1" gate="G$1" pin="UART_TX"/>
+<wire x1="363.22" y1="119.38" x2="363.22" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="363.22" y1="109.22" x2="406.4" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="406.4" y1="109.22" x2="406.4" y2="114.3" width="0.1524" layer="91"/>
+<pinref part="IC11" gate="G$1" pin="A1"/>
+<wire x1="406.4" y1="114.3" x2="403.86" y2="114.3" width="0.1524" layer="91"/>
+<label x="365.76" y="109.22" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
