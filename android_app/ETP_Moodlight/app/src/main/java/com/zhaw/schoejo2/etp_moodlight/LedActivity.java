@@ -47,7 +47,6 @@ public class LedActivity extends AppCompatActivity {
 
     // constants
     final private String HEX_FORMAT = "0x";
-    final private String CODE_RENAME = "42";
 
     // variables
     int colorValue = 0;
@@ -98,10 +97,11 @@ public class LedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String buffer = colorByValueEdit.getText().toString();
+                Toast.makeText(getApplicationContext(), buffer, Toast.LENGTH_SHORT).show();
                 if (stringToColor(buffer)){
                     setSeekbars();
                     sendColors();
-                } else if(buffer.contains(CODE_RENAME)){
+                } else if(false){
                     startActivity(new Intent(LedActivity.this, new RenameActivity().getClass()));
                 } else {
                     Toast.makeText(getApplicationContext(), "invalid input", Toast.LENGTH_SHORT).show();
