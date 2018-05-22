@@ -99,7 +99,6 @@ public class LedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String buffer = colorByValueEdit.getText().toString();
-                Toast.makeText(getApplicationContext(), buffer, Toast.LENGTH_SHORT).show();
                 if (stringToColor(buffer)){
                     setSeekbars();
                     sendColors();
