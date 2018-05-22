@@ -101,7 +101,7 @@ public class LedActivity extends AppCompatActivity {
                 if (stringToColor(buffer)){
                     setSeekbars();
                     sendColors();
-                } else if(buffer.equals(CODE_RENAME)){
+                } else if(buffer.contains(CODE_RENAME)){
                     startActivity(new Intent(LedActivity.this, new RenameActivity().getClass()));
                 } else {
                     Toast.makeText(getApplicationContext(), "invalid input", Toast.LENGTH_SHORT).show();
