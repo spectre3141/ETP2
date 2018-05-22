@@ -10,7 +10,7 @@
         android:icon="@mipmap/icon_moodlight"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/TimePickerTheme">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
