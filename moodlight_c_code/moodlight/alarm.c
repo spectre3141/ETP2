@@ -15,10 +15,13 @@
 uint8_t	herz = 0;
 uint32_t timeset = 0;
 uint16_t alarmDuration = 0;
+uint16_t activeCounter = 0;
 uint32_t seconds = 0;
 
 void alarm_init(void)
 {
+	cli();								// disable interrupts
+	
 	//Configure pins as output
 	DDRD |= (1<<DDRD6) | (1<<DDRD5);	//PD5 and PD6 => output
 	DDRD |= (1<<DDRD4);					//PD4: output, controls amplifier standby
@@ -41,8 +44,6 @@ void alarm_init(void)
 	TCCR2B = 0;
 	ASSR = 0;
 	TIMSK2 = 0;
-			
-			
 			
 	TCCR2A |= (1<<WGM21);							// Clear Timer on Compare Match
 	TCCR2B |= (1<<CS22) | (1<<CS21) | (1<<CS20);	//Prescaler = 1024
@@ -69,32 +70,34 @@ uint32_t getAlarmTime(void)
 	return timeset;
 }
 /* Sets how long the alarm is played*/
-void setAlarmDuration(uint16_t alarmTime)
+void setAlarmDuration(uint16_t duration)
 {
-	alarmDuration = alarmTime;
+	alarmDuration = duration;
+	activeCounter = alarmDuration;
 }
 /*sets the alarm time, saves the alarm time*/
 void setAlarmTime(uint32_t time)
 {
 	seconds = time;
-	timeset = seconds;
+	timeset = time;
 }
 /*stops the alarm sound*/
 void stopAlarmSound(void)
 {
 	PORTD |= (1<<PIND4);			//Amplifier Standby
+	activeCounter = alarmDuration;
 }
 /*starts the alarm sound*/
-void startAlarmSound(void)
+void AlarmSound(void)
 {
-	if (alarmDuration != 0)
+	if (activeCounter != 0)
 	{
 		PORTD ^= (1<<PIND4);			//Toggle Amplifier Standby Pin
-		alarmDuration--;
+		activeCounter--;
 	}
 	else
 	{
-		alarmDuration = 0;
+		activeCounter = 0;
 		stopAlarmSound();
 	}
 }
@@ -117,9 +120,8 @@ void TIMER2_IRQ(void)
 		herz = 0;
 		if(seconds == 0 && timeset != 0)
 		{
-			startAlarmSound();
+			AlarmSound();
 			seconds = 0;
-			timeset = 0;
 		}
 		else
 		{
