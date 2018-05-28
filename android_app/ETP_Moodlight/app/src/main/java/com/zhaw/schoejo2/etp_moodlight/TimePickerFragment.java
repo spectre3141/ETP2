@@ -15,6 +15,8 @@ public class TimePickerFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
+        this.setStyle(R.style.MoodlightTheme, getTheme());
+
         Calendar c = Calendar.getInstance();
         int hour = 0; //c.get(Calendar.HOUR_OF_DAY);
         int minute = 0; //c.get(Calendar.MINUTE);
