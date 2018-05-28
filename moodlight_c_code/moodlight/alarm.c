@@ -12,10 +12,10 @@
 #define INIT_CH1 ((uint8_t)(0x3F))				//f = ioclk/(Prescaler * 510)
 #define INIT_CH2 ((uint8_t)(0xFF-INIT_CH1))
 
-uint32_t seconds = 0;
 uint8_t	herz = 0;
 uint32_t timeset = 0;
 uint16_t alarmDuration = 0;
+uint32_t seconds = 0;
 
 void alarm_init(void)
 {
@@ -115,10 +115,11 @@ void TIMER2_IRQ(void)
 	else
 	{
 		herz = 0;
-		if(seconds == 0)
+		if(seconds == 0 && timeset != 0)
 		{
 			startAlarmSound();
 			seconds = 0;
+			timeset = 0;
 		}
 		else
 		{

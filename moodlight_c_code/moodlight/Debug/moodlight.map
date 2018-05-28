@@ -198,7 +198,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x522
+.text           0x00000000      0x54a
  *(.vectors)
  .vectors       0x00000000       0xb4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
                 0x00000000                __vector_default
@@ -316,35 +316,35 @@ END GROUP
                 0x0000016e       0x2e alarm.o
                 0x0000016e                startAlarmSound
  .text.TIMER2_IRQ
-                0x0000019c       0x5a alarm.o
+                0x0000019c       0x82 alarm.o
                 0x0000019c                TIMER2_IRQ
  .text.LED_initPWM
-                0x000001f6       0xd4 LED.o
-                0x000001f6                LED_initPWM
+                0x0000021e       0xd4 LED.o
+                0x0000021e                LED_initPWM
  .text.LED_setValue
-                0x000002ca       0x5e LED.o
-                0x000002ca                LED_setValue
+                0x000002f2       0x5e LED.o
+                0x000002f2                LED_setValue
  .text.__vector_7
-                0x00000328       0x48 main.o
-                0x00000328                __vector_7
+                0x00000350       0x48 main.o
+                0x00000350                __vector_7
  .text.__vector_28
-                0x00000370       0x48 main.o
-                0x00000370                __vector_28
- .text.main     0x000003b8       0x16 main.o
-                0x000003b8                main
+                0x00000398       0x48 main.o
+                0x00000398                __vector_28
+ .text.main     0x000003e0       0x16 main.o
+                0x000003e0                main
  .text.UART_init
-                0x000003ce       0x34 UART.o
-                0x000003ce                UART_init
+                0x000003f6       0x34 UART.o
+                0x000003f6                UART_init
  .text.UART_deliverData
-                0x00000402       0x8e UART.o
-                0x00000402                UART_deliverData
- .text.RX_IRQ   0x00000490       0x8e UART.o
-                0x00000490                RX_IRQ
-                0x0000051e                . = ALIGN (0x2)
+                0x0000042a       0x8e UART.o
+                0x0000042a                UART_deliverData
+ .text.RX_IRQ   0x000004b8       0x8e UART.o
+                0x000004b8                RX_IRQ
+                0x00000546                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000051e        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x0000051e                _exit
-                0x0000051e                exit
+ .fini9         0x00000546        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000546                _exit
+                0x00000546                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -363,11 +363,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000051e        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000546        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000522                _etext = .
+                0x0000054a                _etext = .
 
-.data           0x00800100        0x0 load address 0x00000522
+.data           0x00800100        0x0 load address 0x0000054a
                 [!provide]                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -383,15 +383,15 @@ END GROUP
                 0x00800100                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
+ .bss.seconds   0x00800100        0x4 alarm.o
+                0x00800100                seconds
  .bss.alarmDuration
-                0x00800100        0x2 alarm.o
-                0x00800100                alarmDuration
- .bss.timeset   0x00800102        0x4 alarm.o
-                0x00800102                timeset
- .bss.herz      0x00800106        0x1 alarm.o
-                0x00800106                herz
- .bss.seconds   0x00800107        0x4 alarm.o
-                0x00800107                seconds
+                0x00800104        0x2 alarm.o
+                0x00800104                alarmDuration
+ .bss.timeset   0x00800106        0x4 alarm.o
+                0x00800106                timeset
+ .bss.herz      0x0080010a        0x1 alarm.o
+                0x0080010a                herz
  .bss.receiving
                 0x0080010b        0x1 UART.o
                 0x0080010b                receiving
@@ -403,8 +403,8 @@ END GROUP
  COMMON         0x0080012d        0x1 UART.o
                 0x0080012d                character
                 0x0080012e                PROVIDE (__bss_end, .)
-                0x00000522                __data_load_start = LOADADDR (.data)
-                0x00000522                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000054a                __data_load_start = LOADADDR (.data)
+                0x0000054a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080012e        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -508,13 +508,13 @@ END GROUP
  .debug_abbrev  0x00000a00       0x97 main.o
  .debug_abbrev  0x00000a97      0x188 UART.o
 
-.debug_line     0x00000000      0x8d4
+.debug_line     0x00000000      0x8e6
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x1a5 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
- .debug_line    0x000001a5      0x225 alarm.o
- .debug_line    0x000003ca      0x208 LED.o
- .debug_line    0x000005d2       0xb8 main.o
- .debug_line    0x0000068a      0x24a UART.o
+ .debug_line    0x000001a5      0x237 alarm.o
+ .debug_line    0x000003dc      0x208 LED.o
+ .debug_line    0x000005e4       0xb8 main.o
+ .debug_line    0x0000069c      0x24a UART.o
 
 .debug_frame    0x00000000      0x24c
  *(.debug_frame)

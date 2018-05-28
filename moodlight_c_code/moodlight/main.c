@@ -27,7 +27,7 @@ void main(void)
 	LED_initPWM();
 	UART_init();
 	
-	setAlarmDuration(20);		//set duration of the alarm
+	setAlarmDuration(20);		//set duration of the alarm in seconds
 
     while (1) 
     {
