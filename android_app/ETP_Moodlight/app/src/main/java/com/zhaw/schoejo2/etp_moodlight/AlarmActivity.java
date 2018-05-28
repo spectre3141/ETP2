@@ -76,7 +76,21 @@ public class AlarmActivity extends AppCompatActivity implements TimePickerDialog
     public void setTimeText(int seconds){
         int hours = seconds / 3600;
         int minutes = (seconds % 3600) / 60;
-        timeText.setText("" + hours + " : " + minutes);
+        String text = "";
+        if (hours == 0){
+            text += "00";
+        } else if(hours < 10){
+            text += "0";
+        }
+        text += hours;
+        text += " : ";
+        if (minutes == 0) {
+            text += "00";
+        } else if (minutes < 10){
+            text += "0";
+        }
+        text += minutes;
+        timeText.setText(text);
     }
 
     private void sendAlarmTimeRequest() {
