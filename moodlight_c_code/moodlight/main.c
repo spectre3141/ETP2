@@ -21,13 +21,13 @@ ISR(USART1_RX_vect)
 	RX_IRQ();
 }
 
-void main(void)
+int main(void)
 {
 	alarm_init();
 	LED_initPWM();
 	UART_init();
 	
-	setAlarmDuration(20);		//set duration of the alarm in seconds
+	setAlarmDuration(10);		//set duration of the alarm in seconds
 
     while (1) 
     {
