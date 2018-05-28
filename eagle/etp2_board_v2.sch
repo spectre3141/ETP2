@@ -18619,6 +18619,9 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="TP2" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="TPSQ" device="PAD1-17" package3d_urn="urn:adsk.eagle:package:27949/1" value="TPSQPAD1-17"/>
 <part name="TP3" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="TPSQ" device="PAD1-17" package3d_urn="urn:adsk.eagle:package:27949/1" value="TPSQPAD1-17"/>
 <part name="TP4" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="TPSQ" device="PAD1-17" package3d_urn="urn:adsk.eagle:package:27949/1" value="TPSQPAD1-17"/>
+<part name="C43" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2"/>
+<part name="C44" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0805" package3d_urn="urn:adsk.eagle:package:23617/2"/>
+<part name="GND67" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -18843,11 +18846,14 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="X4" gate="G$1" x="375.92" y="81.28" rot="R90"/>
 <instance part="GND65" gate="1" x="403.86" y="142.24" rot="R90"/>
 <instance part="+3V4" gate="G$1" x="373.38" y="111.76"/>
-<instance part="GND66" gate="1" x="236.22" y="-35.56" rot="R90"/>
-<instance part="TP1" gate="G$1" x="226.06" y="-35.56" rot="R270"/>
+<instance part="GND66" gate="1" x="236.22" y="-55.88" rot="R90"/>
+<instance part="TP1" gate="G$1" x="226.06" y="-55.88" rot="R270"/>
 <instance part="TP2" gate="G$1" x="226.06" y="-40.64" rot="R270"/>
 <instance part="TP3" gate="G$1" x="226.06" y="-45.72" rot="R270"/>
 <instance part="TP4" gate="G$1" x="226.06" y="-50.8" rot="R270"/>
+<instance part="C43" gate="G$1" x="231.14" y="-30.48" rot="R90"/>
+<instance part="C44" gate="G$1" x="233.68" y="-35.56" rot="R270"/>
+<instance part="GND67" gate="1" x="220.98" y="-33.02" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -19177,8 +19183,19 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </segment>
 <segment>
 <pinref part="GND66" gate="1" pin="GND"/>
-<wire x1="228.6" y1="-35.56" x2="233.68" y2="-35.56" width="0.1524" layer="91"/>
+<wire x1="228.6" y1="-55.88" x2="233.68" y2="-55.88" width="0.1524" layer="91"/>
 <pinref part="TP1" gate="G$1" pin="TP"/>
+</segment>
+<segment>
+<pinref part="C43" gate="G$1" pin="1"/>
+<wire x1="228.6" y1="-30.48" x2="226.06" y2="-30.48" width="0.1524" layer="91"/>
+<wire x1="226.06" y1="-30.48" x2="226.06" y2="-33.02" width="0.1524" layer="91"/>
+<pinref part="C44" gate="G$1" pin="2"/>
+<wire x1="226.06" y1="-33.02" x2="226.06" y2="-35.56" width="0.1524" layer="91"/>
+<wire x1="226.06" y1="-35.56" x2="228.6" y2="-35.56" width="0.1524" layer="91"/>
+<pinref part="GND67" gate="1" pin="GND"/>
+<wire x1="223.52" y1="-33.02" x2="226.06" y2="-33.02" width="0.1524" layer="91"/>
+<junction x="226.06" y="-33.02"/>
 </segment>
 </net>
 <net name="N$3" class="0">
