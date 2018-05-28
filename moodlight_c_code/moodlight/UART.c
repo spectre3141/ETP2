@@ -9,6 +9,7 @@
 #include <avr/interrupt.h>
 #include "Headerfiles/UART.h"
 #include "Headerfiles/LED.h"
+#include "Headerfiles/alarm.h"
 
 #define MAX_MESSAGE_LEN 6		// defines the maximum length of the frames (without frame delimiter)
 #define CODE_LED 0x30
@@ -126,18 +127,25 @@ void UART_deliverData(void)
 			// send to Alarm.c
 			if (receiveData[1] == CODE_RECEIVE)
 			{
-				uint32_t alarmtime = receiveData[2];
-				uint8_t i = 0;
-				for(i=0;i<3;i++)
-				{
-					alarmtime << 8;
-					alarmtime += receiveData[3+i];
-				}
+				uint32_t alarmtime = 0;
+				alarmtime += (((uint32_t) receiveData[2]) << 24);
+				alarmtime += (((uint32_t) receiveData[3]) << 16);
+				alarmtime += (((uint32_t) receiveData[4]) << 8);
+				alarmtime += (((uint32_t) receiveData[5]) << 0);
 				setAlarmTime(alarmtime);
 			}
 			else if (receiveData[1] == CODE_REQUEST)
 			{
-				// send current alarm time
+				uint8_t buffer[7];
+				uint32_t alarmtime = getAlarmTime();
+				buffer[0] = CODE_ALARM;
+				buffer[1] = 0x00;
+				buffer[2] = (uint8_t) ((alarmtime >> 24) & 0xFF);
+				buffer[3] = (uint8_t) ((alarmtime >> 16) & 0xFF);
+				buffer[4] = (uint8_t) ((alarmtime >> 8) & 0xFF);
+				buffer[5] = (uint8_t) ((alarmtime >> 0) & 0xFF);
+				buffer[6] = FRAME_DELIMITER;
+				UART_sendBuffer(buffer, sizeof(buffer));
 			}
 			break;
 			

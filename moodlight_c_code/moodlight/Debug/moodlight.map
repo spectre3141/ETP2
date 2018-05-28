@@ -18,11 +18,9 @@ Discarded input sections
  .data          0x00000000        0x0 alarm.o
  .bss           0x00000000        0x0 alarm.o
  .text.alarm_setVol
-                0x00000000        0xc alarm.o
- .text.getAlarmTime
                 0x00000000       0x12 alarm.o
  .text.resetAlarm
-                0x00000000       0x26 alarm.o
+                0x00000000       0x2e alarm.o
  .text          0x00000000        0x0 LED.o
  .data          0x00000000        0x0 LED.o
  .bss           0x00000000        0x0 LED.o
@@ -34,10 +32,6 @@ Discarded input sections
  .text          0x00000000        0x0 UART.o
  .data          0x00000000        0x0 UART.o
  .bss           0x00000000        0x0 UART.o
- .text.UART_sendByte
-                0x00000000       0x10 UART.o
- .text.UART_sendBuffer
-                0x00000000       0x38 UART.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
@@ -198,7 +192,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x54a
+.text           0x00000000      0x620
  *(.vectors)
  .vectors       0x00000000       0xb4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
                 0x00000000                __vector_default
@@ -301,50 +295,59 @@ END GROUP
                 0x000000dc                . = ALIGN (0x2)
  *(.text.*)
  .text.alarm_init
-                0x000000dc       0x62 alarm.o
+                0x000000dc       0x64 alarm.o
                 0x000000dc                alarm_init
+ .text.getAlarmTime
+                0x00000140       0x12 alarm.o
+                0x00000140                getAlarmTime
  .text.setAlarmDuration
-                0x0000013e        0xa alarm.o
-                0x0000013e                setAlarmDuration
+                0x00000152        0xa alarm.o
+                0x00000152                setAlarmDuration
  .text.setAlarmTime
-                0x00000148       0x22 alarm.o
-                0x00000148                setAlarmTime
- .text.stopAlarmSound
-                0x0000016a        0x4 alarm.o
-                0x0000016a                stopAlarmSound
- .text.startAlarmSound
-                0x0000016e       0x2e alarm.o
-                0x0000016e                startAlarmSound
+                0x0000015c       0x22 alarm.o
+                0x0000015c                setAlarmTime
+ .text.alarmSoundOff
+                0x0000017e        0x4 alarm.o
+                0x0000017e                alarmSoundOff
+ .text.alarmSoundOn
+                0x00000182        0x4 alarm.o
+                0x00000182                alarmSoundOn
  .text.TIMER2_IRQ
-                0x0000019c       0x82 alarm.o
-                0x0000019c                TIMER2_IRQ
+                0x00000186       0xb0 alarm.o
+                0x00000186                TIMER2_IRQ
  .text.LED_initPWM
-                0x0000021e       0xd4 LED.o
-                0x0000021e                LED_initPWM
+                0x00000236       0xd4 LED.o
+                0x00000236                LED_initPWM
  .text.LED_setValue
-                0x000002f2       0x5e LED.o
-                0x000002f2                LED_setValue
+                0x0000030a       0x5e LED.o
+                0x0000030a                LED_setValue
  .text.__vector_7
-                0x00000350       0x48 main.o
-                0x00000350                __vector_7
+                0x00000368       0x48 main.o
+                0x00000368                __vector_7
  .text.__vector_28
-                0x00000398       0x48 main.o
-                0x00000398                __vector_28
- .text.main     0x000003e0       0x16 main.o
-                0x000003e0                main
+                0x000003b0       0x48 main.o
+                0x000003b0                __vector_28
+ .text.main     0x000003f8       0x16 main.o
+                0x000003f8                main
  .text.UART_init
-                0x000003f6       0x34 UART.o
-                0x000003f6                UART_init
+                0x0000040e       0x34 UART.o
+                0x0000040e                UART_init
+ .text.UART_sendByte
+                0x00000442       0x10 UART.o
+                0x00000442                UART_sendByte
+ .text.UART_sendBuffer
+                0x00000452       0x38 UART.o
+                0x00000452                UART_sendBuffer
  .text.UART_deliverData
-                0x0000042a       0x8e UART.o
-                0x0000042a                UART_deliverData
- .text.RX_IRQ   0x000004b8       0x8e UART.o
-                0x000004b8                RX_IRQ
-                0x00000546                . = ALIGN (0x2)
+                0x0000048a      0x104 UART.o
+                0x0000048a                UART_deliverData
+ .text.RX_IRQ   0x0000058e       0x8e UART.o
+                0x0000058e                RX_IRQ
+                0x0000061c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000546        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00000546                _exit
-                0x00000546                exit
+ .fini9         0x0000061c        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x0000061c                _exit
+                0x0000061c                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -363,11 +366,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000546        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000061c        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000054a                _etext = .
+                0x00000620                _etext = .
 
-.data           0x00800100        0x0 load address 0x0000054a
+.data           0x00800100        0x0 load address 0x00000620
                 [!provide]                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -379,38 +382,44 @@ END GROUP
                 0x00800100                _edata = .
                 [!provide]                PROVIDE (__data_end, .)
 
-.bss            0x00800100       0x2e
+.bss            0x00800100       0x30
                 0x00800100                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.seconds   0x00800100        0x4 alarm.o
-                0x00800100                seconds
+ .bss.alarmActiveCounter
+                0x00800100        0x2 alarm.o
+                0x00800100                alarmActiveCounter
  .bss.alarmDuration
-                0x00800104        0x2 alarm.o
-                0x00800104                alarmDuration
- .bss.timeset   0x00800106        0x4 alarm.o
-                0x00800106                timeset
- .bss.herz      0x0080010a        0x1 alarm.o
-                0x0080010a                herz
+                0x00800102        0x2 alarm.o
+                0x00800102                alarmDuration
+ .bss.alarmTimeCounter
+                0x00800104        0x4 alarm.o
+                0x00800104                alarmTimeCounter
+ .bss.alarmTimeSet
+                0x00800108        0x4 alarm.o
+                0x00800108                alarmTimeSet
+ .bss.counter1Hz
+                0x0080010c        0x1 alarm.o
+                0x0080010c                counter1Hz
  .bss.receiving
-                0x0080010b        0x1 UART.o
-                0x0080010b                receiving
- .bss.counter   0x0080010c        0x1 UART.o
+                0x0080010d        0x1 UART.o
+                0x0080010d                receiving
+ .bss.counter   0x0080010e        0x1 UART.o
  .bss.receiveData
-                0x0080010d       0x10 UART.o
- .bss.buffer    0x0080011d       0x10 UART.o
+                0x0080010f       0x10 UART.o
+ .bss.buffer    0x0080011f       0x10 UART.o
  *(COMMON)
- COMMON         0x0080012d        0x1 UART.o
-                0x0080012d                character
-                0x0080012e                PROVIDE (__bss_end, .)
-                0x0000054a                __data_load_start = LOADADDR (.data)
-                0x0000054a                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080012f        0x1 UART.o
+                0x0080012f                character
+                0x00800130                PROVIDE (__bss_end, .)
+                0x00000620                __data_load_start = LOADADDR (.data)
+                0x00000620                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080012e        0x0
+.noinit         0x00800130        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x0080012e                _end = .
+                0x00800130                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -492,55 +501,55 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1031
+.debug_info     0x00000000     0x10a6
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x8ea C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
- .debug_info    0x000008ea      0x207 alarm.o
- .debug_info    0x00000af1      0x130 LED.o
- .debug_info    0x00000c21      0x143 main.o
- .debug_info    0x00000d64      0x2cd UART.o
+ .debug_info    0x000008ea      0x21b alarm.o
+ .debug_info    0x00000b05      0x130 LED.o
+ .debug_info    0x00000c35      0x147 main.o
+ .debug_info    0x00000d7c      0x32a UART.o
 
-.debug_abbrev   0x00000000      0xc1f
+.debug_abbrev   0x00000000      0xc12
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x86e C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
- .debug_abbrev  0x0000086e       0xd7 alarm.o
- .debug_abbrev  0x00000945       0xbb LED.o
- .debug_abbrev  0x00000a00       0x97 main.o
- .debug_abbrev  0x00000a97      0x188 UART.o
+ .debug_abbrev  0x0000086e       0xc8 alarm.o
+ .debug_abbrev  0x00000936       0xbb LED.o
+ .debug_abbrev  0x000009f1       0x99 main.o
+ .debug_abbrev  0x00000a8a      0x188 UART.o
 
-.debug_line     0x00000000      0x8e6
+.debug_line     0x00000000      0x945
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x1a5 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
- .debug_line    0x000001a5      0x237 alarm.o
- .debug_line    0x000003dc      0x208 LED.o
- .debug_line    0x000005e4       0xb8 main.o
- .debug_line    0x0000069c      0x24a UART.o
+ .debug_line    0x000001a5      0x249 alarm.o
+ .debug_line    0x000003ee      0x208 LED.o
+ .debug_line    0x000005f6       0xb8 main.o
+ .debug_line    0x000006ae      0x297 UART.o
 
-.debug_frame    0x00000000      0x24c
+.debug_frame    0x00000000      0x25c
  *(.debug_frame)
  .debug_frame   0x00000000       0xb0 alarm.o
  .debug_frame   0x000000b0       0x44 LED.o
  .debug_frame   0x000000f4       0xd4 main.o
- .debug_frame   0x000001c8       0x84 UART.o
+ .debug_frame   0x000001c8       0x94 UART.o
 
-.debug_str      0x00000000      0x69a
+.debug_str      0x00000000      0x6b2
  *(.debug_str)
  .debug_str     0x00000000      0x318 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.150/gcc/dev/atmega328pb/avr5/crtatmega328pb.o
- .debug_str     0x00000318      0x20a alarm.o
-                                0x243 (size before relaxing)
- .debug_str     0x00000522       0xae LED.o
+ .debug_str     0x00000318      0x222 alarm.o
+                                0x25b (size before relaxing)
+ .debug_str     0x0000053a       0xae LED.o
                                 0x1d7 (size before relaxing)
- .debug_str     0x000005d0       0x39 main.o
-                                0x1d8 (size before relaxing)
- .debug_str     0x00000609       0x91 UART.o
-                                0x25a (size before relaxing)
+ .debug_str     0x000005e8       0x39 main.o
+                                0x1ce (size before relaxing)
+ .debug_str     0x00000621       0x91 UART.o
+                                0x25d (size before relaxing)
 
-.debug_loc      0x00000000      0x54e
+.debug_loc      0x00000000      0x588
  *(.debug_loc)
- .debug_loc     0x00000000       0x5c alarm.o
- .debug_loc     0x0000005c      0x1a1 LED.o
- .debug_loc     0x000001fd      0x196 main.o
- .debug_loc     0x00000393      0x1bb UART.o
+ .debug_loc     0x00000000       0x2f alarm.o
+ .debug_loc     0x0000002f      0x1a1 LED.o
+ .debug_loc     0x000001d0      0x196 main.o
+ .debug_loc     0x00000366      0x222 UART.o
 
 .debug_macinfo
  *(.debug_macinfo)

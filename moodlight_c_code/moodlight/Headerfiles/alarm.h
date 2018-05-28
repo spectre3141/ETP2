@@ -10,8 +10,11 @@
 
 /* function bodies*/
 
-/* initializes timers, and interrupts used for the alarm feature of the moodlight*/
+/* initializes timers, and interrupts used for the alarm feature of the moodlight */
 void alarm_init(void);
+
+/*interrupt handler for Timer2 interrupts*/
+void TIMER2_IRQ(void);
 
 void alarm_setVol(uint8_t value);
 
@@ -23,8 +26,6 @@ uint32_t getAlarmTime(void);
 
 /*sets alarm time in seconds (max ~136 years)*/
 void setAlarmTime(uint32_t time);
-/*interrupt handler for Timer2 interrupts*/
-void TIMER2_IRQ(void);
 
 /*Sets how long the alarm sound is played in seconds*/
 void setAlarmDuration(uint16_t alarmTime);

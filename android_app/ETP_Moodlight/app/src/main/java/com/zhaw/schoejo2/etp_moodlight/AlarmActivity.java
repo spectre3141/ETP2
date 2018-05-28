@@ -61,7 +61,7 @@ public class AlarmActivity extends AppCompatActivity implements TimePickerDialog
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         int seconds = (hourOfDay * 3600) + (minute * 60);
-        timeText.setText("" + hourOfDay + " : " + minute);
+        timeText.setText(timeToString(hourOfDay, minute));
         sendAlarmTime(seconds);
     }
 
@@ -76,7 +76,7 @@ public class AlarmActivity extends AppCompatActivity implements TimePickerDialog
     public void setTimeText(int seconds){
         int hours = seconds / 3600;
         int minutes = (seconds % 3600) / 60;
-        timeText.setText("" + hours + " : " + minutes);
+        timeText.setText(timeToString(hours, minutes));
     }
 
     private void sendAlarmTimeRequest() {
@@ -101,5 +101,20 @@ public class AlarmActivity extends AppCompatActivity implements TimePickerDialog
         buffer[5] = (byte) ((value >> 0) & 0xFF);
         buffer[6] = MainActivity.BT_DELIMITER;
         MainActivity.bt.send(buffer, false);
+    }
+
+    private String timeToString(int hours, int minutes){
+        String text = "";
+        if(hours < 10){
+            text += "0";
+        }
+        text += hours;
+        text += " : ";
+        if (minutes < 10){
+            text += "0";
+        }
+        text += minutes;
+
+        return text;
     }
 }
