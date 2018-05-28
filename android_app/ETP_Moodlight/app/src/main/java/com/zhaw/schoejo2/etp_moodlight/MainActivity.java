@@ -58,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
             public void onDataReceived(byte[] data, String message) {
                 if ((data[0] == BT_ALARM) && (data.length >= BT_NORMAL_MESSAGE_LEN)){
                     int alarmTime = 0;
-                    alarmTime += (data[2] << 24);
-                    alarmTime += (data[3] << 16);
-                    alarmTime += (data[4] << 8);
-                    alarmTime += (data[5] << 0);
+                    alarmTime += (((int) data[2]) << 24);
+                    alarmTime += (((int) data[3]) << 16);
+                    alarmTime += (((int) data[4]) << 8);
+                    alarmTime += (((int) data[5]) << 0);
                     alarmActivity.setTimeText(alarmTime);
                 }
             }
