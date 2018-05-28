@@ -26,7 +26,6 @@
         <activity
             android:name=".AlarmActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".RenameActivity"></activity>
     </application>
 
 </manifest>

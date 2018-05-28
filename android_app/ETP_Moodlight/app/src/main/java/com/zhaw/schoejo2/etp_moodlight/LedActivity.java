@@ -12,8 +12,6 @@ import android.widget.Toast;
 
 public class LedActivity extends AppCompatActivity {
 
-    RenameActivity renameActivity = new RenameActivity();
-
     // GUI
     EditText colorByValueEdit;
     Button ledCommitButton;
@@ -102,8 +100,6 @@ public class LedActivity extends AppCompatActivity {
                 if (stringToColor(buffer)){
                     setSeekbars();
                     sendColors();
-                } else if(buffer.contains("42")){
-                    startActivity(new Intent(LedActivity.this, renameActivity.getClass()));
                 } else {
                     Toast.makeText(getApplicationContext(), "invalid input", Toast.LENGTH_SHORT).show();
                 }
