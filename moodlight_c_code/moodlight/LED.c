@@ -1,6 +1,11 @@
 /*
  * LED.c
  *
+ *
+ * Initializes Timer 1 and Timer 4 for generation of the DAC signal for the 4 diffrent LED drivers.
+ * Initializes Timer 3 for the start signal.
+ * Functions to set/read PWM values for the DACs.
+ *
  * Created: 06.04.2018 09:34:35
  *  Author: jonas
  */ 

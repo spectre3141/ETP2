@@ -1,6 +1,12 @@
 /*
  * UART.c
  *
+ * Initializes UART interface
+ * Handels interrupts of the UART 
+ * Delivers received data to LED.c and alarm.c
+ * Implements functions to send and receive Data via UART.
+ *
+ *
  * Created: 20.04.2018 10:27:15
  *  Author: jonas
  */ 
