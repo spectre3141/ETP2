@@ -26,12 +26,12 @@ uint16_t alarmActiveCounter = 0;
 
 void alarm_init(void)
 {
-	cli();								// disable interrupts
+	cli();											// disable interrupts
 	
 	// Configure pins as output
-	DDRD |= (1<<DDRD6) | (1<<DDRD5);	// PD5 and PD6 => output
-	DDRD |= (1<<DDRD4);					// PD4: output, controls amplifier standby
-	PORTD |= (1<<PIND4);				// PD4 = 1, Alarm is off
+	DDRD |= (1<<DDRD6) | (1<<DDRD5);				// PD5 and PD6 => output
+	DDRD |= (1<<DDRD4);								// PD4: output, controls amplifier standby
+	PORTD |= (1<<PIND4);							// PD4 = 1, Alarm is off
 	
 	// Timer 0 is used to generate the alarm sound
 	// Reset timer register
@@ -46,20 +46,21 @@ void alarm_init(void)
 	OCR0B = INIT_CH2;
 	
 	// Timer 2 config, Real time counter (RTC)
+	ASSR = 0;
+	ASSR |= (1 << AS2);								// Enable external clock	(32.768 kHz)
+
 	TCCR2A = 0;										// clear timer register
 	TCCR2B = 0;
-	ASSR = 0;
 	TIMSK2 = 0;
 			
 	TCCR2A |= (1<<WGM21);							// Clear Timer on Compare Match
-	TCCR2B |= (1<<CS22) | (1<<CS21) | (1<<CS20);	// Prescaler = 1024
-	// ASSR |= (1 << AS2);							// Enable external clock	(32.768 kHz)
-	OCR2A = 102;
-	// OCR2A = 31;									// Interrupt every 1 second
+	TCCR2B |= (1<<CS22);							// Prescaler = 64
+	OCR2A = 0xFF;									// Interrupt every second
 	TIMSK2 |= (1 << OCIE2A);						// Enable interrupt for overflow
 
 	sei();											// enable interrupts
 }
+
 /*Set volume of the alarm sound*/
 void alarm_setVol(uint8_t value)
 {
@@ -112,43 +113,32 @@ void resetAlarm(void)
 
 void TIMER2_IRQ(void)
 {
-	if(counter1Hz < FREQ_1HZ)	// devide interrupt frequenzcy by 76 so that the alarm routine is triggert every ~1 second. 
-								//not needed when external crystal is used
+	if(alarmTimeSet > 0)	//alarm time set?
 	{
-		counter1Hz++;
-	}
-	else
-	{
-		counter1Hz = 0;
-		
-		if(alarmTimeSet > 0)	//alarm time set?
+		if(alarmTimeCounter > 0)	//decrease alarm counter every ~1 Second
 		{
-			if(alarmTimeCounter > 0)	//decrease alarm counter every ~1 Second
-			{
-				alarmTimeCounter--;
-			}
-			else
-			{
-				alarmTimeSet = 0;
-				alarmActiveCounter = alarmDuration;	//set duration of the alarm
-			}
+			alarmTimeCounter--;
 		}
-		
-		if(alarmActiveCounter > 0)	//Toggle alarm sound on and off every ~1 second
+		else
 		{
-			if(alarmActiveCounter % 2)
-			{
-				alarmSoundOn();
-			}
-			else
-			{
-				alarmSoundOff();
-			}
-			alarmActiveCounter--;
+			alarmTimeSet = 0;
+			alarmActiveCounter = alarmDuration;	//set duration of the alarm
+		}
+	}	
+	if(alarmActiveCounter > 0)	//Toggle alarm sound on and off every ~1 second
+	{
+		if(alarmActiveCounter % 2)
+		{
+			alarmSoundOn();
 		}
 		else
 		{
 			alarmSoundOff();
 		}
+		alarmActiveCounter--;
+	}
+	else
+	{
+		alarmSoundOff();
 	}
 }
