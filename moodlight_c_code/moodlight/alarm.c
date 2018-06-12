@@ -112,7 +112,8 @@ void resetAlarm(void)
 
 void TIMER2_IRQ(void)
 {
-	if(counter1Hz < FREQ_1HZ)	// devide interrupt frequenzcy by 76 so that the alarm routine is triggert every ~1 second. (not needed when external crystal is used)
+	if(counter1Hz < FREQ_1HZ)	// devide interrupt frequenzcy by 76 so that the alarm routine is triggert every ~1 second. 
+								//not needed when external crystal is used
 	{
 		counter1Hz++;
 	}
