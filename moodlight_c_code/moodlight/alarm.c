@@ -1,6 +1,11 @@
 /*
  * alarm.c
  *
+ * Configures Timer 0 for the sound generation and Timer 2 as Real Time Counter.
+ * Handels Interrupts from Timer 2.
+ * Implements functions to start/stop the alarm sound, set/reset the alarm Time, increase and decrease the sound volume.
+ * 
+ *
  * Created: 30.04.2018 08:35:55
  *  Author: Felix Baumann
  */ 
@@ -55,7 +60,7 @@ void alarm_init(void)
 
 	sei();											// enable interrupts
 }
-
+/*Set volume of the alarm sound*/
 void alarm_setVol(uint8_t value)
 {
 	if ((value <= 0x7F) && (value >= 0))
@@ -107,7 +112,7 @@ void resetAlarm(void)
 
 void TIMER2_IRQ(void)
 {
-	if(counter1Hz < FREQ_1HZ)
+	if(counter1Hz < FREQ_1HZ)	// devide interrupt frequenzcy by 76 so that the alarm routine is triggert every ~1 second. (not needed when external crystal is used)
 	{
 		counter1Hz++;
 	}
@@ -115,20 +120,20 @@ void TIMER2_IRQ(void)
 	{
 		counter1Hz = 0;
 		
-		if(alarmTimeSet > 0)
+		if(alarmTimeSet > 0)	//alarm time set?
 		{
-			if(alarmTimeCounter > 0)
+			if(alarmTimeCounter > 0)	//decrease alarm counter every ~1 Second
 			{
 				alarmTimeCounter--;
 			}
 			else
 			{
 				alarmTimeSet = 0;
-				alarmActiveCounter = alarmDuration;
+				alarmActiveCounter = alarmDuration;	//set duration of the alarm
 			}
 		}
 		
-		if(alarmActiveCounter > 0)
+		if(alarmActiveCounter > 0)	//Toggle alarm sound on and off every ~1 second
 		{
 			if(alarmActiveCounter % 2)
 			{

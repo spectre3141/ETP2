@@ -1,6 +1,8 @@
 /*
  * alarm.h
  *
+ * Headerfile for alarm.c
+ *
  * Created: 30.04.2018 08:36:10
  *  Author: Felix Baumann
  */ 
@@ -16,6 +18,7 @@ void alarm_init(void);
 /*interrupt handler for Timer2 interrupts*/
 void TIMER2_IRQ(void);
 
+/*set alarm sound Volume*/
 void alarm_setVol(uint8_t value);
 
 /*resets alarm sound and time*/
