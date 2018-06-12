@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Toast;
+import app.akexorcist.bluetotohspp.library.BluetoothSPP;
 
 public class LedActivity extends AppCompatActivity {
 
@@ -49,7 +50,6 @@ public class LedActivity extends AppCompatActivity {
     final private String HEX_FORMAT = "0x";
 
     // variables
-    int colorValue = 0;
     int redValue = 0;
     int greenValue = 0;
     int blueValue = 0;
@@ -59,6 +59,21 @@ public class LedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_led);
+
+        MainActivity.bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() {
+            @Override
+            public void onDataReceived(byte[] data, String message) {
+                Toast.makeText(getApplicationContext(), "jup", Toast.LENGTH_SHORT);
+                if ((data[0] == MainActivity.BT_LED ) && (data.length >= MainActivity.BT_NORMAL_MESSAGE_LEN)){
+                    redValue = ((int) data[2]);
+                    greenValue = ((int) data[3]);
+                    blueValue = ((int) data[4]);
+                    whiteValue = ((int) data[5]);
+                    setSeekbars();
+                    colorByValueEdit.setText(calcColor());
+                }
+            }
+        });
 
         // GUI initialization
         colorByValueEdit = (EditText) findViewById(R.id.colorValueEdit);
@@ -201,9 +216,12 @@ public class LedActivity extends AppCompatActivity {
         colorD3Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorD3)));
         colorD4Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorD4)));
         colorD5Button.setOnClickListener(new ColorButtonListener(getColor(R.color.colorD5)));
+    }
 
-        sendColors();
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        sendColorValuesRequest();
     }
 
     private void splitColor(int value){
@@ -304,6 +322,18 @@ public class LedActivity extends AppCompatActivity {
             setSeekbars();
             sendColors();
         }
+    }
+
+    private void sendColorValuesRequest(){
+        byte[] buffer = new byte[7];
+        buffer[0] = MainActivity.BT_LED;
+        buffer[1] = MainActivity.BT_REQUEST;
+        buffer[2] = (byte) (0);
+        buffer[3] = (byte) (0);
+        buffer[4] = (byte) (0);
+        buffer[5] = (byte) (0);
+        buffer[6] = MainActivity.BT_DELIMITER;
+        MainActivity.bt.send(buffer, false);
     }
 
 }

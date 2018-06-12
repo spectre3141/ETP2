@@ -1,8 +1,10 @@
 package com.zhaw.schoejo2.etp_moodlight;
 
+import android.widget.Toast;
+
 public class AlarmRequestTimer extends Thread {
 
-    private boolean running;
+    private boolean running = true;
     private AlarmRequestTimerListener listener;
     private int time;
 
@@ -25,8 +27,9 @@ public class AlarmRequestTimer extends Thread {
         while(running){
             listener.timeElapsed();
             try{
-                sleep(time);
-            } catch (InterruptedException e){
+                Thread.sleep(time);
+            } catch (Exception e){
+                listener.makeToast(e.getMessage());
                 // do nothing (timer doesn't have to be that precise
             }
         }

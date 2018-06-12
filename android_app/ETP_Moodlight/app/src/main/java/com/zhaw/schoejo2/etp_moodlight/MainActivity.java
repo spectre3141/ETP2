@@ -30,14 +30,15 @@ public class MainActivity extends AppCompatActivity {
     public static BluetoothSPP bt;
 
     // Activities:
-    LedActivity ledActivity = new LedActivity();
-    AlarmActivity alarmActivity = new AlarmActivity();
+    public LedActivity ledActivity = new LedActivity();
+    public AlarmActivity alarmActivity = new AlarmActivity();
 
     // GUI-Element Instances
     Button ledButton;
     Button alarmButton;
     Button bluetoothButton;
     TextView bluetoothText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,14 +57,6 @@ public class MainActivity extends AppCompatActivity {
         bt.setOnDataReceivedListener(new OnDataReceivedListener() {
             @Override
             public void onDataReceived(byte[] data, String message) {
-                if ((data[0] == BT_ALARM) && (data.length >= BT_NORMAL_MESSAGE_LEN)){
-                    int alarmTime = 0;
-                    alarmTime += (((int) data[2]) << 24);
-                    alarmTime += (((int) data[3]) << 16);
-                    alarmTime += (((int) data[4]) << 8);
-                    alarmTime += (((int) data[5]) << 0);
-                    alarmActivity.setTimeText(alarmTime);
-                }
             }
         });
 
