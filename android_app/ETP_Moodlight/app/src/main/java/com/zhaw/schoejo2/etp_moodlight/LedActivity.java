@@ -1,7 +1,5 @@
 package com.zhaw.schoejo2.etp_moodlight;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -63,14 +61,16 @@ public class LedActivity extends AppCompatActivity {
         MainActivity.bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() {
             @Override
             public void onDataReceived(byte[] data, String message) {
-                Toast.makeText(getApplicationContext(), "jup", Toast.LENGTH_SHORT);
-                if ((data[0] == MainActivity.BT_LED ) && (data.length >= MainActivity.BT_NORMAL_MESSAGE_LEN)){
-                    redValue = ((int) data[2]);
-                    greenValue = ((int) data[3]);
-                    blueValue = ((int) data[4]);
-                    whiteValue = ((int) data[5]);
-                    setSeekbars();
-                    colorByValueEdit.setText(calcColor());
+                // avoid errors if received data is too short
+                if (data.length >= 6) {
+                    if ((data[0] == MainActivity.BT_LED) && (data.length >= MainActivity.BT_NORMAL_MESSAGE_LEN)) {
+                        redValue = ((int) data[2]);
+                        greenValue = ((int) data[3]);
+                        blueValue = ((int) data[4]);
+                        whiteValue = ((int) data[5]);
+                        setSeekbars();
+                        colorByValueEdit.setText(calcColor());
+                    }
                 }
             }
         });
@@ -304,6 +304,18 @@ public class LedActivity extends AppCompatActivity {
         MainActivity.bt.send(buffer, false);
     }
 
+    private void sendColorValuesRequest(){
+        byte[] buffer = new byte[7];
+        buffer[0] = MainActivity.BT_LED;
+        buffer[1] = MainActivity.BT_REQUEST;
+        buffer[2] = (byte) (0);
+        buffer[3] = (byte) (0);
+        buffer[4] = (byte) (0);
+        buffer[5] = (byte) (0);
+        buffer[6] = MainActivity.BT_DELIMITER;
+        MainActivity.bt.send(buffer, false);
+    }
+
     /**
      * dedicated listener class to lower effort on colorButton listeners
      */
@@ -322,18 +334,6 @@ public class LedActivity extends AppCompatActivity {
             setSeekbars();
             sendColors();
         }
-    }
-
-    private void sendColorValuesRequest(){
-        byte[] buffer = new byte[7];
-        buffer[0] = MainActivity.BT_LED;
-        buffer[1] = MainActivity.BT_REQUEST;
-        buffer[2] = (byte) (0);
-        buffer[3] = (byte) (0);
-        buffer[4] = (byte) (0);
-        buffer[5] = (byte) (0);
-        buffer[6] = MainActivity.BT_DELIMITER;
-        MainActivity.bt.send(buffer, false);
     }
 
 }

@@ -29,7 +29,6 @@ public class AlarmRequestTimer extends Thread {
             try{
                 Thread.sleep(time);
             } catch (Exception e){
-                listener.makeToast(e.getMessage());
                 // do nothing (timer doesn't have to be that precise
             }
         }

@@ -29,6 +29,7 @@ public class AlarmActivity extends AppCompatActivity implements TimePickerDialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
 
+        /* set a new OnDataReceivedListener so it can use the local functions */
         MainActivity.bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() {
             @Override
             public void onDataReceived(byte[] data, String message) {
@@ -44,7 +45,7 @@ public class AlarmActivity extends AppCompatActivity implements TimePickerDialog
             }
         });
 
-        // GUI initialization
+        /* GUI initialization */
         timeText = (TextView) findViewById(R.id.timeText);
         timeButton = (Button) findViewById(R.id.timeButton);
 
@@ -58,11 +59,10 @@ public class AlarmActivity extends AppCompatActivity implements TimePickerDialog
 
     }
 
-
-
     @Override
     public void onStart() {
         super.onStart();
+        // create and start a new timer to update the time value regularly
         timer = new AlarmRequestTimer(this, ALARM_UPDATE_TIME_MS);
         timer.start();
     }
@@ -70,13 +70,20 @@ public class AlarmActivity extends AppCompatActivity implements TimePickerDialog
     @Override
     public void onStop() {
         super.onStop();
+        // destroy timer on activity stop to avoid left behind threads
         try {
             timer.kill();
         } catch (Exception e) {
-            // necessary to avoid errors if for some reason the thread does not exist
+            // necessary to avoid errors if the thread doesn't exist
         }
     }
 
+    /**
+     * Listener for the time picker dialog
+     * @param view
+     * @param hourOfDay
+     * @param minute
+     */
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         int seconds = (hourOfDay * 3600) + (minute * 60);
@@ -92,16 +99,22 @@ public class AlarmActivity extends AppCompatActivity implements TimePickerDialog
         sendAlarmTimeRequest();
     }
 
-    public void makeToast(String text){
-        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
-    }
-
+    /**
+     * converts seconds into hours and minutes and sets the text
+     * of timeText
+     * calls timeToString
+     * @param seconds
+     */
     public void setTimeText(int seconds){
         int hours = seconds / 3600;
         int minutes = (seconds % 3600) / 60;
         timeText.setText(timeToString(hours, minutes));
     }
 
+    /**
+     * sends a request to the moodlight to send back
+     * the current timer value
+     */
     public void sendAlarmTimeRequest() {
         byte[] buffer = new byte[7];
         buffer[0] = MainActivity.BT_ALARM;
@@ -114,6 +127,10 @@ public class AlarmActivity extends AppCompatActivity implements TimePickerDialog
         MainActivity.bt.send(buffer, false);
     }
 
+    /**
+     * sends the value [seconds] to the moodlight
+     * @param value
+     */
     private void sendAlarmTime(int value){
         byte[] buffer = new byte[7];
         buffer[0] = MainActivity.BT_ALARM;
@@ -126,6 +143,13 @@ public class AlarmActivity extends AppCompatActivity implements TimePickerDialog
         MainActivity.bt.send(buffer, false);
     }
 
+    /**
+     * converts the int values hours and minutes into a
+     * string of the format "hh : mm"
+     * @param hours
+     * @param minutes
+     * @return
+     */
     private String timeToString(int hours, int minutes){
         String text = "";
         if(hours < 10){
