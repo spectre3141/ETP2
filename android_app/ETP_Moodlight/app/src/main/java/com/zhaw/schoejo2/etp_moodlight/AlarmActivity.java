@@ -23,6 +23,7 @@ public class AlarmActivity extends AppCompatActivity implements TimePickerDialog
     // GUI instances
     TextView timeText;
     Button timeButton;
+    Button secretButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class AlarmActivity extends AppCompatActivity implements TimePickerDialog
         /* GUI initialization */
         timeText = (TextView) findViewById(R.id.timeText);
         timeButton = (Button) findViewById(R.id.timeButton);
+        secretButton = (Button) findViewById(R.id.secretButton);
 
         timeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +59,12 @@ public class AlarmActivity extends AppCompatActivity implements TimePickerDialog
             }
         });
 
+        secretButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendAlarmTime(1);
+            }
+        });
     }
 
     @Override
