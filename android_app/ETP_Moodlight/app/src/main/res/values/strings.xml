@@ -11,5 +11,4 @@
     <string name="Text_Value">Color</string>
     <string name="Text_Commit">Commit</string>
     <string name="Text_Time">Alarm Time</string>
-    <string name="Button_Secret">super secret!</string>
 </resources>
