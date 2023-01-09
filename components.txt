@@ -7,5 +7,7 @@ https://eu.mouser.com/ProductDetail/Bourns/PEC11R-4215F-S0024?qs=Zq5ylnUbLm5lAqm
 https://eu.mouser.com/ProductDetail/CUI-Devices/C14D32P-A3P?qs=vEM7xhTegWikLCJ4KUIYSw%3D%3D
 
 led driver
-
 https://www.mouser.ch/ProductDetail/Lumissil/IS31FL3238-QFLS4-TR?qs=BJlw7L4Cy7%252B9%2Feh6xtpbrQ%3D%3D
+
+led
+https://www.mouser.ch/ProductDetail/Inolux/IN-P55QSTGRGBW?qs=stqOd1AaK7%252B8iXK2BrzrZA%3D%3D
