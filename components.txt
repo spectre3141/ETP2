@@ -11,3 +11,6 @@ https://www.mouser.ch/ProductDetail/Inolux/IN-P55QSTGRGBW?qs=stqOd1AaK7%252B8iXK
 
 ESP-32
 https://www.mouser.ch/ProductDetail/Espressif-Systems/ESP32-DevKitC-32E?qs=GedFDFLaBXFpgD0kAZWDrQ%3D%3D
+
+ESP-PROG (Debugger)
+https://www.mouser.ch/ProductDetail/Espressif-Systems/ESP-PROG?qs=0lSvoLzn4L9lCAjJ8r9cdg%3D%3D
