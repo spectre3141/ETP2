@@ -1,0 +1,7 @@
+display:
+https://eu.mouser.com/ProductDetail/Display-Visions/EA-TFT009-81AINN?qs=Wj%2FVkw3K%252BMAVh2P%252BL0Z6dg%3D%3D
+https://eu.mouser.com/ProductDetail/Pervasive-Displays/E2266PS0C1?qs=vvQtp7zwQdP1Rixf428J7g%3D%3D
+
+rotary encoder:
+https://eu.mouser.com/ProductDetail/Bourns/PEC11R-4215F-S0024?qs=Zq5ylnUbLm5lAqmKF80wzQ%3D%3D
+https://eu.mouser.com/ProductDetail/CUI-Devices/C14D32P-A3P?qs=vEM7xhTegWikLCJ4KUIYSw%3D%3D
