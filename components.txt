@@ -5,3 +5,7 @@ https://eu.mouser.com/ProductDetail/Pervasive-Displays/E2266PS0C1?qs=vvQtp7zwQdP
 rotary encoder:
 https://eu.mouser.com/ProductDetail/Bourns/PEC11R-4215F-S0024?qs=Zq5ylnUbLm5lAqmKF80wzQ%3D%3D
 https://eu.mouser.com/ProductDetail/CUI-Devices/C14D32P-A3P?qs=vEM7xhTegWikLCJ4KUIYSw%3D%3D
+
+led driver
+
+https://www.mouser.ch/ProductDetail/Lumissil/IS31FL3238-QFLS4-TR?qs=BJlw7L4Cy7%252B9%2Feh6xtpbrQ%3D%3D
