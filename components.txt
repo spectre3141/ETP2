@@ -8,3 +8,6 @@ https://www.mouser.ch/ProductDetail/Lumissil/IS31FL3238-QFLS4-TR?qs=BJlw7L4Cy7%2
 
 led
 https://www.mouser.ch/ProductDetail/Inolux/IN-P55QSTGRGBW?qs=stqOd1AaK7%252B8iXK2BrzrZA%3D%3D
+
+ESP-32
+https://www.mouser.ch/ProductDetail/Espressif-Systems/ESP32-DevKitC-32E?qs=GedFDFLaBXFpgD0kAZWDrQ%3D%3D
