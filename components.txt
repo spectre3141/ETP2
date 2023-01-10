@@ -1,7 +1,12 @@
 display development tool:
+https://www.mouser.ch/ProductDetail/Gravitech/LCD-16x2B?qs=Vxac6xGyzPnG7zGPUxgKdg%3D%3D
+https://www.mouser.ch/ProductDetail/Newhaven-Display/NHD-C0220BiZ-FSRGB-FBW-3VM?qs=oKGVsjWCOzHRZL%252BLxRDH6w%3D%3D
 
 rotary encoder:
 https://eu.mouser.com/ProductDetail/CUI-Devices/C14D32P-A3P?qs=vEM7xhTegWikLCJ4KUIYSw%3D%3D
+
+pushbutton switch:
+https://www.distrelec.ch/en/pushbutton-switch-on-off-1no-panel-mount-black-rnd-components-rnd-210-00649/p/30161226?trackQuery=cat-DNAV_PL_1747843&pos=12&origPos=12&origPageSize=50&track=true
 
 led driver
 https://www.mouser.ch/ProductDetail/Lumissil/IS31FL3238-QFLS4-TR?qs=BJlw7L4Cy7%252B9%2Feh6xtpbrQ%3D%3D
